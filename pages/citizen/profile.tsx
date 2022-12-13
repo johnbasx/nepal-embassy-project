@@ -1,0 +1,309 @@
+import { FetchData, Update } from '@utils/fetcher';
+import { Gender, Qualifications } from 'content/drop-down-items';
+import React, { useEffect, useState } from 'react';
+import { getUserProfile, updateUserProfile } from '@content/api-urls';
+import toast, { Toaster } from 'react-hot-toast';
+
+import Loading from '@components/common/Loading';
+import type { NextPage } from 'next';
+import PersonalInfo from '@components/citizen/profile/PersonalInfo';
+import authStore from '@store/useAuthStore';
+import pageTitleStore from '../../store/selectUsersStore';
+
+export interface UserDetailProps {
+  id: string;
+  full_name: string;
+  email: string;
+  contact_number?: string;
+  dob?: string;
+  profile_photo?: any;
+  age?: number;
+  gender: string;
+  profession?: string;
+  qualification?: string;
+  fathers_name?: string;
+  mothers_name?: string;
+  fathers_qualification?: string;
+  mothers_qualification?: any;
+  created_at: Date;
+  user: number;
+}
+
+const Profile: NextPage = () => {
+  const { token } = authStore();
+  const { setPageTitle } = pageTitleStore();
+  const [userDetail, setUserDetail] = useState<UserDetailProps>();
+  const [updating, setUpdating] = useState<Boolean>(false);
+  const [contactNumber, setcontactNumber] = useState(
+    userDetail?.contact_number
+  );
+  const [profession, setprofession] = useState(userDetail?.profession);
+  const [dob, setDob] = useState<string>();
+  const [gender, setGender] = useState(userDetail?.gender);
+  const [qualification, setQualification] = useState(userDetail?.qualification);
+  const [fathersName, setFathersName] = useState(userDetail?.fathers_name);
+  const [mothersName, setMothersName] = useState(userDetail?.mothers_name);
+
+  const data = {
+    contact_number: contactNumber,
+    profession: profession,
+    dob: dob,
+    gender: gender,
+    qualification: qualification,
+    fathers_name: fathersName,
+    mothers_name: mothersName,
+  };
+
+  useEffect(() => {
+    setPageTitle('Profile');
+    const getProfile = async () => {
+      const returnData = await FetchData(token, getUserProfile);
+      setUserDetail(returnData);
+    };
+    getProfile();
+  }, []);
+
+  const UpdateProfile = async (e: React.MouseEvent<HTMLElement>) => {
+    setUpdating(true);
+    e.preventDefault();
+    const returnValue = await Update(
+      token,
+      updateUserProfile + userDetail?.id,
+      data
+    );
+    returnValue == 1
+      ? toast.success('Profile updated')
+      : toast.error('Unable to update');
+    setUpdating(false);
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto shadow-xl">
+      <Toaster />
+      <form
+        className="divide-y divide-gray-200 lg:col-span-9"
+        action="#"
+        method="POST"
+      >
+        {/* Profile section */}
+        <div className="py-6 px-4 sm:p-6 lg:pb-8">
+          <div>
+            <h2 className="text-lg leading-6 font-semibold text-gray-900">
+              Personal Information
+            </h2>
+          </div>
+
+          {userDetail && (
+            <PersonalInfo
+              user={userDetail.user}
+              full_name={userDetail?.full_name}
+              email={userDetail?.email}
+            />
+          )}
+
+          <div className="mt-6 grid grid-cols-12 gap-6">
+            <div className="col-span-12">
+              <h2 className="text-lg leading-6 font-semibold text-gray-900">
+                Profile Information
+              </h2>
+            </div>
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="contact-number"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Contact Number
+              </label>
+              <div className="mt-1 rounded-md shadow-sm flex">
+                <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
+                  IN
+                </span>
+                <input
+                  type="text"
+                  name="contact-number"
+                  id="contact-number"
+                  autoComplete="contact-number"
+                  className="focus:ring-sky-500 focus:border-sky-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                  defaultValue={userDetail?.contact_number}
+                  onChange={(e) => setcontactNumber(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="profession"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Profession
+              </label>
+              <input
+                type="profession"
+                name="profession"
+                id="profession"
+                list="profession-list"
+                autoComplete="profession"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                defaultValue={userDetail?.profession}
+                onChange={(e) => setprofession(e.target.value)}
+              />
+            </div>
+
+            <div className="col-span-12 sm:col-span-4">
+              <label
+                htmlFor="dob"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Date of Birth
+              </label>
+              <input
+                type="text"
+                name="dob"
+                id="dob"
+                autoComplete="dob"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                placeholder="DD-MM-YY"
+                onChange={(e) => setDob(e.target.value)}
+                defaultValue={userDetail?.dob}
+              />
+            </div>
+
+            <div className="col-span-12 sm:col-span-4">
+              <label
+                htmlFor="gender"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Gender
+              </label>
+              <select
+                id="gender"
+                required
+                disabled
+                name="gender"
+                autoComplete="gender"
+                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                onChange={(e) => {
+                  setGender(e.target.value);
+                }}
+              >
+                {Gender.map((item) =>
+                  item == userDetail?.gender ? (
+                    <option key={'selected' + item} defaultValue={item}>
+                      {item}
+                    </option>
+                  ) : (
+                    <option key={'unselected' + item}>{item}</option>
+                  )
+                )}
+              </select>
+            </div>
+
+            <div className="col-span-12 sm:col-span-4">
+              <label
+                htmlFor="qualification"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Qualification
+              </label>
+              <select
+                id="qualification"
+                required
+                disabled
+                name="qualification"
+                autoComplete="qualification"
+                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                onChange={(e) => setQualification(e.target.value)}
+              >
+                {Qualifications.map((item) =>
+                  item == userDetail?.qualification ? (
+                    <option defaultValue={item} key={'qualification-' + item}>
+                      {item}
+                    </option>
+                  ) : (
+                    <option key={'qualification' + item}>{item}</option>
+                  )
+                )}
+              </select>
+            </div>
+
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="father-name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Father Name
+              </label>
+              <input
+                type="text"
+                name="father-name"
+                id="father-name"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                onChange={(e) => setFathersName(e.target.value)}
+                defaultValue={userDetail?.fathers_name}
+              />
+            </div>
+
+            <div className="col-span-12 sm:col-span-6">
+              <label
+                htmlFor="mother-name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Mother Name
+              </label>
+              <input
+                type="text"
+                name="mother-name"
+                id="mother-name"
+                autoComplete="organization"
+                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                onChange={(e) => setMothersName(e.target.value)}
+                defaultValue={userDetail?.mothers_name}
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div className="flex items-center justify-end pb-6 px-8">
+        {!updating ? (
+          <button
+            onClick={(e) => UpdateProfile(e)}
+            className="w-auto px-8 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-1 md:text-base"
+          >
+            Save
+          </button>
+        ) : (
+          <UpdatingButton />
+        )}
+      </div>
+      <datalist id="profession-list">
+        {professions.map((data, index) => (
+          <option key={'Profession-datalist' + index * 2}>{data}</option>
+        ))}
+      </datalist>
+    </div>
+  );
+};
+
+const UpdatingButton = () => {
+  return (
+    <button
+      type="button"
+      className="w-auto flex justify-center items-center px-4 py-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-1 md:text-base"
+    >
+      <Loading />
+      Saving
+    </button>
+  );
+};
+
+const professions = [
+  'Singer',
+  'Student',
+  'Government Employee',
+  'Business',
+  'Teacher',
+  'Unemployed',
+  'Self employed',
+  'Others',
+];
+export default Profile;
