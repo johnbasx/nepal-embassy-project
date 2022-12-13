@@ -76,3 +76,4 @@ const Select: React.FC<SelectProps> = React.forwardRef(
 
 // export default Select;
 Select.displayName = 'Select';
+export default Select;
