@@ -6,6 +6,7 @@ import { LockClosedIcon } from '@heroicons/react/outline';
 import type { NextPage } from 'next';
 import axios from 'axios';
 import { useState } from 'react';
+import { requestPasswordReset } from '@content/api-urls';
 
 const RequestPasswordReset: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +17,7 @@ const RequestPasswordReset: NextPage = () => {
   ) => {
     event.preventDefault();
     setIsLoading(true);
-    const url = 'http://127.0.0.1:8000/request-reset-email/';
+    const url = 'requestPasswordReset';
     try {
       const response = await axios.post(
         url,

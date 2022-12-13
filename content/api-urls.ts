@@ -1,5 +1,8 @@
 // export const BASE_URL = 'http://192.168.29.199:8000/';
-export const BASE_URL = 'http://127.0.0.1:8000/';
+// export const BASE_URL = 'http://127.0.0.1:8000/';
+export const BASE_URL = 'https://cube69.pythonanywhere.com/';
+
+export const requestPasswordReset = BASE_URL + 'request-reset-email/';
 
 export const getUserProfileByEmp = BASE_URL + 'getUserProfileByEmp/';
 export const adminLogin = BASE_URL + 'adminLogin';
