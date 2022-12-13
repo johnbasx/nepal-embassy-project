@@ -8,9 +8,9 @@ import { Fragment, useEffect, useRef, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 
 import Link from 'next/link';
-import { NocProps } from '../admin/userList/UserListTable';
+import { NocDetailTypes } from '../admin/userList/UserListTable';
 
-const DropdownMenu = (props: NocProps) => {
+const DropdownMenu = (props: NocDetailTypes) => {
   // const { id } = props;
   return (
     <div className="">
