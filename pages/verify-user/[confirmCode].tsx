@@ -60,7 +60,7 @@ const VerifyUser = () => {
           />
           <div className="px-10 text-gray-600 text-center space-y-2">
             <h1 className="font-semibold text-xl font-sans">
-              We've sent Verification code to your email
+              We&apos;ve sent Verification code to your email
             </h1>
             <p className="font-semibold text-sm">
               Enter the verification code to authorize your login
