@@ -1,3 +1,4 @@
+import { BASE_URL } from '@content/api-urls';
 import { GetServerSidePropsContext } from 'next';
 import HeadSection from '@components/nocCirtificate/HeadSection';
 import React from 'react';
@@ -67,10 +68,7 @@ const PublicNoc = ({ data }: any) => {
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   //   console.log('Context Data: ', context.query);
 
-  const res = await fetch(
-    `http://192.168.1.39:8000/getNocByQr/${context.query.nocId}`,
-    {}
-  );
+  const res = await fetch(`${BASE_URL}getNocByQr/${context.query.nocId}`, {});
   const data = await res.json();
   console.log(res);
   return { props: { data } };

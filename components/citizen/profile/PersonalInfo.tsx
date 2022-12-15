@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
+import { BASE_URL } from '@content/api-urls';
 import Image from 'next/image';
 import Loading from '@components/common/Loading';
 import { UserDetailProps } from 'pages/citizen/profile';
@@ -33,7 +34,7 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
   const UpdateUserInfo = async (e: React.MouseEvent<HTMLElement>) => {
     setSaving(true);
     e.preventDefault();
-    const url = `http://192.168.29.199:8000/updateUser/${userId}`;
+    const url = `${BASE_URL}updateUser/${userId}`;
     try {
       const response = await axios.put(url, data, { headers: header });
       console.log(response);

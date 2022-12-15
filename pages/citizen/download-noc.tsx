@@ -1,3 +1,4 @@
+import { BASE_URL, verifyByQr } from '@content/api-urls';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
@@ -12,7 +13,6 @@ import { jsPDF } from 'jspdf';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import useWindowDimensions from '@utils/useWindowDimensions';
-import { verifyByQr } from '@content/api-urls';
 
 export interface NOCType {
   id: string;
@@ -42,7 +42,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
   //   `/verify-by-qr/${certificateData.id}`
   // );
   const [qrCodeValue, setQrCodeValue] = useState(
-    'http://192.168.1.39:3000/verify-by-qr/' + certificateData.id
+    `${BASE_URL}verify-by-qr/` + certificateData.id
   );
 
   // for print pdf
@@ -174,7 +174,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                 </div>
                 <div className="text-center flex flex-col justify-start items-center px-10 space-y-2">
                   <img
-                    src={`http://127.0.0.1:8000/media/${certificateData.signature}`}
+                    src={`${BASE_URL}media/${certificateData.signature}`}
                     alt="signature"
                     className="h-14 lg:h-32"
                   />
@@ -222,7 +222,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     };
   }
   let certificateData;
-  const url = `http://127.0.0.1:8000/getNoObjectionCertificate/${nocId}`;
+  const url = `${BASE_URL}getNoObjectionCertificate/${nocId}`;
   try {
     const response = await axios(url, {
       headers: {

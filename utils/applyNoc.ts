@@ -1,3 +1,4 @@
+import { BASE_URL } from '@content/api-urls';
 import { PostData } from './fetcher';
 
 export interface CheckTravelProps {
@@ -110,7 +111,7 @@ export const CheckTravelPurpose = async ({
       formData.append('nagarita', nagarita as Blob);
       formData.append('write_up', writeUp as Blob);
 
-      const url = 'http://127.0.0.1:8000/createNocDoc-GeneralTourist';
+      const url = `${BASE_URL}createNocDoc-GeneralTourist`;
       const returnValue = await PostData(token, url, formData);
       return returnValue == 1 ? 1 : 0;
 
@@ -123,7 +124,7 @@ export const CheckTravelPurpose = async ({
       formData.append('relative_nagarita', relativeNagarita as Blob);
       formData.append('sponsorship_letter', sponsorshipLetter as Blob);
 
-      const url2 = 'http://127.0.0.1:8000/createNocDoc-MedicalPurpose';
+      const url2 = `${BASE_URL}createNocDoc-MedicalPurpose`;
       const returnValue2 = await PostData(token, url2, formData);
       return returnValue2 == 1 ? 1 : 0;
 
@@ -131,14 +132,14 @@ export const CheckTravelPurpose = async ({
       formData.append('ministry_letter', ministryLetter as Blob);
       formData.append('invitation_letter', invitationLetter as Blob);
 
-      const url3 = 'http://127.0.0.1:8000/createNocDoc-GovtWork';
+      const url3 = `${BASE_URL}createNocDoc-GovtWork`;
       const returnValue3 = await PostData(token, url3, formData);
       return returnValue3 == 1 ? 1 : 0;
 
     case '4':
       formData.append('gats_offer_letter', gatsOfferLetter as Blob);
       formData.append('application_of_purpose', purposeApplication as Blob);
-      const url4 = 'http://127.0.0.1:8000/createNocDoc-WTOGATS';
+      const url4 = `${BASE_URL}createNocDoc-WTOGATS`;
       const returnValue4 = await PostData(token, url4, formData);
       return returnValue4 == 1 ? 1 : 0;
 
@@ -147,21 +148,21 @@ export const CheckTravelPurpose = async ({
       formData.append('marksheet', marksheet as Blob);
       formData.append('transfer_certificate', transferCertificate as Blob);
 
-      const url5 = 'http://127.0.0.1:8000/createNocDoc-EducationalPurpose';
+      const url5 = `${BASE_URL}createNocDoc-EducationalPurpose`;
       const returnValue5 = await PostData(token, url5, formData);
       return returnValue5 == 1 ? 1 : 0;
 
     case '6':
       formData.append('write_up_by_landlord', landlordWriteup as Blob);
 
-      const url6 = 'http://127.0.0.1:8000/createNocDoc-CreateNocDocWorkInIndia';
+      const url6 = `${BASE_URL}createNocDoc-CreateNocDocWorkInIndia`;
       const returnValue6 = await PostData(token, url6, formData);
       return returnValue6 == 1 ? 1 : 0;
 
     case '7':
       formData.append('offer_letter', offerLetter as Blob);
 
-      const url7 = 'http://127.0.0.1:8000/createNocDoc-WorkingVisa';
+      const url7 = `${BASE_URL}createNocDoc-WorkingVisa`;
       const returnValue7 = await PostData(token, url7, formData);
       return returnValue7 == 1 ? 1 : 0;
   }

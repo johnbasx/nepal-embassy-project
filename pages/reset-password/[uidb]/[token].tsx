@@ -1,5 +1,6 @@
 import toast, { Toaster } from 'react-hot-toast';
 
+import { BASE_URL } from '@content/api-urls';
 import Link from 'next/link';
 import Loading from '@components/common/Loading';
 import { LockClosedIcon } from '@heroicons/react/outline';
@@ -20,7 +21,7 @@ const ResetPassword: NextPage = () => {
   const onSubmitHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    const url = 'http://127.0.0.1:8000/password-reset-complete';
+    const url = `${BASE_URL}password-reset-complete`;
     const data = {
       password: newPassword,
       token: token,

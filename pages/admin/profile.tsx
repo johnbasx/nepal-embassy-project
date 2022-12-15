@@ -1,7 +1,7 @@
+import { BASE_URL, getEmpProfile, updateEmpProfile } from '@content/api-urls';
 import { Dialog, Transition } from '@headlessui/react';
 import { FetchData, Update } from '@utils/fetcher';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
-import { getEmpProfile, updateEmpProfile } from '@content/api-urls';
 
 import Image from 'next/image';
 import authStore from '@store/adminAuthStore';
@@ -73,7 +73,7 @@ const Profile = () => {
                       <div className="relative h-24 w-auto object-contain ">
                         {profile?.signature ? (
                           <img
-                            src={`http://127.0.0.1:8000` + profile?.signature}
+                            src={`${BASE_URL}` + profile?.signature}
                             className="h-24 w-auto "
                             alt={profile?.full_name + ' Signature'}
                           />
