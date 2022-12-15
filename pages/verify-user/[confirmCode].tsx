@@ -7,6 +7,7 @@ import { NextResponse } from 'next/server';
 import authStore from '@store/useAuthStore';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import { BASE_URL } from '@content/api-urls';
 
 const VerifyUser = () => {
   const { setAccessToken } = authStore();
@@ -23,7 +24,7 @@ const VerifyUser = () => {
     const header = {
       'Content-Type': 'application/json',
     };
-    const url = `http://192.168.29.199:8000/verifyOTP`;
+    const url = `${BASE_URL}verifyOTP`;
     const data = {
       otp: otp,
       verification_id: confirmCode,
