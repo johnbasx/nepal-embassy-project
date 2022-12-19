@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect, useState } from 'react';
 
+import Head from 'next/head';
 import HeadNav from './HeadNav';
 import { NextComponentType } from 'next';
 import SideBar from './SideBar';
@@ -17,13 +18,21 @@ const Layout = ({ children }: any) => {
     }
   }, []);
   return (
-    <div className="overflow-hidden">
-      <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="md:pl-64 flex flex-col bg-gray-100">
-        <HeadNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1">{children}</main>
+    <>
+      <Head>
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="upgrade-insecure-requests"
+        />
+      </Head>
+      <div className="overflow-hidden">
+        <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <div className="md:pl-64 flex flex-col bg-gray-100">
+          <HeadNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+          <main className="flex-1">{children}</main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
