@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  distDir: '/next/build',
+  // distDir: '/next/build',
   images: {
     domains: ['http://127.0.0.1', 'https://cube69.pythonanywhere.com/'],
   },
