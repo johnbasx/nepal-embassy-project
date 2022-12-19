@@ -172,7 +172,7 @@ const Login = () => {
         />
         {/* <div className="mx-auto">Nepalese Login for Noc Portal</div> */}
         <h2 className="mt-6 text-center text-lg font-semibold text-gray-900">
-          Nepal Embassy - Delhiiii
+          Nepal Embassy - Delhi
           <br />
           <span className="text-3xl font-extrabold">NOC Portal Login</span>
         </h2>
