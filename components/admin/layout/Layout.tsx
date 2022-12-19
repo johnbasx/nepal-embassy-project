@@ -21,7 +21,7 @@ const Layout = ({ children }: any) => {
     <>
       <Head>
         <meta
-          http-equiv="Content-Security-Policy"
+          httpEquiv="Content-Security-Policy"
           content="upgrade-insecure-requests"
         />
       </Head>
