@@ -73,7 +73,10 @@ const Profile = () => {
                       <div className="relative h-24 w-auto object-contain ">
                         {profile?.signature ? (
                           <img
-                            src={`${BASE_URL}` + profile?.signature}
+                            src={
+                              `https://cube69.pythonanywhere.com` +
+                              profile?.signature
+                            }
                             className="h-24 w-auto "
                             alt={profile?.full_name + ' Signature'}
                           />
