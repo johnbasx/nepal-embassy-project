@@ -29,7 +29,7 @@ const Input: FC<InputProps> = ({
           htmlFor={name}
           className={classNames(
             'text-sm block font-medium mb-1',
-            error ? 'text-red-500 font-medium' : 'text-gray-500'
+            error ? 'text-red-500 font-medium' : 'text-gray-700'
           )}
         >
           {label}

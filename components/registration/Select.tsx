@@ -28,7 +28,7 @@ const Select: React.FC<SelectProps> = React.forwardRef(
           htmlFor="gender"
           className={classNames(
             'text-sm block font-medium mb-1',
-            error ? 'text-red-500 font-medium' : 'text-gray-500'
+            error ? 'text-red-500 font-medium' : 'text-gray-700'
           )}
         >
           Gender
