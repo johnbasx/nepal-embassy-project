@@ -56,7 +56,7 @@ const Signup = () => {
   return (
     <>
       <Toaster />
-      <div className="mx-auto px-4 py-6 flex flex-col justify-top items-center h-screen">
+      <div className="flex flex-col items-center px-4 py-6 mx-auto justify-top">
         <Heading />
         <Form
           buttonLabel="Register"
@@ -64,7 +64,7 @@ const Signup = () => {
           handleSubmit={handleSubmit}
           onSubmit={submitHandler}
           loading={isSubmitting}
-          className="bg-gray-100 px-4 py-8 md:p-8 shadow-md flex flex-col justify-evenly rounded-lg w-full sm:w-3/5 lg:w-1/2 xl:w-2/3 2xl:w-2/5 max-w-7xl"
+          className="flex flex-col w-full max-w-lg px-4 py-2 bg-white rounded-lg md:p-8 justify-evenly sm:w-3/5 lg:w-1/2 xl:w-2/3 2xl:w-2/5"
         >
           {/* First Name input*/}
           <Input
@@ -74,7 +74,6 @@ const Signup = () => {
             wrapperClass="col-span-4"
             placeholder="Enter your full name"
             error={errors.full_name?.message}
-            autoFocus
           />
           {/* Last Name input */}
           {/* <Input
@@ -94,7 +93,6 @@ const Signup = () => {
             wrapperClass="mt-3 flex flex-col col-span-4"
             placeholder="Enter your email"
             error={errors.email?.message}
-            autoFocus
           />
 
           {/* Father's Name input */}
@@ -105,7 +103,6 @@ const Signup = () => {
             wrapperClass="mt-3 col-span-4"
             placeholder="Enter your father's name"
             error={errors.fathers_name?.message}
-            autoFocus
           />
 
           <Input
@@ -115,7 +112,6 @@ const Signup = () => {
             wrapperClass="mt-3 col-span-4"
             placeholder="Enter your mother's name"
             error={errors.mothers_name?.message}
-            autoFocus
           />
           {/* Contact number input */}
 
@@ -124,9 +120,8 @@ const Signup = () => {
             type="tel"
             label="Contact Number"
             wrapperClass="mt-3 col-span-4 md:col-span-2"
-            placeholder="+91-9986670093"
+            placeholder="9986670093"
             error={errors.contact_number?.message}
-            autoFocus
           />
 
           {/* DOB Input */}
@@ -135,7 +130,9 @@ const Signup = () => {
             name="dob"
             type="date"
             label="Date of birth"
-            placeholder="DOB"
+            placeholder="Select DOB"
+            min="1899-01-01"
+            max="2007-01-01"
             wrapperClass="mt-3 grid col-span-4 md:col-span-2 md:h-16"
             error={errors.dob?.message}
           />
@@ -166,10 +163,10 @@ const Signup = () => {
           {/* Profession Input */}
           <Input
             name="profession"
-            type="search"
+            type="text"
             label="Profession"
-            list="profession-list"
-            placeholder="Enter qualification"
+            // list="profession-list"
+            placeholder="Enter profession"
             wrapperClass="mt-3 grid col-span-4 md:col-span-2"
             error={errors.profession?.message}
           />
@@ -229,11 +226,18 @@ const professions = [
 
 // Registration Header
 const Heading = () => (
-  <div className="py-6 px-4 text-center">
-    <h2 className="font-medium text-2xl text-gray-700">Registration</h2>
-    <h1 className="text-6xl py-2 font-extrabold">NOC Portal</h1>
-    <h3 className="text-2xl text-red-500 font-medium">Embassy of Nepal</h3>
-    <p className="text-xs tracking-widest uppercase font-semibold text-gray-500">
+  <div className="px-4 py-6 text-center">
+    <img
+      className="w-auto h-20 mx-auto"
+      src="/images/logo-only.jpg"
+      alt="Nepal Embassy Logo"
+    />
+    <h2 className="mt-4 text-lg font-medium text-gray-700">
+      User Registration
+    </h2>
+    <h1 className="text-3xl font-extrabold">NOC Portal Signup</h1>
+    <h3 className="mt-2 text-lg font-medium text-red-500">Embassy of Nepal</h3>
+    <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
       New Delhi, India
     </p>
   </div>
@@ -242,25 +246,25 @@ const Heading = () => (
 // Footer Links
 
 const Footer = () => (
-  <div className="flex flex-col text-center pb-6">
-    <div className="py-3 px-4 flex justify-between space-x-6">
+  <div className="flex flex-col pb-6 text-center">
+    <div className="flex justify-between px-4 py-3 space-x-6">
       <Link href="/login">
-        <a className="text-gray-700 font-semibold text-sm">
+        <a className="text-sm font-medium text-gray-400">
           Already Registered?{' '}
-          <span className="text-blue-700 hover:text-blue-600 duration-200">
+          <span className="font-semibold text-blue-700 duration-200 hover:text-blue-600">
             Login
           </span>
         </a>
       </Link>
       <Link href="/request-password-reset">
-        <a className="text-gray-500 hover:text-gray-700 duration-200 text-sm">
+        <a className="text-sm text-gray-500 duration-200 hover:text-gray-700">
           Forgot Password?
         </a>
       </Link>
     </div>
     <div>
       <Link href="#!">
-        <a className="text-gray-500 hover:text-gray-600 duration-200 text-xs">
+        <a className="text-xs text-gray-500 duration-200 hover:text-gray-600">
           Need help?
         </a>
       </Link>

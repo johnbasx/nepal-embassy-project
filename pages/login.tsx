@@ -66,23 +66,23 @@ const Login = () => {
   // return token !== '' ? (
   //   <></>
   // ) : (
-  //   <div className="min-h-screen flex flex-col justify-center px-6 lg:px-8">
+  //   <div className="flex flex-col justify-center min-h-screen px-6 lg:px-8">
   //     <div className="sm:mx-auto sm:w-full sm:max-w-md">
   //       <img
-  //         className="mx-auto h-28 w-auto"
+  //         className="w-auto mx-auto h-28"
   //         src="/images/logo-only.jpg"
   //         alt="Workflow"
   //       />
   //       {/* <div className="mx-auto">Nepalese Login for Noc Portal</div> */}
-  //       <h2 className="mt-6 text-center text-lg font-semibold text-gray-900">
+  //       <h2 className="mt-6 text-lg font-semibold text-center text-gray-900">
   //         Nepal Embassy - Delhiiii
   //         <br />
   //         <span className="text-3xl font-extrabold">NOC Portal Login</span>
   //       </h2>
-  //       <p className="mt-2 text-center text-sm text-gray-600 max-w">
+  //       <p className="mt-2 text-sm text-center text-gray-600 max-w">
   //         Don&apos;t have account?
   //         <Link href="/signup">
-  //           <a className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+  //           <a className="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
   //             {' '}
   //             Sign up
   //           </a>
@@ -101,7 +101,7 @@ const Login = () => {
   //     </div>
 
   //     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-  //       <div className="bg-white py-8 px-6 sm:px-10">
+  //       <div className="px-6 py-8 bg-white sm:px-10">
   //         <form
   //           className="mb-0 space-y-6"
   //           action="#"
@@ -122,7 +122,7 @@ const Login = () => {
   //                 type="text"
   //                 autoComplete="email"
   //                 required
-  //                 className=" "
+  //                 className=""
   //                 onChange={(e) => setEmail(e.target.value)}
   //               />
   //             </div>
@@ -150,9 +150,9 @@ const Login = () => {
   //           <div>
   //             {!isLoading ? <SignInButton /> : <AuthenticatingButton />}
   //           </div>
-  //           <p className="mt-2 text-center text-sm text-gray-600 max-w">
+  //           <p className="mt-2 text-sm text-center text-gray-600 max-w">
   //             <Link href="/request-password-reset">
-  //               <a className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+  //               <a className="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
   //                 Forgot password?
   //               </a>
   //             </Link>
@@ -163,28 +163,20 @@ const Login = () => {
   //   </div>
   // );
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 lg:px-8">
+    <div className="flex flex-col justify-center min-h-screen px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          className="mx-auto h-28 w-auto"
+          className="w-auto mx-auto h-28"
           src="/images/logo-only.jpg"
-          alt="Workflow"
+          alt="Nepal Embassy Logo"
         />
         {/* <div className="mx-auto">Nepalese Login for Noc Portal</div> */}
-        <h2 className="mt-6 text-center text-lg font-semibold text-gray-900">
+        <h2 className="mt-6 text-lg font-semibold text-center text-gray-900">
           Nepal Embassy - Delhi
           <br />
           <span className="text-3xl font-extrabold">NOC Portal Login</span>
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600 max-w">
-          Don&apos;t have account?
-          <Link href="/signup">
-            <a className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-              {' '}
-              Sign up
-            </a>
-          </Link>
-        </p>
+
         <Toaster
           toastOptions={{
             className: 'font-bold',
@@ -198,7 +190,7 @@ const Login = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 sm:px-10">
+        <div className="px-6 py-4 bg-white sm:px-10">
           <form
             className="mb-0 space-y-6"
             action="#"
@@ -218,8 +210,9 @@ const Login = () => {
                   name="email"
                   type="text"
                   autoComplete="email"
+                  placeholder="Enter registered email"
                   required
-                  className=" "
+                  className="w-full px-3 py-2.5 text-sm bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 active:outline-none"
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
@@ -237,6 +230,8 @@ const Login = () => {
                   id="password"
                   name="password"
                   type="password"
+                  placeholder="Enter your password"
+                  className="w-full px-3 py-2.5 text-sm bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 active:outline-none"
                   autoComplete="current-password"
                   required
                   onChange={(e) => setPassword(e.target.value)}
@@ -247,9 +242,18 @@ const Login = () => {
             <div>
               {!isLoading ? <SignInButton /> : <AuthenticatingButton />}
             </div>
-            <p className="mt-2 text-center text-sm text-gray-600 max-w">
+            <p className="mt-2 text-sm text-center text-gray-600 max-w">
+              Don&apos;t have account?
+              <Link href="/signup">
+                <a className="font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                  {' '}
+                  Sign up
+                </a>
+              </Link>
+            </p>
+            <p className="mt-2 text-sm text-center text-gray-600 max-w">
               <Link href="/request-password-reset">
-                <a className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <a className="font-medium text-gray-500 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-500">
                   Forgot password?
                 </a>
               </Link>
@@ -266,7 +270,7 @@ const SignInButton = () => {
   return (
     <button
       type="submit"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       Sign in
     </button>
@@ -277,7 +281,7 @@ const AuthenticatingButton = () => {
   return (
     <button
       type="button"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
       Authenticating

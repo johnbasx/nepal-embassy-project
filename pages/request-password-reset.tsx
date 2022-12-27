@@ -43,25 +43,20 @@ const RequestPasswordReset: NextPage = () => {
   return (
     <>
       <Toaster />
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-xl space-y-8 shadow-xl p-6 border rounded-md">
+      <div className="flex items-center justify-center min-h-full px-4 py-12 sm:px-6 lg:px-8">
+        <div className="w-full max-w-md p-6 space-y-8 border rounded-lg shadow-xl">
           <div>
             <div className="flex justify-center text-center ">
-              <div className="bg-green-500 rounded-full p-3 shadow-2xl">
-                <LockClosedIcon className="h-14 w-14 text-white" />
+              <div className="p-3 bg-blue-700 rounded-full shadow-2xl">
+                <LockClosedIcon className="text-white h-14 w-14" />
               </div>
             </div>
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <h2 className="mt-6 text-3xl font-bold tracking-tight text-center text-gray-900">
               Request for password reset
             </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Enter the email address in the form below and we will sent a
-                secure link to reset your password for your account
-              </a>
+            <p className="mt-2 text-sm text-center text-gray-500">
+              Enter the email address in the form below and we will sent a
+              secure link to reset your password for your account
             </p>
           </div>
           <form
@@ -82,7 +77,7 @@ const RequestPasswordReset: NextPage = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="relative block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                  className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-md appearance-none focus:z-10 focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm"
                   placeholder="Email address"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -93,7 +88,7 @@ const RequestPasswordReset: NextPage = () => {
               {!isLoading ? (
                 <button
                   type="submit"
-                  className="group relative flex max-w-5xl justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  className="relative flex justify-center max-w-5xl px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md group hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                 >
                   Send Request
                 </button>
@@ -101,7 +96,7 @@ const RequestPasswordReset: NextPage = () => {
                 <Requesting />
               )}
               <Link href="/login">
-                <a className="group relative flex max-w-5xl justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <a className="relative flex justify-center max-w-5xl px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md group hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                   Cancel
                 </a>
               </Link>
@@ -117,7 +112,7 @@ const Requesting = () => {
   return (
     <button
       type="button"
-      className="group relative flex max-w-5xl justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="relative flex justify-center max-w-5xl px-4 py-2 text-sm font-medium text-white bg-blue-700 border border-transparent rounded-md group hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
     >
       <Loading />
       Requesting

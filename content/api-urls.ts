@@ -1,7 +1,8 @@
 // export const BASE_URL = 'http://192.168.29.199:8000/';
 // export const BASE_URL = 'http://127.0.0.1:8000/';
-export const BASE_URL = 'https://cube69.pythonanywhere.com/';
-// export const BASE_URL = 'http://134.209.153.208:8000/';
+// export const BASE_URL = 'https://cube69.pythonanywhere.com/';
+// export const BASE_URL = 'http://134.209.153.208/np/api/';
+export const BASE_URL = 'http://64.227.136.150/np/api/';
 
 export const requestPasswordReset = BASE_URL + 'request-reset-email/';
 
