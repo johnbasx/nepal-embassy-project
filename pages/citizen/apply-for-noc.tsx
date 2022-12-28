@@ -213,20 +213,20 @@ const NocRegistration = (page: NextComponentType) => {
         <div className="absolute inset-y-0 left-0 w-full bg-gray-50" />
       </div>
       <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
-        <div className="bg-white py-16 px-4 sm:px-6 lg:col-span-4 lg:py-4 lg:px-8 xl:pl-12 ">
-          <div className="max-w-lg mx-auto lg:max-w-none border border-gray-200/50 rounded">
+        <div className="px-4 py-16 bg-white sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
+          <div className="max-w-lg mx-auto border rounded lg:max-w-none border-gray-200/50">
             <form
               method="POST"
               className=""
               onSubmit={(event) => handleSubmit(event)}
             >
-              <div className="shadow sm:rounded-md sm:overflow-hidden">
-                <div className="bg-white px-4 space-y-6 sm:px-10 sm:py-3">
+              <div className="py-4 shadow lg:py-6 sm:rounded-md sm:overflow-hidden">
+                <div className="px-4 space-y-6 bg-white sm:px-10 sm:py-3">
                   <div className="flex flex-col items-center justify-center">
                     <h3 className="text-2xl font-bold tracking-tight text-blue-700 sm:text-2xl">
                       Apply for NOC
                     </h3>
-                    <p className="mt-1 text-sm text-blue-700 underline">
+                    <p className="mt-1 text-sm text-blue-700">
                       NOC will be provided after your application is verified
                     </p>
                   </div>
@@ -254,7 +254,7 @@ const NocRegistration = (page: NextComponentType) => {
                         name="passport_number"
                         id="passport_number"
                         autoComplete="passport_number"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
 
@@ -282,7 +282,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="travel_country"
                         autoComplete="travel_country"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         onChange={(e) => {
                           setDestination(e.target.value);
                         }}
@@ -300,7 +300,7 @@ const NocRegistration = (page: NextComponentType) => {
                         // htmlFor="travel-via"
                         className="block text-sm font-medium "
                       >
-                        <span className="text-xs font-bold uppercase tracking-wide text-gray-500">
+                        <span className="text-xs font-bold tracking-wide text-gray-500 uppercase">
                           {travelType == 'Direct'
                             ? 'Travel Destination '
                             : 'TRAVEL VIA (Country)'}
@@ -331,7 +331,7 @@ const NocRegistration = (page: NextComponentType) => {
                     {travelType == 'Direct' && (
                       <div className="col-span-6 sm:col-span-6 lg:col-span-6">
                         <dl>
-                          <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                          <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-500">
                               Bank Statement proof(proof of 6 Lakhs in Bank){' '}
                               <span className="text-red-500">*</span>
@@ -373,7 +373,7 @@ const NocRegistration = (page: NextComponentType) => {
                         autoComplete="travel-date"
                         placeholder="DD/MM/YYYY"
                         // pattern="Month dd, yyyy"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
 
@@ -389,7 +389,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="province"
                         autoComplete="province"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         onChange={(e) => {
                           setProvince(e.target.value);
 
@@ -416,7 +416,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="district"
                         autoComplete="district"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         onChange={(e) => {
                           setDistrict(e.target.value);
                         }}
@@ -451,7 +451,7 @@ const NocRegistration = (page: NextComponentType) => {
                         id="return_date"
                         autoComplete="return_date"
                         placeholder="DD/MM/YYYY"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-6 lg:col-span-6">
@@ -480,7 +480,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="travel-purpose"
                         autoComplete="travel-purpose"
-                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         onChange={(e) => {
                           // console.log(e.target.);
                           setTravelPurpose(e.target.value);
@@ -527,11 +527,11 @@ const NocRegistration = (page: NextComponentType) => {
                     </dl>
                   </div>
                 </div>
-                <div className=" px-4 py-3 bg-white text-right sm:px-16 flex justify-center">
+                <div className="flex justify-center px-4 py-3 text-right bg-white sm:px-16">
                   {!isLoading ? (
                     <button
                       type="submit"
-                      className="w-full  bg-blue-700 rounded-md py-2 inline-flex justify-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex justify-center w-full py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Apply NOC
                     </button>
@@ -553,7 +553,7 @@ const LoadingButton = () => {
   return (
     <button
       type="button"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
     >
       <Loading />
       Loading

@@ -12,7 +12,7 @@ const HeadSection = () => {
           src="/images/logo-only.jpg"
           alt="cirtificate"
         />
-        <p className="font-bold text-2xs lg:text-lg text-gray-700">
+        <p className="font-bold text-gray-700 text-2xs lg:text-lg">
           Ref. No. 079/80/GR-TUE/9980
         </p>
       </div>
@@ -41,7 +41,7 @@ const HeadSection = () => {
             alt="cirtificate"
           />
         </div>
-        <p className="font-bold  text-2xs lg:text-lg text-gray-700">
+        <p className="font-bold text-gray-700 text-2xs lg:text-lg">
           Date: 31/10/2022
         </p>
       </div>

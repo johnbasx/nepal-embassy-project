@@ -38,7 +38,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 flex z-40 md:hidden"
+          className="fixed inset-0 z-40 flex md:hidden"
           onClose={setSidebarOpen}
         >
           <Transition.Child
@@ -61,7 +61,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <div className="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
+            <div className="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 bg-gray-800">
               <Transition.Child
                 as={Fragment}
                 enter="ease-in-out duration-300"
@@ -71,29 +71,29 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                 leaveFrom="opacity-100"
                 leaveTo="opacity-0"
               >
-                <div className="absolute top-0 right-0 -mr-12 pt-2">
+                <div className="absolute top-0 right-0 pt-2 -mr-12">
                   <button
                     type="button"
-                    className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     onClick={() => setSidebarOpen(false)}
                   >
                     <span className="sr-only">Close sidebar</span>
-                    <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                    <XIcon className="w-6 h-6 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </Transition.Child>
-              <div className="flex-shrink-0 flex items-center px-4">
-                <div className="relative  h-14 w-full">
+              <div className="flex items-center flex-shrink-0 px-4">
+                <div className="relative w-full h-14">
                   <Image
                     priority
                     objectFit="contain"
                     layout="fill"
-                    src="/images/np-logo.png"
+                    src="/images/np-logo-02.png"
                     alt="nepalEmbassyLogo"
                   />
                 </div>
               </div>
-              <div className="mt-5 flex-1 h-0 overflow-y-auto">
+              <div className="flex-1 h-0 mt-5 overflow-y-auto">
                 <nav className="px-2 space-y-1">
                   {navigation.map((item) => (
                     <a
@@ -131,19 +131,19 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
       {/* Static sidebar for desktop */}
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
-          <div className="flex items-center bg-slate-800 h-16 flex-shrink-0 px-4">
-            <div className="relative py-1 h-12 w-full">
+        <div className="flex flex-col flex-1 min-h-0 bg-gray-800">
+          <div className="flex items-center flex-shrink-0 h-16 px-4 bg-slate-800">
+            <div className="relative w-full h-12 py-1">
               <Image
                 priority
                 objectFit="contain"
                 layout="fill"
-                src="/images/np-logo.png"
+                src="/images/np-logo-02.png"
                 alt="nepalEmbassyLogo"
               />
             </div>
           </div>
-          <div className="flex-1 flex flex-col overflow-y-auto">
+          <div className="flex flex-col flex-1 overflow-y-auto">
             <nav className="flex-1 px-2 py-4 space-y-1">
               {navigation.map((item) => (
                 <a
