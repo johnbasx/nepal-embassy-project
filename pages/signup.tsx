@@ -145,7 +145,6 @@ const Signup = () => {
                 options={Gender}
                 label="Gender"
                 error={errors.gender?.message}
-                autoFocus
               />
             )}
           />

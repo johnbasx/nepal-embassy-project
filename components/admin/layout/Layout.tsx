@@ -14,7 +14,7 @@ const Layout = ({ children }: any) => {
 
   useEffect(() => {
     if (!token) {
-      router.push('/admin-login');
+      router.push('/employee-login');
     }
   }, []);
   return (

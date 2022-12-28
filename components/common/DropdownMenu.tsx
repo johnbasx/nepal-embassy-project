@@ -64,7 +64,7 @@ const DropdownMenu = (props: NocDetailTypes) => {
             <div className="">
               <Menu.Item>
                 {({ active }) => (
-                  <Link href={`/admin/reviewNoc/` + 6}>
+                  <Link href={`/embassy-employee/reviewNoc/` + 6}>
                     <button
                       className={`${
                         active ? 'text-indigo-600' : 'text-gray-800'

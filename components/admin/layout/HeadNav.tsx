@@ -13,7 +13,7 @@ import { useRouter } from 'next/router';
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
   { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '/admin-login' },
+  { name: 'Sign out', href: '/employee-login' },
 ];
 
 const notification = [
@@ -44,7 +44,7 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
   const router = useRouter();
   const handleSignOut = () => {
     removeAccessToken();
-    router.push('/admin-login');
+    router.push('/employee-login');
   };
   return (
     <>
@@ -127,7 +127,7 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                   <Menu.Item>
                     {({ active }) => (
                       <a
-                        onClick={() => router.push('/admin/profile')}
+                        onClick={() => router.push('/embassy-employee/profile')}
                         className={classNames(
                           active ? 'bg-gray-100' : '',
                           'block px-4 py-2 text-sm text-gray-700'

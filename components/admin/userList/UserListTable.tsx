@@ -183,7 +183,7 @@ const UserListTable: React.FC<{
                     </div>
                   </td>
                   <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap body-column">
-                    <Link href={`/admin/reviewNoc/${list.id}`}>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
                       <div className="flex items-center">
                         <div className="font-medium text-gray-800">
                           {list.full_name}

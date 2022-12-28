@@ -110,7 +110,6 @@ const TableAction: React.FC<{
       </div>
 
       <div className="mt-1">
-        {/* <Link href="/admin/register-new-noc"> */}
         <button
           onClick={() => setSearchBar(true)}
           type="button"
@@ -119,7 +118,6 @@ const TableAction: React.FC<{
           <PlusIcon className="h-5 w-5 -ml-2 mr-2" />
           <span>Register new NOC</span>
         </button>
-        {/* </Link> */}
       </div>
     </div>
   );

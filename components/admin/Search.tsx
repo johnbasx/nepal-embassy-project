@@ -125,7 +125,9 @@ const Search: React.FC<{
                     {({ active }) => (
                       <div
                         onClick={() =>
-                          router.push(`/admin/apply-noc/${citizen.id}`)
+                          router.push(
+                            `/embassy-employee/apply-noc/${citizen.id}`
+                          )
                         }
                         className={`space-x-1 px-4 py-2 cursor-pointer ${
                           active ? 'bg-indigo-600' : 'bg-white'

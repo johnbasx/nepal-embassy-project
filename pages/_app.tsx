@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { token, isAuthenticated } = authStore();
   const [auth, setAuth] = useState<Boolean>(false);
   const router = useRouter();
-  const admin_root_path = '/admin/';
+  const admin_root_path = '/embassy-employee/';
   const citizen_root_path = '/citizen/';
 
   useEffect(() => {

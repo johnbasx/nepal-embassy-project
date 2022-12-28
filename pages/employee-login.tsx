@@ -19,7 +19,7 @@ const AdminLogin = () => {
 
   useEffect(() => {
     if (token != '') {
-      router.push('/admin/profile');
+      router.push('/embassy-employee/profile');
     }
   }, [token]);
 
@@ -50,7 +50,7 @@ const AdminLogin = () => {
         setAccessToken(response.data.access_token);
         setIsAuthenticated(true);
         setIsLoading(false);
-        router.push(`/admin/nocDocList`);
+        router.push(`/embassy-employee/nocDocList`);
       }
     } catch (e) {
       setIsLoading(false);

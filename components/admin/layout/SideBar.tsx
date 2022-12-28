@@ -16,7 +16,7 @@ const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   {
     name: 'Noc List',
-    href: '/admin/nocDocList',
+    href: '/embassy-employee/nocDocList',
     icon: UsersIcon,
     current: false,
   },
