@@ -70,6 +70,7 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
                   height={100}
                   className="rounded-full h-full w-full"
                   src="/images/logo-only.jpg"
+                  alt="embassy-logo"
                 />
               </div>
             </div>
@@ -100,6 +101,7 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
               width={150}
               height={150}
               src="/images/logo-only.jpg"
+              alt="embassy-logo"
             />
           </div>
           <label

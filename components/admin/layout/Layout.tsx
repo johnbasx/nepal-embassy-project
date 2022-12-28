@@ -13,18 +13,12 @@ const Layout = ({ children }: any) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    if (!token) {
+    if (!token || token == '') {
       router.push('/employee-login');
     }
   }, []);
   return (
     <>
-      <Head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
-      </Head>
       <div className="overflow-hidden">
         <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         <div className="md:pl-64 flex flex-col bg-gray-100">

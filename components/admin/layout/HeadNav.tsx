@@ -45,6 +45,7 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
   const handleSignOut = () => {
     removeAccessToken();
     router.push('/employee-login');
+    router.reload();
   };
   return (
     <>

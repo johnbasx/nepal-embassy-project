@@ -113,6 +113,7 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
   const handleSignOut = () => {
     removeAccessToken();
     router.push('/');
+    router.reload();
   };
 
   return (
