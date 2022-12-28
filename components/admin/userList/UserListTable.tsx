@@ -107,7 +107,7 @@ const UserListTable: React.FC<{
           Total <span className="text-gray-400 font-medium">{total}</span>
         </h2>
       </header>
-      <div x-data="handleSelect">
+      <div>
         <div className="overflow-x-auto">
           <table className="table-auto w-full">
             <thead className="text-xs font-semibold uppercase text-gray-500 bg-gray-50 border-t border-b border-gray-200">

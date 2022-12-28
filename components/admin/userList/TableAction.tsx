@@ -105,7 +105,7 @@ const TableAction: React.FC<{
       /> */}
 
       {/* <!-- Dropdown --> */}
-      <div className="relative " x-data="{ open: false, selected: 2 }">
+      <div className="relative">
         <Filter setNocRegisteredCitizen={setNocRegisteredCitizen} />
       </div>
 
