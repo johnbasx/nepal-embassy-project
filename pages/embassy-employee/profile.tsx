@@ -1,6 +1,10 @@
-import { BASE_URL, getEmpProfile, updateEmpProfile } from '@content/api-urls';
 import { Dialog, Transition } from '@headlessui/react';
 import { FetchData, Update } from '@utils/fetcher';
+import {
+  IMAGE_BASE_URL,
+  getEmpProfile,
+  updateEmpProfile,
+} from '@content/api-urls';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
@@ -73,7 +77,7 @@ const Profile = () => {
                       <div className="relative h-24 w-auto object-contain ">
                         {profile?.signature ? (
                           <img
-                            src={BASE_URL + profile?.signature}
+                            src={IMAGE_BASE_URL + profile?.signature}
                             className="h-24 w-auto "
                             alt={profile?.full_name + ' Signature'}
                           />
