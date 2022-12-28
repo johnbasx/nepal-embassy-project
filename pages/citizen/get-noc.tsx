@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import NocDocList from 'pages/admin/nocDocList';
 import PendingNoc from '@components/citizen/getNoc/PendingNoc';
 import RejectedNoc from '@components/citizen/getNoc/RejectedNoc';
 import VerifiedNoc from '@components/citizen/getNoc/VerifiedNoc';
