@@ -8,6 +8,7 @@ import authStore from '@store/useAuthStore';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { BASE_URL } from '@content/api-urls';
+import Link from 'next/link';
 
 const VerifyUser = () => {
   const { setAccessToken } = authStore();
@@ -51,19 +52,19 @@ const VerifyUser = () => {
     }
   };
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-lg shadow-2xl border rounded-xl p-6">
+    <div className="flex flex-col justify-center min-h-screen px-6 lg:px-8">
+      <div className="p-6 border shadow-2xl sm:mx-auto sm:w-full sm:max-w-lg rounded-xl">
         <div className="space-y-6">
           <img
-            className="mx-auto h-16 w-auto"
+            className="w-auto h-16 mx-auto"
             src="/images/logo-only.jpg"
             alt="nepal-embassy-logo"
           />
-          <div className="px-10 text-gray-600 text-center space-y-2">
-            <h1 className="font-semibold text-xl font-sans">
-              We&apos;ve sent Verification code to your email
+          <div className="px-10 space-y-2 text-center text-gray-600">
+            <h1 className="text-xl font-semibold">
+              We&apos;ve sent verification code to your email
             </h1>
-            <p className="font-semibold text-sm">
+            <p className="text-sm font-medium">
               Enter the verification code to authorize your login
             </p>
             <Toaster
@@ -77,22 +78,22 @@ const VerifyUser = () => {
             />
           </div>
         </div>
-        <div className="bg-white py-8 px-6 sm:px-10">
+        <div className="px-6 py-8 bg-white sm:px-10">
           <form
             className="mb-0 space-y-6"
             action="#"
             method="POST"
             onSubmit={(event) => onSubmitHandler(event)}
           >
-            <div className="mt-1 flex rounded-md shadow-sm">
-              <span className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-indigo-500">
-                <LockOpenIcon className="h-6 w-6" />
+            <div className="flex mt-1 rounded-md">
+              <span className="inline-flex items-center px-3 text-sm text-blue-500 border border-r-0 border-gray-300 rounded-l-md bg-gray-50">
+                <LockOpenIcon className="w-6 h-6" />
               </span>
               <input
                 type="text"
                 name="company-website"
                 id="company-website"
-                className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                className="flex-1 block w-full font-bold tracking-widest border-gray-300 rounded-none rounded-r-md focus:border-blue-500 focus:ring-blue-500 sm:text-sm placeholder:tracking-normal placeholder:font-normal"
                 placeholder="Verification Code"
                 onChange={(e) => {
                   setOtp(e.target.value);
@@ -101,6 +102,13 @@ const VerifyUser = () => {
             </div>
             <div>{!isloading ? <VerifyButton /> : <VerifyingButton />}</div>
           </form>
+          <div className="relative flex items-center justify-center mt-4 text-sm text-gray-500">
+            <Link href="/login">
+              <span className="px-4 py-2 text-center hover:cursor-pointer">
+                Go back
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -111,9 +119,9 @@ const VerifyButton = () => {
   return (
     <button
       type="submit"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase tracking-widest"
+      className="flex justify-center w-full px-4 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
-      Verify
+      Submit
     </button>
   );
 };
@@ -122,10 +130,10 @@ const VerifyingButton = () => {
   return (
     <button
       type="submit"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 uppercase tracking-widest"
+      className="flex justify-center w-full px-4 py-2.5 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
-      Verifying
+      Verifying OTP
     </button>
   );
 };
