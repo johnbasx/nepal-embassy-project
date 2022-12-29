@@ -42,6 +42,7 @@ export const PostData = async (
     const response = await axios.post(url, data, {
       headers: {
         authorization: 'Bearer ' + token,
+        Accept: 'application/json',
       },
     });
     console.log(response);
