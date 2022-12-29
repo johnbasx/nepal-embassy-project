@@ -38,29 +38,29 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   );
 
   const ApprovedPill = () => (
-    <div className="bg-teal-500 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbShieldCheck className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-teal-500 rounded-full">
+      <TbShieldCheck className="w-5 h-5" />
       <span>Approved</span>
     </div>
   );
 
   const RejectedPill = () => (
-    <div className="bg-red-400 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbBan className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-red-400 rounded-full">
+      <TbBan className="w-5 h-5" />
       <span>Rejected</span>
     </div>
   );
 
   const ResubmitPill = () => (
-    <div className="bg-slate-700 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbFileUpload className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white rounded-full bg-slate-700">
+      <TbFileUpload className="w-5 h-5" />
       <span>Submit again</span>
     </div>
   );
 
   const PendingPill = () => (
-    <div className="bg-gray-400 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbClipboardOff className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-gray-400 rounded-full">
+      <TbClipboardOff className="w-5 h-5" />
       <span>Pending</span>
     </div>
   );
@@ -105,7 +105,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         );
       case 're-verify':
         return (
-          <span className="bg-indigo-200 text-indigo-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+          <span className="bg-blue-200 text-blue-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
             {label}
           </span>
         );
@@ -143,13 +143,13 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   }, [router.isReady]);
 
   const DocAttachments = ({ ...file }: NocFilesType) => (
-    <li className="pl-3 pr-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between text-sm relative">
-      <div className="flex-1 flex items-center pb-4 sm:pb-0">
+    <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center flex-1 pb-4 sm:pb-0">
         <PaperClipIcon
-          className="flex-shrink-0 h-5 w-5 text-gray-400"
+          className="flex-shrink-0 w-5 h-5 text-gray-400"
           aria-hidden="true"
         />
-        <div className="ml-2 space-x-2 flex-1 w-0 text-ellipsis">
+        <div className="flex-1 w-0 ml-2 space-x-2 text-ellipsis">
           <a className="cursor-pointer hover:text-blue-600 hover:underline">
             {file.doc_name}
           </a>
@@ -157,7 +157,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         </div>
       </div>
 
-      <div className="flex justify-end items-center space-x-3">
+      <div className="flex items-center justify-end space-x-3">
         {fileDocStatus(file.verification_status)}
         {file.verification_status == '2' ? (
           <UploadFile
@@ -181,10 +181,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   return (
     <>
       <Toaster />
-      <div className="bg-white shadow overflow-hidden sm:rounded-2xl max-w-7xl mt-4 mx-4">
-        <div className="flex justify-between items-center px-4 py-5 sm:px-6">
+      <div className="mx-4 mt-4 overflow-hidden bg-white shadow sm:rounded-2xl max-w-7xl">
+        <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <div className="flex-1">
-            <h3 className="text-lg leading-6 font-medium text-blue-600">
+            <h3 className="text-lg font-medium leading-6 text-blue-600">
               {detail?.travel_type == 'Connecting' ? (
                 'You applied for Connecting Travel'
               ) : detail?.travel_type == 'Direct' ? (
@@ -196,7 +196,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
           </div>
           {nocDocStatus(detail?.verified_status)}
         </div>
-        <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+        <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           {/* <FileViewer docs={docs} /> */}
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
             <CitizenFields data={detail?.full_name} title="Full Name" />
@@ -240,33 +240,33 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               <dd className="mt-1 text-sm text-gray-900">
                 <ul
                   role="list"
-                  className="border border-gray-200 rounded-md divide-y divide-gray-200"
+                  className="border border-gray-200 divide-y divide-gray-200 rounded-md"
                 >
-                  <li className="pl-3 pr-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between text-sm relative">
-                    <div className="flex-1 flex items-center pb-4 sm:pb-0">
+                  <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center flex-1 pb-4 sm:pb-0">
                       <PaperClipIcon
-                        className="flex-shrink-0 h-5 w-5 text-gray-400"
+                        className="flex-shrink-0 w-5 h-5 text-gray-400"
                         aria-hidden="true"
                       />
-                      <div className="ml-2 flex-1 w-0 text-ellipsis">
+                      <div className="flex-1 w-0 ml-2 text-ellipsis">
                         <span>Payment Screenshot</span>
                         {detail?.payment_verified == '1' &&
                         detail?.payment_screen_shot != null ? (
-                          <h1 className="text-green-800 text-bold text-xs">
+                          <h1 className="text-xs text-green-800 text-bold">
                             Payment Screenshot has been submitted. Waiting for
                             verification.
                           </h1>
                         ) : detail?.payment_verified == '2' ? (
-                          <h1 className="text-red-500 text-semibold text-xs">
+                          <h1 className="text-xs text-red-500 text-semibold">
                             Your Payment Screenshot has been rejected. Please
                             upload again.
                           </h1>
                         ) : detail?.payment_verified == '3' ? (
-                          <h1 className="text-indigo-600 text-semibold text-xs">
+                          <h1 className="text-xs text-blue-600 text-semibold">
                             Your Payment Screenshot has been verified.
                           </h1>
                         ) : detail?.payment_screen_shot == null ? (
-                          <h1 className="text-red-500 text-semibold text-xs">
+                          <h1 className="text-xs text-red-500 text-semibold">
                             You have not uploaded Payment Screenshot.
                           </h1>
                         ) : (
@@ -275,13 +275,13 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end items-center space-x-3">
+                    <div className="flex items-center justify-end space-x-3">
                       {detail?.payment_verified == '3' ? (
                         <>
-                          <a className="font-medium bg-gray-100 px-3 py-2 rounded text-indigo-600 hover:text-indigo-500 cursor-pointer">
+                          <a className="px-3 py-2 font-medium text-blue-600 bg-gray-100 rounded cursor-pointer hover:text-blue-500">
                             View
                           </a>
-                          <CheckCircleIcon className="h-6 w-6 text-green-600" />
+                          <CheckCircleIcon className="w-6 h-6 text-green-600" />
                         </>
                       ) : detail?.payment_verified == '2' ||
                         detail?.payment_screen_shot == null ? (
@@ -292,7 +292,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                           label="Payment Screenshot"
                         />
                       ) : detail?.payment_screen_shot != null ? (
-                        <a className="font-medium bg-gray-100 px-3 py-2 rounded text-indigo-600 hover:text-indigo-500 cursor-pointer">
+                        <a className="px-3 py-2 font-medium text-blue-600 bg-gray-100 rounded cursor-pointer hover:text-blue-500">
                           View
                         </a>
                       ) : (
