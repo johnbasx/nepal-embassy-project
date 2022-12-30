@@ -165,14 +165,15 @@ const NocRegistration = (page: NextComponentType) => {
       token,
     });
 
-    if (returnValue == 1) {
-      toast.success('NOC applied successfully!');
-      setIsLoading(false);
-      router.push('/citizen/get-noc');
-    } else {
+    if (returnValue == 0) {
       toast.error('NOC could not be applied!');
       setIsLoading(false);
-      // router.reload();
+      // toast.success('NOC applied successfully!');
+    } else {
+      setIsLoading(false);
+      toast.success('NOC applied successfully!');
+
+      router.push(`/citizen/noc-detail/${returnValue?.data.doc_id}`);
     }
   };
   useEffect(() => {
@@ -217,7 +218,7 @@ const NocRegistration = (page: NextComponentType) => {
         <div className="absolute inset-y-0 left-0 w-full" />
       </div>
       <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
-          <ProfileDetail profile={profile} />
+        <ProfileDetail profile={profile} />
         <div className="order-last px-4 py-16 bg-white md:order-first sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
           <div className="max-w-lg mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
             <form

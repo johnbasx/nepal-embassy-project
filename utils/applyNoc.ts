@@ -1,6 +1,13 @@
 import { BASE_URL } from '@content/api-urls';
 import { PostData } from './fetcher';
 
+export interface responseDataProps {
+  response: {
+    data: { doc_id: string };
+  };
+  returnValue: number;
+}
+
 export interface CheckTravelProps {
   travelFrom: string;
   travelCountry: string;
@@ -106,14 +113,16 @@ export const CheckTravelPurpose = async ({
   if (travelType == 'Direct') {
     formData.append('bank_proof', bankProof as Blob);
   }
+
+  let url = '';
+  let response: responseDataProps;
   switch (travelPurpose) {
     case '1':
       formData.append('nagarita', nagarita as Blob);
       formData.append('write_up', writeUp as Blob);
-
-      const url = `${BASE_URL}createNocDoc-GeneralTourist`;
-      const returnValue = await PostData(token, url, formData);
-      return returnValue == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-GeneralTourist`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '2':
       formData.append(
@@ -124,46 +133,43 @@ export const CheckTravelPurpose = async ({
       formData.append('relative_nagarita', relativeNagarita as Blob);
       formData.append('sponsorship_letter', sponsorshipLetter as Blob);
 
-      const url2 = `${BASE_URL}createNocDoc-MedicalPurpose`;
-      const returnValue2 = await PostData(token, url2, formData);
-      return returnValue2 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-MedicalPurpose`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '3':
       formData.append('ministry_letter', ministryLetter as Blob);
       formData.append('invitation_letter', invitationLetter as Blob);
 
-      const url3 = `${BASE_URL}createNocDoc-GovtWork`;
-      const returnValue3 = await PostData(token, url3, formData);
-      return returnValue3 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-GovtWork`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '4':
       formData.append('gats_offer_letter', gatsOfferLetter as Blob);
       formData.append('application_of_purpose', purposeApplication as Blob);
-      const url4 = `${BASE_URL}createNocDoc-WTOGATS`;
-      const returnValue4 = await PostData(token, url4, formData);
-      return returnValue4 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-WTOGATS`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '5':
       formData.append('edu_offer_letter', eduOfferLetter as Blob);
       formData.append('marksheet', marksheet as Blob);
       formData.append('transfer_certificate', transferCertificate as Blob);
-
-      const url5 = `${BASE_URL}createNocDoc-EducationalPurpose`;
-      const returnValue5 = await PostData(token, url5, formData);
-      return returnValue5 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-EducationalPurpose`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '6':
       formData.append('write_up_by_landlord', landlordWriteup as Blob);
-
-      const url6 = `${BASE_URL}createNocDoc-CreateNocDocWorkInIndia`;
-      const returnValue6 = await PostData(token, url6, formData);
-      return returnValue6 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-CreateNocDocWorkInIndia`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
 
     case '7':
       formData.append('offer_letter', offerLetter as Blob);
-
-      const url7 = `${BASE_URL}createNocDoc-WorkingVisa`;
-      const returnValue7 = await PostData(token, url7, formData);
-      return returnValue7 == 1 ? 1 : 0;
+      url = `${BASE_URL}createNocDoc-WorkingVisa`;
+      response = await PostData(token, url, formData);
+      return response.returnValue == 1 ? response.response : 0;
   }
 };

@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useRef, useState } from 'react';
+import { Update, UpdateHandler } from '@utils/fetcher';
 
-import { Update } from '@utils/fetcher';
 import authStore from '@store/useAuthStore';
 import { toast } from 'react-hot-toast';
 
@@ -35,13 +35,18 @@ const UploadFile: React.FC<UploadFileProps> = ({
       formData.append('verification_status', '1');
     }
 
-    const returnValue = await Update(token, url, formData);
-    if (returnValue == 1) {
-      toast.success('File uploaded');
+    const response = await UpdateHandler(token, url, formData);
+    // console.log(response.response.data.message);
+    if (response.data.status == 'success') {
+      response.data.message
+        ? toast.success(response.data.message)
+        : toast.error('File uploaded successfully');
       getContent();
       setOpen(false);
     } else {
-      toast.error('Cannot upload file');
+      response.data.message
+        ? toast.error(response.data.message)
+        : toast.error('Cannot upload file');
       setOpen(false);
     }
   };

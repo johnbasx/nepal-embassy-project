@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export interface FetchDataType {
   token: string;
@@ -45,11 +45,13 @@ export const PostData = async (
         'content-type': 'multipart/form-data',
       },
     });
-    console.log(response);
-    return 1;
+    // console.log(response);
+    let returnValue = 1;
+
+    return { response, returnValue };
   } catch (e: any) {
     console.log(e);
-    return 0;
+    return e;
   }
 };
 
@@ -61,5 +63,26 @@ export const CreateUser = async (url: string, data: object) => {
   } catch (e: any) {
     console.log(e);
     return 0;
+  }
+};
+
+// new
+
+export const UpdateHandler = async (
+  token: string,
+  url: string,
+  data: object
+) => {
+  try {
+    const response = await axios.put(url, data, {
+      headers: {
+        authorization: 'Bearer ' + token,
+      },
+    });
+    // console.log(response);
+    return response;
+  } catch (error: any) {
+    // console.log(error);
+    return error.response;
   }
 };

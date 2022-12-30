@@ -6,7 +6,11 @@ import {
 } from 'react-icons/tb';
 import { citizenNocDocumentDetail, nocDocumentFiles } from 'content/api-urls';
 import toast, { Toaster } from 'react-hot-toast';
-import { updateNocDocument, updateNocDocumentFile } from 'content/api-urls';
+import {
+  updateNocDocument,
+  updateNocDocumentFile,
+  uploadPaymentScreenShot,
+} from 'content/api-urls';
 import { useCallback, useEffect, useState } from 'react';
 
 import { CheckCircleIcon } from '@heroicons/react/outline';
@@ -286,7 +290,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                       ) : detail?.payment_verified == '2' ||
                         detail?.payment_screen_shot == null ? (
                         <UploadFile
-                          url={updateNocDocument + detail?.id}
+                          url={uploadPaymentScreenShot + detail?.id}
                           getContent={getNocDocumentDetail}
                           uploadFor="Document"
                           label="Payment Screenshot"

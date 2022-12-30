@@ -50,6 +50,8 @@ export const updateUserProfile = BASE_URL + 'updateUserProfile/';
 export const citizenNocDocumentList = BASE_URL + 'citizenNocDocumentList';
 export const citizenNocDocumentDetail = BASE_URL + 'citizenNocDocumentDetail/';
 export const updateNocDocument = BASE_URL + 'updateNocDocument/';
+export const uploadPaymentScreenShot = BASE_URL + 'uploadPaymentScreenShot/';
+
 export const nocDocumentFiles = BASE_URL + 'nocDocumentFiles/';
 export const updateNocDocumentFile = BASE_URL + 'updateNocDocumentFile/';
 export const documentMessages = BASE_URL + 'documentMessages';
