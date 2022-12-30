@@ -59,7 +59,8 @@ const Login = () => {
       // const value = response.data[Object.keys(response.data)[0]]; get value for first attribute of obj
     } catch (e) {
       console.log(e);
-      notify('Authentication failed');
+      setIsLoading(false);
+      notify('Authentication Error!');
     }
   };
 

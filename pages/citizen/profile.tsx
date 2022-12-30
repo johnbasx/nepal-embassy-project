@@ -78,7 +78,7 @@ const Profile: NextPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto shadow-xl">
+    <div className="max-w-5xl mx-auto my-4 rounded md:shadow-lg">
       <Toaster />
       <form
         className="divide-y divide-gray-200 lg:col-span-9"
@@ -86,9 +86,9 @@ const Profile: NextPage = () => {
         method="POST"
       >
         {/* Profile section */}
-        <div className="py-6 px-4 sm:p-6 lg:pb-8">
+        <div className="px-4 py-6 sm:p-6 lg:pb-8">
           <div>
-            <h2 className="text-lg leading-6 font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold leading-6 text-gray-900">
               Personal Information
             </h2>
           </div>
@@ -101,9 +101,9 @@ const Profile: NextPage = () => {
             />
           )}
 
-          <div className="mt-6 grid grid-cols-12 gap-6">
+          <div className="grid grid-cols-12 gap-6 mt-6">
             <div className="col-span-12">
-              <h2 className="text-lg leading-6 font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold leading-6 text-gray-900">
                 Profile Information
               </h2>
             </div>
@@ -114,8 +114,8 @@ const Profile: NextPage = () => {
               >
                 Contact Number
               </label>
-              <div className="mt-1 rounded-md shadow-sm flex">
-                <span className="bg-gray-50 border border-r-0 border-gray-300 rounded-l-md px-3 inline-flex items-center text-gray-500 sm:text-sm">
+              <div className="flex mt-1 rounded-md shadow-sm">
+                <span className="inline-flex items-center px-3 text-gray-500 border border-r-0 border-gray-300 bg-gray-50 rounded-l-md sm:text-sm">
                   IN
                 </span>
                 <input
@@ -123,7 +123,7 @@ const Profile: NextPage = () => {
                   name="contact-number"
                   id="contact-number"
                   autoComplete="contact-number"
-                  className="focus:ring-sky-500 focus:border-sky-500 flex-grow block w-full min-w-0 rounded-none rounded-r-md sm:text-sm border-gray-300"
+                  className="flex-grow block w-full min-w-0 border-gray-300 rounded-none focus:ring-sky-500 focus:border-sky-500 rounded-r-md sm:text-sm"
                   defaultValue={userDetail?.contact_number}
                   onChange={(e) => setcontactNumber(e.target.value)}
                 />
@@ -143,7 +143,7 @@ const Profile: NextPage = () => {
                 id="profession"
                 list="profession-list"
                 autoComplete="profession"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                 defaultValue={userDetail?.profession}
                 onChange={(e) => setprofession(e.target.value)}
               />
@@ -161,7 +161,7 @@ const Profile: NextPage = () => {
                 name="dob"
                 id="dob"
                 autoComplete="dob"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                 placeholder="DD-MM-YY"
                 onChange={(e) => setDob(e.target.value)}
                 defaultValue={userDetail?.dob}
@@ -178,10 +178,9 @@ const Profile: NextPage = () => {
               <select
                 id="gender"
                 required
-                disabled
                 name="gender"
                 autoComplete="gender"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
@@ -198,7 +197,7 @@ const Profile: NextPage = () => {
               </select>
             </div>
 
-            <div className="col-span-12 sm:col-span-4">
+            {/* <div className="col-span-12 sm:col-span-4">
               <label
                 htmlFor="qualification"
                 className="block text-sm font-medium text-gray-700"
@@ -211,7 +210,7 @@ const Profile: NextPage = () => {
                 disabled
                 name="qualification"
                 autoComplete="qualification"
-                className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 onChange={(e) => setQualification(e.target.value)}
               >
                 {Qualifications.map((item) =>
@@ -224,7 +223,7 @@ const Profile: NextPage = () => {
                   )
                 )}
               </select>
-            </div>
+            </div> */}
 
             <div className="col-span-12 sm:col-span-6">
               <label
@@ -237,7 +236,7 @@ const Profile: NextPage = () => {
                 type="text"
                 name="father-name"
                 id="father-name"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                 onChange={(e) => setFathersName(e.target.value)}
                 defaultValue={userDetail?.fathers_name}
               />
@@ -255,7 +254,7 @@ const Profile: NextPage = () => {
                 name="mother-name"
                 id="mother-name"
                 autoComplete="organization"
-                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+                className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
                 onChange={(e) => setMothersName(e.target.value)}
                 defaultValue={userDetail?.mothers_name}
               />
@@ -263,11 +262,11 @@ const Profile: NextPage = () => {
           </div>
         </div>
       </form>
-      <div className="flex items-center justify-end pb-6 px-8">
+      <div className="flex items-center justify-end px-8 pb-6">
         {!updating ? (
           <button
             onClick={(e) => UpdateProfile(e)}
-            className="w-auto px-8 py-2 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-1 md:text-base"
+            className="w-auto px-8 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-1 md:text-base"
           >
             Save
           </button>
@@ -288,7 +287,7 @@ const UpdatingButton = () => {
   return (
     <button
       type="button"
-      className="w-auto flex justify-center items-center px-4 py-4 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-1 md:text-base"
+      className="flex items-center justify-center w-auto px-4 py-4 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-1 md:text-base"
     >
       <Loading />
       Saving

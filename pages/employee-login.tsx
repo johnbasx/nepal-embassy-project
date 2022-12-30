@@ -41,7 +41,7 @@ const AdminLogin = () => {
         }
       );
 
-      console.log(response.data.access_token);
+      // console.log(response.data.access_token);
 
       if (response.data.access_token === undefined) {
         setIsLoading(false);
@@ -55,20 +55,23 @@ const AdminLogin = () => {
     } catch (e) {
       setIsLoading(false);
       console.log(e);
-      notify('Authentication failed');
+      notify('Authentication error!');
     }
   };
   return (
-    <div className="min-h-screen flex flex-col justify-center px-6 lg:px-8">
+    <div className="flex flex-col justify-center min-h-screen px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <img
-          className="mx-auto h-28 w-auto"
+          className="w-auto mx-auto h-28"
           src="/images/logo-only.jpg"
           alt="Workflow"
         />
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Employee Login for Noc Portal
-        </h2>
+
+        <div className="mt-6 font-semibold text-center text-gray-900">
+          <h3 className="text-gray-600">Nepal Embassy - Delhi</h3>
+          <h1 className="text-3xl font-extrabold">Noc Portal</h1>
+          <h2 className="text-xl text-red-500">Employee Login</h2>
+        </div>
         <Toaster
           toastOptions={{
             className: 'font-bold',
@@ -81,7 +84,7 @@ const AdminLogin = () => {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-6 sm:px-10">
+        <div className="px-6 py-8 bg-white sm:px-10">
           <form
             className="mb-0 space-y-6"
             action="#"
@@ -101,8 +104,9 @@ const AdminLogin = () => {
                   name="email"
                   type="email"
                   autoComplete="email"
+                  placeholder="Enter registered email"
                   required
-                  className=" "
+                  className="w-full px-3 py-2.5 text-sm bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 active:outline-none"
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
@@ -121,7 +125,9 @@ const AdminLogin = () => {
                   name="password"
                   type="password"
                   autoComplete="current-password"
+                  placeholder="Enter your password"
                   required
+                  className="w-full px-3 py-2.5 text-sm bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 active:outline-none"
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
@@ -131,6 +137,15 @@ const AdminLogin = () => {
               {!isLoading ? <SignInButton /> : <AuthenticatingButton />}
             </div>
           </form>
+          <div className="flex items-center justify-center my-4 space-x-2 text-sm text-center text-gray-500">
+            <p>Login problem?</p>
+            <a
+              href="mailto:sangaitech1@gmail.com?subject=Issue at employee login - NOC Portal"
+              className="text-blue-600 duration-150 hover:text-blue-700"
+            >
+              Raise Issue
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -141,7 +156,7 @@ const SignInButton = () => {
   return (
     <button
       type="submit"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       Sign in
     </button>
@@ -152,7 +167,7 @@ const AuthenticatingButton = () => {
   return (
     <button
       type="button"
-      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
       Authenticating

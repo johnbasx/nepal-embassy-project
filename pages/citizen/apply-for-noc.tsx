@@ -36,10 +36,12 @@ import authStore from '@store/useAuthStore';
 import { getUserProfile } from '@content/api-urls';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
+import { useRouter } from 'next/router';
 
 const NocRegistration = (page: NextComponentType) => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = authStore();
+  const router = useRouter();
   const { setPageTitle } = pageTitleStore();
 
   const [travelFrom, setTravelFrom] = useState('');
@@ -106,7 +108,7 @@ const NocRegistration = (page: NextComponentType) => {
 
   useEffect(() => {
     if (travelType == 'Direct') {
-      console.log('Direct ', selectedGulf?.country!);
+      // console.log('Direct ', selectedGulf?.country!);
       // setTravelVia(selectedGulf?.country!);
       setTravelCountry(selectedGulf?.country!);
       setTravelVia('');
@@ -164,11 +166,13 @@ const NocRegistration = (page: NextComponentType) => {
     });
 
     if (returnValue == 1) {
-      toast.success('Applied Successful!');
+      toast.success('NOC applied successfully!');
       setIsLoading(false);
+      router.push('/citizen/get-noc');
     } else {
-      toast.error('Cannot applied!');
+      toast.error('NOC could not be applied!');
       setIsLoading(false);
+      // router.reload();
     }
   };
   useEffect(() => {
@@ -210,11 +214,12 @@ const NocRegistration = (page: NextComponentType) => {
   return (
     <div className="relative bg-white">
       <div className="absolute inset-0">
-        <div className="absolute inset-y-0 left-0 w-full bg-gray-50" />
+        <div className="absolute inset-y-0 left-0 w-full" />
       </div>
       <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
-        <div className="px-4 py-16 bg-white sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
-          <div className="max-w-lg mx-auto border rounded lg:max-w-none border-gray-200/50">
+          <ProfileDetail profile={profile} />
+        <div className="order-last px-4 py-16 bg-white md:order-first sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
+          <div className="max-w-lg mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
             <form
               method="POST"
               className=""
@@ -226,7 +231,7 @@ const NocRegistration = (page: NextComponentType) => {
                     <h3 className="text-2xl font-bold tracking-tight text-blue-700 sm:text-2xl">
                       Apply for NOC
                     </h3>
-                    <p className="mt-1 text-sm text-blue-700">
+                    <p className="mt-1 text-sm text-gray-500">
                       NOC will be provided after your application is verified
                     </p>
                   </div>
@@ -254,7 +259,7 @@ const NocRegistration = (page: NextComponentType) => {
                         name="passport_number"
                         id="passport_number"
                         autoComplete="passport_number"
-                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       />
                     </div>
 
@@ -282,7 +287,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="travel_country"
                         autoComplete="travel_country"
-                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         onChange={(e) => {
                           setDestination(e.target.value);
                         }}
@@ -373,7 +378,7 @@ const NocRegistration = (page: NextComponentType) => {
                         autoComplete="travel-date"
                         placeholder="DD/MM/YYYY"
                         // pattern="Month dd, yyyy"
-                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       />
                     </div>
 
@@ -389,7 +394,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="province"
                         autoComplete="province"
-                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         onChange={(e) => {
                           setProvince(e.target.value);
 
@@ -416,7 +421,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="district"
                         autoComplete="district"
-                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         onChange={(e) => {
                           setDistrict(e.target.value);
                         }}
@@ -451,7 +456,7 @@ const NocRegistration = (page: NextComponentType) => {
                         id="return_date"
                         autoComplete="return_date"
                         placeholder="DD/MM/YYYY"
-                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-6 lg:col-span-6">
@@ -480,7 +485,7 @@ const NocRegistration = (page: NextComponentType) => {
                         required
                         name="travel-purpose"
                         autoComplete="travel-purpose"
-                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         onChange={(e) => {
                           // console.log(e.target.);
                           setTravelPurpose(e.target.value);
@@ -531,7 +536,7 @@ const NocRegistration = (page: NextComponentType) => {
                   {!isLoading ? (
                     <button
                       type="submit"
-                      className="inline-flex justify-center w-full py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex justify-center w-full py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Apply NOC
                     </button>
@@ -543,7 +548,6 @@ const NocRegistration = (page: NextComponentType) => {
             </form>
           </div>
         </div>
-        <ProfileDetail profile={profile} />
       </div>
     </div>
   );
@@ -553,7 +557,7 @@ const LoadingButton = () => {
   return (
     <button
       type="button"
-      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
       Loading

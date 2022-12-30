@@ -42,35 +42,35 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
 
   const CitizenFields = ({ title, data }: { title: string; data?: string }) => (
     <div className="sm:col-span-1">
-      <dt className="text-sm font-medium text-gray-500">{title}</dt>
-      <dd className="mt-1 text-sm text-gray-900">{data}</dd>
+      <dt className="text-xs text-gray-500">{title}</dt>
+      <dd className="mt-1 text-sm font-medium text-gray-900">{data}</dd>
     </div>
   );
 
   const ApprovedPill = () => (
-    <div className="bg-teal-500 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbShieldCheck className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-teal-500 rounded-full">
+      <TbShieldCheck className="w-5 h-5" />
       <span>Approved</span>
     </div>
   );
 
   const RejectedPill = () => (
-    <div className="bg-red-400 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbBan className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-red-400 rounded-full">
+      <TbBan className="w-5 h-5" />
       <span>Rejected</span>
     </div>
   );
 
   const ResubmitPill = () => (
-    <div className="bg-slate-700 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbFileUpload className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white rounded-full bg-slate-700">
+      <TbFileUpload className="w-5 h-5" />
       <span>Submit again</span>
     </div>
   );
 
   const PendingPill = () => (
-    <div className="bg-gray-400 text-white text-xs px-4 py-1 rounded-full flex justify-center items-center space-x-1">
-      <TbClipboardOff className="h-5 w-5" />
+    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-gray-400 rounded-full">
+      <TbClipboardOff className="w-5 h-5" />
       <span>Pending</span>
     </div>
   );
@@ -88,7 +88,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         <div className="px-4">
           <button
             onClick={() => approvedNocDocument()}
-            className=" bg-indigo-500 text-xs font-medium hover:bg-indigo-600 text-white px-3 py-2 rounded-md"
+            className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
           >
             Approve NOC
           </button>
@@ -133,7 +133,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         );
       case 're-verify':
         return (
-          <span className="bg-indigo-200 text-indigo-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
+          <span className="bg-blue-200 text-blue-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
             {label}
           </span>
         );
@@ -206,16 +206,16 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   };
 
   const DocAttachments = ({ ...file }: NocFilesType) => (
-    <li className="pl-3 pr-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between text-sm relative">
-      <div className="flex-1 flex items-center pb-4 sm:pb-0">
+    <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex items-center flex-1 pb-4 sm:pb-0">
         <PaperClipIcon
-          className="flex-shrink-0 h-5 w-5 text-gray-400"
+          className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
           aria-hidden="true"
         />
-        <span className="ml-2 flex-1 w-0 text-ellipsis">{file.doc_name}</span>
+        <span className="flex-1 w-0 ml-2 text-ellipsis">{file.doc_name}</span>
       </div>
 
-      <div className="flex justify-end items-center space-x-3">
+      <div className="flex items-center justify-end space-x-3">
         <a
           onClick={() => {
             router.push(
@@ -226,7 +226,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               '/review-file'
             );
           }}
-          className="font-medium bg-gray-100 px-3 py-2 rounded text-indigo-600 hover:text-indigo-500 cursor-pointer"
+          className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
         >
           View
         </a>
@@ -240,7 +240,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               onClick={() => {
                 approvedFile(file.id), getNocDocumentDetail();
               }}
-              className=" bg-indigo-500 font-medium hover:bg-indigo-600 text-white px-3 py-2 rounded-md"
+              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
             >
               Approve
             </button>
@@ -250,18 +250,15 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 setOpen(true);
                 getNocDocumentDetail();
               }}
-              className="bg-red-500 font-medium hover:bg-red-600 text-white px-3 py-2 rounded-md"
+              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
             >
               Reject
             </button>
           </>
         )}
 
-        <a
-          href="#"
-          className="font-medium text-indigo-600 hover:text-indigo-500"
-        >
-          <TbDownload className="h-5 w-5" />
+        <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
+          <TbDownload className="w-5 h-5" />
         </a>
       </div>
     </li>
@@ -282,10 +279,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         getNocDocumentDetail={getNocDocumentDetail}
       />
       <Toaster />
-      <div className="bg-white shadow overflow-hidden sm:rounded-2xl max-w-7xl mt-4 mx-4">
-        <div className="flex justify-between items-center px-4 py-5 sm:px-6">
+      <div className="mx-4 mt-4 mb-6 overflow-hidden bg-white shadow sm:rounded-2xl max-w-7xl">
+        <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <div className="flex-1">
-            <h3 className="text-lg leading-6 font-medium text-blue-700">
+            <h3 className="text-lg font-medium leading-6 text-blue-700">
               NOC detail for{' '}
               <span className="underline">
                 {detail?.full_name +
@@ -301,7 +298,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
 
           {nocDocStatus(detail?.verified_status)}
         </div>
-        <div className="border-t border-gray-200 px-4 py-5 sm:px-6">
+        <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
             <CitizenFields data={detail?.full_name} title={'Full Name'} />
             <CitizenFields data={detail?.email} title="Email address" />
@@ -344,31 +341,31 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               <dd className="mt-1 text-sm text-gray-900">
                 <ul
                   role="list"
-                  className="border border-gray-200 rounded-md divide-y divide-gray-200"
+                  className="border border-gray-200 divide-y divide-gray-200 rounded-md"
                 >
-                  <li className="pl-3 pr-4 py-3 flex flex-col sm:flex-row items-start sm:items-center justify-start sm:justify-between text-sm relative">
-                    <div className="flex-1 flex items-center pb-4 sm:pb-0">
+                  <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+                    <div className="flex items-center flex-1 pb-4 sm:pb-0">
                       <PaperClipIcon
-                        className="flex-shrink-0 h-5 w-5 text-gray-400"
+                        className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
                         aria-hidden="true"
                       />
-                      <div className="ml-2 flex-1 w-0 text-ellipsis">
+                      <div className="flex-1 w-0 ml-2 text-ellipsis">
                         <span>Payment Screenshot</span>
                         {detail?.payment_verified == '1' &&
                         detail?.payment_screen_shot != null ? (
-                          <h1 className="text-green-800 text-bold text-xs">
+                          <h1 className="text-xs text-green-800 text-bold">
                             Verify the payment screenshot
                           </h1>
                         ) : detail?.payment_verified == '2' ? (
-                          <h1 className="text-red-500 text-semibold text-xs">
+                          <h1 className="text-xs text-red-500 text-semibold">
                             Payment Screenshot rejected.
                           </h1>
                         ) : detail?.payment_verified == '3' ? (
-                          <h1 className="text-indigo-600 text-semibold text-xs">
+                          <h1 className="text-xs text-blue-600 text-semibold">
                             Payment Screenshot verified.
                           </h1>
                         ) : detail?.payment_screen_shot == null ? (
-                          <h1 className="text-red-500 text-semibold text-xs">
+                          <h1 className="text-xs text-red-500 text-semibold">
                             Payment Screenshot has not uploaded yet
                           </h1>
                         ) : (
@@ -377,19 +374,19 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                       </div>
                     </div>
 
-                    <div className="flex justify-end items-center space-x-3">
+                    <div className="flex items-center justify-end space-x-3">
                       {detail?.payment_verified == '3' ? (
                         <>
-                          <a className="font-medium bg-gray-100 px-3 py-2 rounded text-indigo-600 hover:text-indigo-500 cursor-pointer">
+                          <a className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50">
                             View
                           </a>
-                          <CheckCircleIcon className="h-6 w-6 text-green-600" />
+                          <CheckCircleIcon className="w-6 h-6 text-green-600" />
                         </>
                       ) : detail?.payment_verified == '1' &&
                         detail?.payment_screen_shot != null ? (
                         <button
                           onClick={() => approvePaymentScreenshot()}
-                          className=" bg-indigo-500 text-xs font-medium hover:bg-indigo-600 text-white px-3 py-2 rounded-md"
+                          className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
                         >
                           Approve Payment
                         </button>
@@ -407,10 +404,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
             </div>
           </dl>
           {detail?.verified_status == '1' && (
-            <div className="p-4 mt-3 flex w-full justify-end space-x-4">
+            <div className="flex justify-end w-full p-4 mt-3 space-x-4">
               <button
                 onClick={() => approvedNocDocument()}
-                className=" bg-indigo-500 text-xs font-medium hover:bg-indigo-600 text-white px-3 py-2 rounded-md"
+                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
               >
                 Approve NOC
               </button>
@@ -419,7 +416,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 onClick={() => {
                   setOpenNocModal(true);
                 }}
-                className=" bg-red-500 text-xs font-medium hover:bg-red-600 text-white px-3 py-2 rounded-md"
+                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
               >
                 Reject NOC
               </button>
