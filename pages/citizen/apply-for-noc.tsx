@@ -15,6 +15,7 @@ import {
   nepalDistricts,
   provinces,
 } from 'content/drop-down-items';
+import { dateFormatter, todayDateSetter, addYears } from '@utils/helpers';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { CheckTravelPurpose } from '@utils/applyNoc';
@@ -271,18 +272,20 @@ const NocRegistration = (page: NextComponentType) => {
                     </div>
                     <div className="col-span-6">
                       <ol>
-                        <li className="text-xs text-red-500/70">
+                        <li className="text-xs text-red-500">
                           <span className="font-semibold">1. Connecting: </span>
                           Select this if you are travelling to other countries
                           via(connection) Gulf Countries.
                         </li>
-                        <li className="text-xs text-red-500/70">
+                        <li className="text-xs text-red-500">
                           <span className="font-semibold">2. Direct: </span>
                           Select this if you are travelling directly to any of
                           the Gulf Countries.
                         </li>
                       </ol>
                     </div>
+                    {/* Empty block */}
+                    <div className="col-span-6 sm:col-span-6 lg:col-span-3"></div>
 
                     <div
                       className={`col-span-6 sm:col-span-6 lg:col-span-3 ${
@@ -295,6 +298,9 @@ const NocRegistration = (page: NextComponentType) => {
                       >
                         Travel Destination{' '}
                         <span className="text-red-500">*</span>
+                        <span className="text-xs font-normal text-red-500">
+                          (for Connecting)
+                        </span>
                       </label>
                       <select
                         id="travel_country"
@@ -319,11 +325,16 @@ const NocRegistration = (page: NextComponentType) => {
                         // htmlFor="travel-via"
                         className="block text-sm font-medium "
                       >
-                        <span className="text-xs font-bold tracking-wide text-gray-500 uppercase">
+                        <span className="text-sm font-medium text-gray-700">
                           {travelType == 'Direct'
                             ? 'Travel Destination '
-                            : 'TRAVEL VIA (Country)'}
-                          <span className="text-red-500">*</span>
+                            : 'Travel via'}
+                        </span>
+                        <span className="text-red-500">*</span>
+                        <span className="text-xs font-normal text-red-500">
+                          {travelType == 'Direct'
+                            ? '(Direct travel)'
+                            : '(Connecting country)'}
                         </span>
                       </label>
 
@@ -341,6 +352,9 @@ const NocRegistration = (page: NextComponentType) => {
                             className="block text-sm font-medium text-gray-700"
                           >
                             Airport
+                            <span className="ml-2 text-xs font-normal text-gray-400">
+                              (optional)
+                            </span>
                           </label>
                           <GulfAirportSelect selectedCountry={selectedGulf} />
                         </>
@@ -350,10 +364,15 @@ const NocRegistration = (page: NextComponentType) => {
                     {travelType == 'Direct' && (
                       <div className="col-span-6 sm:col-span-6 lg:col-span-6">
                         <dl>
-                          <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-500">
+                          <div className="px-4 py-5 rounded-md bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-700">
                               Bank Statement proof(proof of 6 Lakhs in Bank){' '}
                               <span className="text-red-500">*</span>
+                              <br />
+                              <span className="text-xs font-normal text-red-500">
+                                (This is required only for citizens travelling
+                                directly to any of the 9 Gulf countries.)
+                              </span>
                             </dt>
                             <div className="flex">
                               <input
@@ -391,6 +410,8 @@ const NocRegistration = (page: NextComponentType) => {
                         id="travel-date"
                         autoComplete="travel-date"
                         placeholder="DD/MM/YYYY"
+                        min={todayDateSetter()}
+                        max={addYears(new Date(), 3)}
                         // pattern="Month dd, yyyy"
                         className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                       />
@@ -457,8 +478,8 @@ const NocRegistration = (page: NextComponentType) => {
                         htmlFor="travel_purpose"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Return Date{' '}
-                        <span className="text-xs text-gray-500">
+                        Return Date
+                        <span className="ml-2 text-xs font-normal text-gray-400">
                           (optional)
                         </span>
                       </label>
@@ -468,6 +489,8 @@ const NocRegistration = (page: NextComponentType) => {
                         type="date"
                         name="return_date"
                         id="return_date"
+                        min={travelDate}
+                        max={addYears(new Date(), 15)}
                         autoComplete="return_date"
                         placeholder="DD/MM/YYYY"
                         className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -513,7 +536,7 @@ const NocRegistration = (page: NextComponentType) => {
                       </select>
                     </div>
                   </div>
-                  <div className="">
+                  <div>
                     <dl>
                       <CommonFiles
                         setVisa={setVisa}
@@ -545,6 +568,12 @@ const NocRegistration = (page: NextComponentType) => {
                       />
                     </dl>
                   </div>
+                </div>
+                <div className="flex items-center justify-center px-4 py-3 text-left">
+                  <p className="text-xs text-red-500">
+                    All fields marked with "*" are required while applying for
+                    NOC verification.
+                  </p>
                 </div>
                 <div className="flex justify-center px-4 py-3 text-right bg-white sm:px-16">
                   {!isLoading ? (
