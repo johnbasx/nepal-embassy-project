@@ -25,9 +25,9 @@ const TravelVia = ({
           )}
         >
           {checked ? (
-            <BsCheckCircleFill className="h-4 w-4 text-indigo-500" />
+            <BsCheckCircleFill className="w-4 h-4 text-blue-500" />
           ) : (
-            <BsCircle className="h-4 w-4 text-indigo-400" />
+            <BsCircle className="w-4 h-4 text-blue-400" />
           )}
           <span>{value}</span>
         </div>
@@ -36,9 +36,10 @@ const TravelVia = ({
   );
   return (
     <RadioGroup value={travelType} onChange={setTravelType}>
-      <RadioGroup.Label className="text-xs block font-bold mb-2 uppercase tracking-wide text-gray-500">
+      <RadioGroup.Label className="block mb-2 text-sm font-medium text-gray-700">
         Travel Type <span className="text-red-500">*</span>
       </RadioGroup.Label>
+
       <div className="flex">
         <RadioOption value="Connecting" />
         <RadioOption value="Direct" />

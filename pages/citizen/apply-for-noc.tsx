@@ -270,6 +270,20 @@ const NocRegistration = (page: NextComponentType) => {
                         travelType={travelType}
                       />
                     </div>
+                    <div className="col-span-6">
+                      <ol>
+                        <li className="text-xs text-red-500/70">
+                          <span className="font-semibold">1. Connecting: </span>
+                          Select this if you are travelling to other countries
+                          via(connection) Gulf Countries.
+                        </li>
+                        <li className="text-xs text-red-500/70">
+                          <span className="font-semibold">2. Direct: </span>
+                          Select this if you are travelling directly to any of
+                          the Gulf Countries.
+                        </li>
+                      </ol>
+                    </div>
 
                     <div
                       className={`col-span-6 sm:col-span-6 lg:col-span-3 ${

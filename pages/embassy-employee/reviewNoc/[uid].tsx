@@ -40,6 +40,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const [openNocModal, setOpenNocModal] = useState(false);
   // const [nocToReject, setnocToReject] = useState('');
 
+  useEffect(() => {
+    console.log(nocFiles);
+  }, [nocFiles]);
+
   const CitizenFields = ({ title, data }: { title: string; data?: string }) => (
     <div className="sm:col-span-1">
       <dt className="text-xs text-gray-500">{title}</dt>
@@ -217,15 +221,18 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
 
       <div className="flex items-center justify-end space-x-3">
         <a
-          onClick={() => {
-            router.push(
-              {
-                pathname: '/review-file',
-                query: { file: file.document_file },
-              },
-              '/review-file'
-            );
-          }}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={file.document_file}
+          // onClick={() => {
+          //   router.push(
+          //     {
+          //       pathname: '/review-file',
+          //       query: { file: file.document_file },
+          //     },
+          //     '/review-file'
+          //   );
+          // }}
           className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
         >
           View
@@ -282,17 +289,17 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       <div className="mx-4 mt-4 mb-6 overflow-hidden bg-white shadow sm:rounded-2xl max-w-7xl">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <div className="flex-1">
-            <h3 className="text-lg font-medium leading-6 text-blue-700">
-              NOC detail for{' '}
-              <span className="underline">
-                {detail?.full_name +
-                  '(' +
-                  detail?.email +
-                  ') - ' +
-                  detail?.travel_type +
-                  ' Travel'}
-              </span>
+            <h3 className="text-xl font-bold text-gray-700">
+              NOC detail for -
             </h3>
+            <span className="text-blue-700">
+              {detail?.full_name +
+                '(' +
+                detail?.email +
+                ') - ' +
+                detail?.travel_type +
+                ' Travel'}
+            </span>
           </div>
           {nocButtonStatus(detail?.verified_status)}
 
@@ -358,15 +365,15 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                           </h1>
                         ) : detail?.payment_verified == '2' ? (
                           <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot rejected.
+                            Payment Screenshot rejected
                           </h1>
                         ) : detail?.payment_verified == '3' ? (
                           <h1 className="text-xs text-blue-600 text-semibold">
-                            Payment Screenshot verified.
+                            Payment Screenshot verified
                           </h1>
                         ) : detail?.payment_screen_shot == null ? (
                           <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot has not uploaded yet
+                            Payment Screenshot has not been uploaded yet
                           </h1>
                         ) : (
                           <></>
@@ -377,7 +384,12 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                     <div className="flex items-center justify-end space-x-3">
                       {detail?.payment_verified == '3' ? (
                         <>
-                          <a className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50">
+                          <a
+                            className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
+                            href={detail.payment_screen_shot}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             View
                           </a>
                           <CheckCircleIcon className="w-6 h-6 text-green-600" />

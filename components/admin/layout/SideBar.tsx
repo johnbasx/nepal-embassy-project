@@ -11,6 +11,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
 
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
@@ -32,6 +34,8 @@ export interface SideBarProps {
 }
 
 const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
+  const router = useRouter();
+
   return (
     <>
       {/* Mobile sidebar */}
@@ -82,7 +86,7 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                   </button>
                 </div>
               </Transition.Child>
-              <div className="flex items-center flex-shrink-0 px-4">
+              <div className="flex items-center justify-start flex-shrink-0 px-4 py-1 mt-2">
                 <div className="relative w-full h-14">
                   <Image
                     priority
@@ -132,8 +136,8 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
       <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-col flex-1 min-h-0 bg-gray-800">
-          <div className="flex items-center flex-shrink-0 h-16 px-4 bg-slate-800">
-            <div className="relative w-full h-12 py-1">
+          <div className="flex items-center justify-start flex-shrink-0 px-4 py-1 mt-2">
+            <div className="relative w-full h-14">
               <Image
                 priority
                 objectFit="contain"
@@ -146,27 +150,27 @@ const SideBar = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
           <div className="flex flex-col flex-1 overflow-y-auto">
             <nav className="flex-1 px-2 py-4 space-y-1">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                  )}
-                >
-                  <item.icon
-                    className={classNames(
-                      item.current
-                        ? 'text-gray-300'
-                        : 'text-gray-400 group-hover:text-gray-300',
-                      'mr-3 flex-shrink-0 h-6 w-6'
-                    )}
-                    aria-hidden="true"
-                  />
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <a
+                    key={item.name}
+                    className={`group flex items-center px-2 py-2 text-base font-medium rounded-md ${
+                      router.pathname == item.href
+                        ? 'bg-gray-900 text-white'
+                        : 'text-gray-300 hover:bg-gray-700 hover:text-white '
+                    }`}
+                  >
+                    <item.icon
+                      className={classNames(
+                        item.current
+                          ? 'text-gray-300'
+                          : 'text-gray-400 group-hover:text-gray-300',
+                        'mr-3 flex-shrink-0 h-6 w-6'
+                      )}
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </a>
+                </Link>
               ))}
             </nav>
           </div>

@@ -32,6 +32,7 @@ const NocDocList = () => {
       setTotal(response.data.count);
       setNocRegisteredCitizen(response.data.results);
       setNocList(response.data.results);
+      console.log(response.data);
       setNextPage(response.data.next);
       setPrevPage(response.data.previous);
     } catch (e) {

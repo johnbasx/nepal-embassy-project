@@ -132,6 +132,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, citizenNocDocumentDetail + documentId);
     setDetail(data);
+    console.log(data);
   };
 
   const getNocDocumentFiles = async () => {
@@ -288,7 +289,8 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                           <CheckCircleIcon className="w-6 h-6 text-green-600" />
                         </>
                       ) : detail?.payment_verified == '2' ||
-                        detail?.payment_screen_shot == null ? (
+                        (detail?.payment_screen_shot == null &&
+                          detail?.verified_status == '3') ? (
                         <UploadFile
                           url={uploadPaymentScreenShot + detail?.id}
                           getContent={getNocDocumentDetail}
