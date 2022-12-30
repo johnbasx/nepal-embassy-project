@@ -40,7 +40,7 @@ const ViewPdf: NextPage = () => {
   return (
     <div className="flex flex-col h-screen w-screen mx-auto justify-start items-center">
       <div className="shadow-2xl w-full h-full mx-auto flex flex-col justify-center items-center p-4 bg-gray-500">
-        <object
+        {/* <object
           data={file}
           type="application/pdf"
           width="100%"
@@ -49,7 +49,7 @@ const ViewPdf: NextPage = () => {
           <p>
             Alternative text - include a link <a href={file}>to the PDF!</a>
           </p>
-        </object>
+        </object> */}
       </div>
     </div>
   );
