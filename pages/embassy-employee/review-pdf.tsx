@@ -48,14 +48,14 @@ const ViewPdf: NextPage = () => {
           <Page pageNumber={pageNumber} />
         </Document> */}
         <object
-          data="http://127.0.0.1:8000/media/Uploaded_Files/1893_-_HDMC_Imphal_AJor8dJ.pdf"
+          data="http://cube69.pythonanywhere.com/media/Uploaded_Files/E601939F-4F45-41C7-A65E-99CE478E5B46.pdf"
           type="application/pdf"
           width="100%"
           className="h-full overflow-hidden rounded-3xl shadow-md"
         >
           <p>
             Alternative text - include a link{' '}
-            <a href="http://127.0.0.1:8000/media/Uploaded_Files/1893_-_HDMC_Imphal_AJor8dJ.pdf">
+            <a href="http://cube69.pythonanywhere.com/media/Uploaded_Files/E601939F-4F45-41C7-A65E-99CE478E5B46.pdf">
               to the PDF!
             </a>
           </p>
