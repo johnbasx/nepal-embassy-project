@@ -94,7 +94,7 @@ const UserListTable: React.FC<{
       );
     } else if (status == '3') {
       return (
-        <div className="py-1 text-xs font-medium text-center text-white bg-green-400 rounded-full">
+        <div className="p-1 text-xs font-medium text-center text-white rounded-full bg-emerald-400">
           Approved
         </div>
       );
@@ -111,7 +111,7 @@ const UserListTable: React.FC<{
         <div className="overflow-x-auto">
           <table className="w-full table-auto">
             <thead className="text-xs font-semibold text-gray-500 uppercase border-t border-b border-gray-200 bg-gray-50">
-              <tr>
+              <tr className="divide-x-2">
                 <th className="w-px px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap">
                   <div className="flex items-center">
                     <label className="inline-flex">
@@ -185,37 +185,45 @@ const UserListTable: React.FC<{
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
                     <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
                       <div className="flex items-center">
-                        <div className="font-medium text-gray-800">
+                        <div className="font-medium text-blue-700">
                           {list.full_name}
                         </div>
                       </div>
                     </Link>
                   </td>
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    {' '}
-                    <div className="text-left">{list.email}</div>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div className="text-left">{list.email}</div>
+                    </Link>
                   </td>
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    {' '}
-                    <div className="text-left">{list.travel_country}</div>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div className="text-left">{list.travel_country}</div>
+                    </Link>
                   </td>
 
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    {' '}
-                    <div className="text-left">
-                      {Math.floor(moment().diff(list.dob, 'years', true))} years
-                    </div>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div className="text-left">
+                        {Math.floor(moment().diff(list.dob, 'years', true))}{' '}
+                        years
+                      </div>
+                    </Link>
                   </td>
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    <div className="text-center">{list.return_date}</div>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div className="text-center">{list.return_date}</div>
+                    </Link>
                   </td>
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    <div className="font-medium text-left text-light-blue-500">
-                      {list.passport_number}
-                    </div>
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div className="text-left">{list.passport_number}</div>
+                    </Link>
                   </td>
                   <td className="px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap body-column">
-                    {checkVerifiedStatus(list.verified_status)}
+                    <Link href={`/embassy-employee/reviewNoc/${list.id}`}>
+                      <div>{checkVerifiedStatus(list.verified_status)}</div>
+                    </Link>
                   </td>
                   <td className="w-px px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap">
                     <button className="text-gray-400 rounded-full hover:text-gray-500">

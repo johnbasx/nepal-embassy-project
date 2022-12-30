@@ -49,24 +49,24 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
   };
   return (
     <>
-      <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
+      <div className="sticky top-0 z-10 flex flex-shrink-0 h-16 bg-white shadow">
         <button
           type="button"
-          className="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          className="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden"
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
-          <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
+          <MenuAlt2Icon className="w-6 h-6" aria-hidden="true" />
         </button>
-        <div className="flex-1 px-6 flex justify-end">
-          <div className="ml-4 flex items-center md:ml-6">
+        <div className="flex justify-end flex-1 px-6">
+          <div className="flex items-center ml-4 md:ml-6">
             {/* Notification Menu */}
-            <Menu as="div" className="ml-4 relative">
+            <Menu as="div" className="relative ml-4">
               <div>
-                <Menu.Button className="max-w-xs text-gray-600 flex items-center text-sm rounded-full">
-                  <span className="sr-only">Open user menu</span>
+                <Menu.Button className="flex items-center max-w-xs text-sm text-gray-600 rounded-full">
+                  <span className="sr-only">Open notifications menu</span>
                   <BellIcon className="h-7 w-7" aria-hidden="true" />
-                  <div className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full"></div>
+                  <div className="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 border-2 border-white rounded-full" />
                 </Menu.Button>
               </div>
               <Transition
@@ -78,18 +78,21 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="origin-top-right absolute -right-4 mt-2 w-72 md:w-80 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg -right-4 w-72 md:w-80 ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <div className="text-sm font-semibold text-gray-400 uppercase pt-1.5 pb-2 px-4">
-                    NOTIFICATION
+                    NOTIFICATIONS
+                    <span className="ml-2 text-xs font-normal text-red-300 lowercase">
+                      (experimental)
+                    </span>
                   </div>
                   {notification.map((item, index) => (
                     <Menu.Item key={index}>
                       {({ active }) => (
                         <a
-                          className="block py-2 px-4 hover:bg-gray-50"
+                          className="block px-4 py-2 hover:bg-gray-50"
                           href="#0"
                         >
-                          <span className="block text-sm mb-2">
+                          <span className="block mb-2 text-sm">
                             📣{' '}
                             <span className="font-medium text-gray-800">
                               {item.title}
@@ -110,9 +113,9 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
             {/* Profile dropdown */}
             <Menu as="div" className="ml-4 right-10">
               <div>
-                <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <Menu.Button className="flex items-center max-w-xs text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                   <span className="sr-only">Open user menu</span>
-                  <UserCircleIcon className="w-7 h-7 stroke-1 text-gray-900" />
+                  <UserCircleIcon className="stroke-2 text-slate-700 w-7 h-7" />
                 </Menu.Button>
               </div>
               <Transition
@@ -124,14 +127,14 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <Menu.Items className="origin-top-right absolute right-6 mt-4 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute w-48 py-1 mt-4 text-left origin-top-right bg-white rounded-md shadow-xl right-6 ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <Menu.Item>
                     {({ active }) => (
                       <a
                         onClick={() => router.push('/embassy-employee/profile')}
                         className={classNames(
                           active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700'
+                          'block px-4 py-2 text-sm cursor-pointer text-gray-700'
                         )}
                       >
                         Your Profile
@@ -146,7 +149,7 @@ const HeadNav = ({ sidebarOpen, setSidebarOpen }: SideBarProps) => {
                         onClick={handleSignOut}
                         className={classNames(
                           active ? 'bg-gray-100' : '',
-                          'block px-4 py-2 text-sm text-gray-700'
+                          'block px-4 py-2 w-full text-left text-sm text-gray-700'
                         )}
                       >
                         Sign out
