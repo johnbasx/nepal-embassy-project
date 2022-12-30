@@ -6,6 +6,10 @@ import { FastForwardIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import Pages from '@components/admin/pagination/Pages';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
+import PageNumber from '../pagination/PageNumber';
+import { classNames } from '@utils/helpers';
 
 export interface NocDetailTypes {
   id: string;
@@ -24,6 +28,12 @@ export interface NocDetailTypes {
   return_date: string;
   created_at: string;
 }
+
+// Get the page number from the next url : TODo
+const secondToLast = (str: string) => {
+  let pageNo = parseInt(str.charAt(str.length - 1)) - 1;
+  return parseInt(str && str.charAt(str.length - 1)) - 1;
+};
 
 const UserListTable: React.FC<{
   nocRegisteredCitizen: NocDetailTypes[];
@@ -111,7 +121,7 @@ const UserListTable: React.FC<{
         <div className="overflow-x-auto">
           <table className="w-full table-auto">
             <thead className="text-xs font-semibold text-gray-500 uppercase border-t border-b border-gray-200 bg-gray-50">
-              <tr className="divide-x-2">
+              <tr className="divide-x">
                 <th className="w-px px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap">
                   <div className="flex items-center">
                     <label className="inline-flex">
@@ -244,7 +254,55 @@ const UserListTable: React.FC<{
             </tbody>
           </table>
 
-          <div className="flex justify-end p-4 space-x-6">
+          {/* Paginations */}
+          <div className="flex items-center justify-center py-6">
+            <div>
+              <nav
+                className="inline-flex -space-x-px rounded-md shadow-sm isolate"
+                aria-label="Pagination"
+              >
+                <button
+                  onClick={() => {
+                    setSelectedUsers([]);
+                    loadNextPage(prevPage);
+                  }}
+                  className={classNames(
+                    prevPage
+                      ? 'text-blue-700 hover:bg-gray-50 focus:z-20'
+                      : 'cursor-not-allowed',
+                    'relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md '
+                  )}
+                >
+                  <span className="sr-only">Previous</span>
+
+                  <ChevronLeftIcon className="w-5 h-5" />
+                  <span>Prev</span>
+                </button>
+
+                {/* <PageNumber index={secondToLast(nextPage)} /> */}
+
+                <button
+                  onClick={() => {
+                    setSelectedUsers([]);
+                    loadNextPage(nextPage);
+                  }}
+                  className={classNames(
+                    nextPage
+                      ? 'text-blue-700 hover:bg-gray-50 focus:z-20'
+                      : 'cursor-not-allowed',
+                    'relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md '
+                  )}
+                >
+                  <span className="sr-only">Next</span>
+
+                  <span>Next</span>
+                  <ChevronRightIcon className="w-5 h-5" />
+                </button>
+              </nav>
+            </div>
+          </div>
+
+          {/* <div className="flex justify-end p-4 space-x-6">
             <button
               type="button"
               className="flex justify-center px-4 py-1 text-sm font-medium text-blue-700 border border-transparent rounded-md shadow-sm "
@@ -265,7 +323,7 @@ const UserListTable: React.FC<{
             >
               <span className="">Next</span>
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

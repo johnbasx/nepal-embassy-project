@@ -53,26 +53,26 @@ const AirportInput = ({
       <Combobox value={selectedAirport} onChange={setSelectedAirport}>
         <Combobox.Label
           htmlFor="Travel from"
-          className="block text-sm font-medium uppercase text-gray-500"
+          className="block text-sm font-medium text-gray-500 uppercase"
         >
           Travel from <span className="text-red-500">*</span>
         </Combobox.Label>
         <div className="relative mt-1">
-          <div className="relative w-full cursor-default overflow-hidden text-gray-900 bg-white  text-left hover:ring-2 focus:ring-4 focus:outline-2 border border-gray-300 appearance-none rounded-lg text-sm inline-flex items-center">
+          <div className="relative inline-flex items-center w-full overflow-hidden text-sm text-left text-gray-900 bg-white border border-gray-300 rounded-md appearance-none cursor-default hover:ring-2 focus:ring-4 focus:outline-2">
             <span className="flex items-center px-2 border-r-2">
               <label htmlFor="currency" className="sr-only">
                 Airport
               </label>
               <TbPlaneDeparture
                 className={`h-5 w-5 ${
-                  selectedAirport ? 'text-indigo-500' : 'text-gray-400'
+                  selectedAirport ? 'text-blue-500' : 'text-gray-400'
                 } `}
                 aria-hidden="true"
               />
             </span>
 
             <Combobox.Input
-              className="w-full border-none py-2 pl-2 pr-10 text-sm leading-5 text-gray-900 focus:ring-0 focus:outline-none"
+              className="w-full py-2 pl-2 pr-10 text-sm leading-5 text-gray-900 border-none focus:ring-0 focus:outline-none"
               displayValue={(airport: AirportTypes) => {
                 return airport?.city_name + gap + '(' + airport.IATA_code + ')';
               }}
@@ -80,7 +80,7 @@ const AirportInput = ({
             />
             <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
               <SelectorIcon
-                className="h-5 w-5 text-gray-400"
+                className="w-5 h-5 text-gray-400"
                 aria-hidden="true"
               />
             </Combobox.Button>
@@ -92,9 +92,9 @@ const AirportInput = ({
             leaveTo="opacity-0"
             afterLeave={() => setQuery('')}
           >
-            <Combobox.Options className="absolute z-10 mt-2 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-transparent ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-10 w-full py-1 mt-2 overflow-auto text-base bg-white rounded-md shadow-lg max-h-60 ring-1 ring-transparent ring-opacity-5 focus:outline-none sm:text-sm">
               {filteredAirport.length === 0 && query !== '' ? (
-                <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
+                <div className="relative px-4 py-2 text-gray-700 cursor-default select-none">
                   Oops! No airport found.
                 </div>
               ) : (
@@ -103,7 +103,7 @@ const AirportInput = ({
                     key={airport.city_name}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                        active ? 'bg-indigo-500 text-white' : 'text-gray-900'
+                        active ? 'bg-blue-500 text-white' : 'text-gray-900'
                       }`
                     }
                     value={airport}
@@ -127,10 +127,10 @@ const AirportInput = ({
                         {selected ? (
                           <span
                             className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? 'text-white' : 'text-indigo-500'
+                              active ? 'text-white' : 'text-blue-500'
                             }`}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            <CheckIcon className="w-5 h-5" aria-hidden="true" />
                           </span>
                         ) : (
                           <span
@@ -139,7 +139,7 @@ const AirportInput = ({
                             }`}
                           >
                             <TbPlaneDeparture
-                              className="h-5 w-5"
+                              className="w-5 h-5"
                               aria-hidden="true"
                             />
                           </span>

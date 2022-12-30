@@ -56,6 +56,11 @@ const Search: React.FC<{
     }
   }, [debouncedSearch]);
 
+  // TODO: implement search on keyboard enter press
+  const keyDownEvent = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    console.log('event.code');
+  };
+
   // const gotoRegisterPage = (citizen: citizenListType) => {
   //   router.push(
   //     {
@@ -73,7 +78,7 @@ const Search: React.FC<{
     >
       <Dialog
         as="div"
-        className="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20"
+        className="fixed inset-0 z-10 p-4 overflow-y-auto sm:p-6 md:p-20"
         onClose={setSearchBar}
       >
         <Transition.Child
@@ -85,7 +90,7 @@ const Search: React.FC<{
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Dialog.Overlay className="fixed inset-0 bg-gray-500/75 bg-opacity-25 transition-opacity" />
+          <Dialog.Overlay className="fixed inset-0 transition-opacity bg-opacity-25 bg-gray-500/75" />
         </Transition.Child>
 
         <Transition.Child
@@ -99,7 +104,7 @@ const Search: React.FC<{
         >
           <Combobox
             as="div"
-            className="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-black ring-opacity-5 transition-all"
+            className="max-w-xl mx-auto overflow-hidden transition-all transform bg-white divide-y divide-gray-100 shadow-2xl rounded-xl ring-1 ring-black ring-opacity-5"
             value={query}
             onChange={setQuery}
           >
@@ -109,7 +114,7 @@ const Search: React.FC<{
                 aria-hidden="true"
               />
               <Combobox.Input
-                className="h-12 w-full border-0 bg-transparent pl-11 pr-4 text-sm text-gray-800 placeholder-gray-400 focus:ring-0"
+                className="w-full h-12 pr-4 text-sm text-gray-800 placeholder-gray-400 bg-transparent border-0 pl-11 focus:ring-0"
                 placeholder="Search by citizen name and email"
                 onChange={(event) => setQuery(event.target.value)}
               />
@@ -118,12 +123,13 @@ const Search: React.FC<{
             {citizens.length > 0 && (
               <Combobox.Options
                 static
-                className="max-h-72 scroll-py-2 overflow-y-auto py-2 text-sm text-gray-800"
+                className="py-2 overflow-y-auto text-sm text-gray-800 max-h-72 scroll-py-2"
               >
                 {citizens.map((citizen) => (
                   <Combobox.Option key={citizen.id} value={citizen}>
                     {({ active }) => (
                       <div
+                        onKeyDown={keyDownEvent}
                         onClick={() =>
                           router.push(
                             `/embassy-employee/apply-noc/${citizen.id}`

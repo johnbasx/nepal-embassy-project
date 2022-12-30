@@ -217,7 +217,7 @@ const NocRegistration = (page: NextComponentType) => {
         <div className="absolute inset-y-0 left-0 w-full" />
       </div>
       <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
-          <ProfileDetail profile={profile} />
+        <ProfileDetail profile={profile} />
         <div className="order-last px-4 py-16 bg-white md:order-first sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
           <div className="max-w-lg mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
             <form
@@ -268,6 +268,20 @@ const NocRegistration = (page: NextComponentType) => {
                         setTravelType={setTravelType}
                         travelType={travelType}
                       />
+                    </div>
+                    <div className="col-span-6">
+                      <ol>
+                        <li className="text-xs text-red-500/70">
+                          <span className="font-semibold">1. Connecting: </span>
+                          Select this if you are travelling to other countries
+                          via(connection) Gulf Countries.
+                        </li>
+                        <li className="text-xs text-red-500/70">
+                          <span className="font-semibold">2. Direct: </span>
+                          Select this if you are travelling directly to any of
+                          the Gulf Countries.
+                        </li>
+                      </ol>
                     </div>
 
                     <div
