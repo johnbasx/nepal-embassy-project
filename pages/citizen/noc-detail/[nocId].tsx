@@ -288,9 +288,9 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                           </a>
                           <CheckCircleIcon className="w-6 h-6 text-green-600" />
                         </>
-                      ) : detail?.payment_verified == '2' ||
-                        (detail?.payment_screen_shot == null &&
-                          detail?.verified_status == '3') ? (
+                      ) : detail?.payment_verified === '2' ||
+                        (detail?.payment_screen_shot === null &&
+                          detail?.verified_status === '1') ? (
                         <UploadFile
                           url={uploadPaymentScreenShot + detail?.id}
                           getContent={getNocDocumentDetail}
