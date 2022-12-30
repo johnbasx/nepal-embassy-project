@@ -21,9 +21,9 @@ const LivingInIndia = ({
           )}
         >
           {checked ? (
-            <BsCheckCircleFill className="h-4 w-4 text-indigo-500" />
+            <BsCheckCircleFill className="w-4 h-4 text-blue-500" />
           ) : (
-            <BsCircle className="h-4 w-4 text-indigo-400" />
+            <BsCircle className="w-4 h-4 text-blue-400" />
           )}
           <span>{label}</span>
         </div>
@@ -32,13 +32,14 @@ const LivingInIndia = ({
   );
   return (
     <RadioGroup value={livingInIndia} onChange={setLivingInIndia}>
-      <RadioGroup.Label className="text-xs block font-bold mb-2 uppercase tracking-wide text-gray-500">
+      <RadioGroup.Label className="block mb-2 text-sm font-medium text-gray-700">
         Living In India <span className="text-red-500">*</span>
       </RadioGroup.Label>
       <div className="flex">
         <RadioOption value={true} label="Yes" />
         <RadioOption value={false} label="No" />
       </div>
+      
     </RadioGroup>
   );
 };

@@ -23,9 +23,15 @@ const LivingInIndia: React.FC<{
         </div> 
       </div>*/}
       <dl>
-        <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-          <dt className="text-sm font-medium text-gray-500">
+        <div className="px-4 py-5 rounded-md bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+          <dt className="text-sm font-medium text-gray-700">
             Proof of residence
+            <span className="ml-1 text-red-500">*</span>
+            <br />
+            <span className="text-xs font-normal text-red-500">
+              (If you are currently living in India please provide a valid proof
+              of residence.)
+            </span>
           </dt>
           <div className="flex">
             <input
