@@ -4,7 +4,7 @@ import CommadPalette from '@components/common/CommandPalette';
 import Filter from './Filter';
 import Link from 'next/link';
 import { NocDetailTypes } from '@components/admin/userList/UserListTable';
-import { PlusIcon, SearchIcon } from '@heroicons/react/solid';
+import { ArrowRightIcon, PlusIcon, SearchIcon } from '@heroicons/react/solid';
 import Search from '../Search';
 
 export const projects = [
@@ -78,14 +78,6 @@ const TableAction: React.FC<{
   return (
     // <div className="grid justify-start grid-flow-col gap-4 sm:auto-cols-max sm:justify-end">
     <div className="flex flex-col-reverse gap-4 md:flex-row">
-      <div className="flex items-center justify-center">
-        <button
-          onClick={() => setSearchBar(true)}
-          className="flex items-center justify-center w-8 h-8 text-gray-800 duration-150 rounded-full hover:bg-blue-700/10 bg-gray-50 hover:text-blue-800"
-        >
-          <SearchIcon className="w-5 h-5" />
-        </button>
-      </div>
       {/* <!-- Delete button --> */}
       <div
         className={`table-items-action 
@@ -113,18 +105,28 @@ const TableAction: React.FC<{
       /> */}
 
       {/* <!-- Dropdown --> */}
-      <div className="relative">
-        <Filter setNocRegisteredCitizen={setNocRegisteredCitizen} />
+      <div className="flex items-center justify-end space-x-4">
+        <button
+          onClick={() => setSearchBar(true)}
+          className="flex items-center justify-center px-4 py-2 text-sm text-gray-600 duration-150 bg-white rounded-full shadow hover:bg-blue-700/10 hover:text-blue-800"
+        >
+          <SearchIcon className="w-4 h-4 mr-1" />
+          Search
+        </button>
+        <div className="relative">
+          <Filter setNocRegisteredCitizen={setNocRegisteredCitizen} />
+        </div>
       </div>
 
       <div className="mt-1">
         <button
           onClick={() => setSearchBar(true)}
           type="button"
-          className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white duration-200 bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-2 md:px-4 md:text-medium"
+          className="flex items-center justify-center w-full px-4 py-2 text-sm font-medium text-white duration-200 bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-2 md:px-4 md:text-medium"
         >
-          <PlusIcon className="w-4 h-4 mr-2 -ml-2" />
+          {/* <PlusIcon className="w-4 h-4 mr-2 -ml-2" /> */}
           <span>Register new NOC</span>
+          <ArrowRightIcon className="w-4 h-4 ml-2" />
         </button>
       </div>
     </div>
