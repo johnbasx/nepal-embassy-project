@@ -132,7 +132,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, citizenNocDocumentDetail + documentId);
     setDetail(data);
-    console.log(data);
   };
 
   const getNocDocumentFiles = async () => {
