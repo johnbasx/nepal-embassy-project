@@ -1,4 +1,4 @@
-import { BASE_URL, verifyByQr } from '@content/api-urls';
+import { BASE_URL, IMAGE_BASE_URL, verifyByQr } from '@content/api-urls';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
@@ -42,7 +42,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
   //   `/verify-by-qr/${certificateData.id}`
   // );
   const [qrCodeValue, setQrCodeValue] = useState(
-    `${BASE_URL}verify-by-qr/` + certificateData.id
+    `${IMAGE_BASE_URL}:3000/verify-by-qr/` + certificateData.id
   );
 
   // for print pdf
@@ -174,7 +174,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                 </div>
                 <div className="text-center flex flex-col justify-start items-center px-10 space-y-2">
                   <img
-                    src={`${BASE_URL}media/${certificateData.signature}`}
+                    src={`${IMAGE_BASE_URL}media/${certificateData.signature}`}
                     alt="signature"
                     className="h-14 lg:h-32"
                   />
