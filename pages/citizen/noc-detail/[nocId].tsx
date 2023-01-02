@@ -115,7 +115,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         );
       default:
         return (
-          <span className="bg-blue-200 text-blue-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full ">
+          <span className="bg-blue-200 text-blue-900 text-xs font-semibold px-2.5 py-0.5 rounded-full ">
             Pending
           </span>
         );
@@ -151,10 +151,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center flex-1 pb-4 sm:pb-0">
         <PaperClipIcon
-          className="flex-shrink-0 w-5 h-5 text-gray-400"
+          className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
           aria-hidden="true"
         />
-        <div className="flex-1 w-0 ml-2 space-x-2 text-ellipsis">
+        <div className="flex-1 w-auto ml-2 space-x-2 text-ellipsis">
           <a className="cursor-pointer hover:text-blue-600 hover:underline">
             {file.doc_name}
           </a>
@@ -177,11 +177,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       </div>
     </li>
   );
-  const docs = [
-    {
-      uri: 'http://127.0.0.1:8000/media/Uploaded_Files/Recent_changes_in_the_Embassy_Project_2_rbjbSdS.docx',
-    }, // Local File
-  ];
 
   return (
     <>
@@ -250,44 +245,48 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                   <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center flex-1 pb-4 sm:pb-0">
                       <PaperClipIcon
-                        className="flex-shrink-0 w-5 h-5 text-gray-400"
+                        className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
                         aria-hidden="true"
                       />
-                      <div className="flex-1 w-0 ml-2 text-ellipsis">
-                        <span>Payment Screenshot</span>
-                        {detail?.payment_verified == '1' &&
-                        detail?.payment_screen_shot != null ? (
-                          <h1 className="text-xs text-green-800 text-bold">
-                            Payment Screenshot has been submitted. Waiting for
-                            verification.
-                          </h1>
-                        ) : detail?.payment_verified == '2' ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            Your Payment Screenshot has been rejected. Please
-                            upload again.
-                          </h1>
-                        ) : detail?.payment_verified == '3' ? (
-                          <h1 className="text-xs text-blue-600 text-semibold">
-                            Your Payment Screenshot has been verified.
-                          </h1>
-                        ) : detail?.payment_screen_shot == null ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            You have not uploaded Payment Screenshot.
-                          </h1>
-                        ) : (
-                          <></>
-                        )}
+                      <div className="flex items-center justify-start flex-1 w-0 text-ellipsis">
+                        <div className="flex-1 w-0 ml-2 truncate">
+                          <span className="flex-1 w-0 truncate">
+                            Payment Screenshot
+                          </span>
+                          {detail?.payment_verified == '1' &&
+                          detail?.payment_screen_shot != null ? (
+                            <p className="text-xs text-left text-green-800 truncate text-bold">
+                              Payment Screenshot has been submitted. Waiting for
+                              verification.
+                            </p>
+                          ) : detail?.payment_verified == '2' ? (
+                            <p className="text-xs text-left text-red-500 truncate text-semibold">
+                              Your Payment Screenshot has been rejected. Please
+                              upload again.
+                            </p>
+                          ) : detail?.payment_verified == '3' ? (
+                            <p className="text-xs text-left text-blue-600 truncate text-semibold">
+                              Your Payment Screenshot has been verified.
+                            </p>
+                          ) : detail?.payment_screen_shot == null ? (
+                            <p className="text-xs text-left text-red-500 truncate text-semibold">
+                              You have not uploaded Payment Screenshot.
+                            </p>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-end space-x-3">
+                    <div className="flex items-center justify-end flex-shrink-0 ml-4 space-x-3">
                       {detail?.payment_verified == '3' ? (
-                        <>
+                        <div className="flex items-center justify-center space-x-2">
                           <a className="px-3 py-2 font-medium text-blue-600 bg-gray-100 rounded cursor-pointer hover:text-blue-500">
                             View
                           </a>
                           <CheckCircleIcon className="w-6 h-6 text-green-600" />
-                        </>
+                        </div>
                       ) : detail?.payment_verified === '2' ||
                         (detail?.payment_screen_shot === null &&
                           detail?.verified_status === '1') ? (

@@ -47,12 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </CitizenLayout>
     );
   } else {
-    return (
-      // <WithoutAuthLayout>
-
-      <Component {...pageProps} />
-      // </WithoutAuthLayout>
-    );
+    return <Component {...pageProps} />;
   }
 }
 
