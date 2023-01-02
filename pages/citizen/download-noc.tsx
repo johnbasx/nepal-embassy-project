@@ -174,7 +174,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                 </div>
                 <div className="text-center flex flex-col justify-start items-center px-10 space-y-2">
                   <img
-                    src={`${IMAGE_BASE_URL}media/${certificateData.signature}`}
+                    src={`${IMAGE_BASE_URL}/media/${certificateData.signature}`}
                     alt="signature"
                     className="h-14 lg:h-32"
                   />
