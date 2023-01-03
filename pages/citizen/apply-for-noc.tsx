@@ -38,6 +38,10 @@ import { getUserProfile } from '@content/api-urls';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import { useRouter } from 'next/router';
+import { TbBug } from 'react-icons/tb';
+import { MdOutlineFeedback } from 'react-icons/md';
+import { BUGS_EMAIL, FEEDBACK_EMAIL } from '@content/embassy-data';
+import Link from 'next/link';
 
 const NocRegistration = (page: NextComponentType) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -48,7 +52,7 @@ const NocRegistration = (page: NextComponentType) => {
   const [travelFrom, setTravelFrom] = useState('');
   const [travelVia, setTravelVia] = useState<string>('');
 
-  const [destination, setDestination] = useState<string>('');
+  const [destination, setDestination] = useState<string>(Countries[46].name);
   const [travelCountry, setTravelCountry] = useState('');
 
   const [travelDate, setTravelDate] = useState('');
@@ -215,9 +219,9 @@ const NocRegistration = (page: NextComponentType) => {
 
   return (
     <div className="relative bg-white">
-      <div className="absolute inset-0">
+      {/* <div className="absolute inset-0 bg-black">
         <div className="absolute inset-y-0 left-0 w-full" />
-      </div>
+      </div> */}
       <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
         <ProfileDetail profile={profile} />
         <div className="order-last px-4 py-16 bg-white md:order-first sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
@@ -329,13 +333,13 @@ const NocRegistration = (page: NextComponentType) => {
                         <span className="text-sm font-medium text-gray-700">
                           {travelType == 'Direct'
                             ? 'Travel Destination '
-                            : 'Travel via'}
+                            : 'Travel via '}
                         </span>
                         <span className="text-red-500">*</span>
                         <span className="text-xs font-normal text-red-500">
                           {travelType == 'Direct'
                             ? '(Direct travel)'
-                            : '(Connecting country)'}
+                            : '(Connecting Gulf country)'}
                         </span>
                       </label>
 
@@ -538,6 +542,12 @@ const NocRegistration = (page: NextComponentType) => {
                     </div>
                   </div>
                   <div>
+                    <div className="pb-3">
+                      <p className="text-xs text-red-500">
+                        NOTE: Please make sure that the file that you are
+                        uploading should not exceed 5MB.
+                      </p>
+                    </div>
                     <dl>
                       <CommonFiles
                         setVisa={setVisa}
@@ -592,6 +602,22 @@ const NocRegistration = (page: NextComponentType) => {
             </form>
           </div>
         </div>
+      </div>
+      <div className="flex items-center justify-start px-4 py-4 mb-3 lg:px-8">
+        <footer className="flex flex-wrap items-center space-x-6">
+          <div className="flex items-center space-x-1">
+            <TbBug className="w-4 h-4 text-red-400" />
+            <div className="text-xs text-gray-500 cursor-pointer">
+              <Link href={`mailto:${BUGS_EMAIL}`}>Report Bugs</Link>
+            </div>
+          </div>
+          <div className="flex items-center space-x-1">
+            <MdOutlineFeedback className="w-4 h-4 text-blue-400" />
+            <div className="text-xs text-gray-500 cursor-pointer">
+              <Link href={`mailto:${FEEDBACK_EMAIL}`}>Feedback</Link>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

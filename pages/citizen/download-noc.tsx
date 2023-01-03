@@ -80,13 +80,13 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
 
   return (
     <div className="max-w-5xl mx-auto mb-10">
-      <div className="flex justify-end items-center mb-4">
+      <div className="flex items-center justify-end mb-4">
         {!isLoading ? (
           <button
-            className="mt-6 w-auto flex justify-center px-4 py-3 gap-1 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-1 md:text-base"
+            className="flex justify-center w-auto gap-1 px-4 py-3 mt-6 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-1 md:text-base"
             onClick={handleDownloadPdf}
           >
-            Download cirtificate
+            Download certificate
             <span>
               <CloudDownloadIcon className="w-6 h-6" />
             </span>
@@ -96,14 +96,14 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
         )}
       </div>
 
-      <div className="relative flex min-h-screen flex-col justify-center bg-gray-50">
-        <div className="container mx-auto px-2">
+      <div className="relative flex flex-col justify-center min-h-screen bg-gray-50">
+        <div className="container px-2 mx-auto">
           <div
             id="cirtificate"
             className="bg-white mx-auto h-full md:h-[297mm] text-center shadow-lg print:shadow-none"
           >
-            <div className="bg-white mx-auto flex flex-col flex-shrink-0 p-2 pb-2 px-8 md:px-16 md:pt-6 md:pb-2 lg:px-18">
-              <div className="flex justify-between items-center h-32 lg:h-64">
+            <div className="flex flex-col flex-shrink-0 p-2 px-8 pb-2 mx-auto bg-white md:px-16 md:pt-6 md:pb-2 lg:px-18">
+              <div className="flex items-center justify-between h-32 lg:h-64">
                 <div className="p-2">
                   <img
                     src="/images/logo-only.jpg"
@@ -119,20 +119,20 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                   />
                 </div>
               </div>
-              <div className="flex justify-between items-center mt-1 md:mt-8">
-                <div className="text-2xs md:text-lg lg:text-xl font-bold">
+              <div className="flex items-center justify-between mt-1 md:mt-8">
+                <div className="font-bold text-2xs md:text-lg lg:text-xl">
                   Ref. No. 079/80/GR-TUE/9980
                 </div>
-                <div className="text-2xs md:text-lg lg:text-xl font-bold">
+                <div className="font-bold text-2xs md:text-lg lg:text-xl">
                   Date:- {moment(certificateData.verified_on).format('L')}
                 </div>
               </div>
-              <div className="mt-14 mb-6 md:mt-24 md:mb-10">
-                <h1 className="underline font-bold text-sm md:text-xl lg:text-2xl">
+              <div className="mb-6 mt-14 md:mt-24 md:mb-10">
+                <h1 className="text-sm font-bold underline md:text-xl lg:text-2xl">
                   TO WHOM IT MAY CONCERN
                 </h1>
               </div>
-              <div className="text-xs md:text-lg lg:text-xl text-justify space-y-4 md:space-y-6">
+              <div className="space-y-4 text-xs text-justify md:text-lg lg:text-xl md:space-y-6">
                 <p className="indent-16">
                   Based on the documents submitted at this Embassy, this is to
                   state that
@@ -159,7 +159,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                   appreciated.
                 </p>
               </div>
-              <div className="flex text-xs md:text-lg lg:text-xl justify-between items-start mt-14">
+              <div className="flex items-start justify-between text-xs md:text-lg lg:text-xl mt-14">
                 <div className="">
                   {/* <img
                     src="https://www.freepnglogos.com/uploads/qr-code-png/qr-code-file-bangla-mobile-code-0.png"
@@ -172,7 +172,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                     Scan this QR code to verify{' '}
                   </span>
                 </div>
-                <div className="text-center flex flex-col justify-start items-center px-10 space-y-2">
+                <div className="flex flex-col items-center justify-start px-10 space-y-2 text-center">
                   <img
                     src={`${IMAGE_BASE_URL}/media/${certificateData.signature}`}
                     alt="signature"
@@ -185,7 +185,7 @@ const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
                 </div>
               </div>
             </div>
-            {/* <div className="lg:text-sm md:text-xs text-3xs flex flex-col mx-4 pb-2 border-t-4 mt-32 pt-2 border-red-600 justify-end items-center font-medium tracking-tighter">
+            {/* <div className="flex flex-col items-center justify-end pt-2 pb-2 mx-4 mt-32 font-medium tracking-tighter border-t-4 border-red-600 lg:text-sm md:text-xs text-3xs">
               <p>
                 Barakhamba Road, New Delhi-110001, India, Tel.: +91-11-23476200
                 / +91-11-23327361, Hotline : +91-8929601925
@@ -203,7 +203,7 @@ const LoadingButton = () => {
   return (
     <button
       type="button"
-      className="w-auto my-2 flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      className="flex justify-center w-auto px-4 py-2 my-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
       Loading

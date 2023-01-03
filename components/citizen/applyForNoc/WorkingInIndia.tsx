@@ -14,6 +14,7 @@ const WorkingInIndia: React.FC<{
             required
             className="form-control"
             type="file"
+            accept="application/msword, text/plain, application/pdf, .doc, .docx, .txt, application/docx, image/*"
             id="hotel-booking"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.files != null) {
