@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           {/* <Header /> */}
           <main>
             <h1 className="text-3xl font-bold text-red-300 underline">
-              Hello world!
+              Nepal Embassy NOC Portal
             </h1>
           </main>
         </div>

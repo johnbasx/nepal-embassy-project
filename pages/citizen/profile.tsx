@@ -9,6 +9,7 @@ import type { NextPage } from 'next';
 import PersonalInfo from '@components/citizen/profile/PersonalInfo';
 import authStore from '@store/useAuthStore';
 import pageTitleStore from '../../store/selectUsersStore';
+import Footer from '@components/citizen/layout/Footer';
 
 export interface UserDetailProps {
   id: string;
@@ -78,7 +79,7 @@ const Profile: NextPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto my-4 rounded md:shadow-lg">
+    <div className="max-w-5xl mx-auto my-4 rounded md:shadow">
       <Toaster />
       <form
         className="divide-y divide-gray-200 lg:col-span-9"
@@ -298,6 +299,7 @@ const Profile: NextPage = () => {
           <option key={'Profession-datalist' + index * 2}>{data}</option>
         ))}
       </datalist>
+      <Footer />
     </div>
   );
 };

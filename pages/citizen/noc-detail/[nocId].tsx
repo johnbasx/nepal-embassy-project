@@ -26,6 +26,7 @@ import { nocDocFiles } from 'content/api-urls';
 import { nocDocumentType } from '@utils/interface';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
+import Footer from '@components/citizen/layout/Footer';
 
 const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -178,9 +179,9 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   );
 
   return (
-    <>
+    <div className="px-4">
       <Toaster />
-      <div className="mx-4 mt-4 overflow-hidden bg-white shadow sm:rounded-2xl max-w-7xl">
+      <div className="mx-auto my-4 overflow-hidden bg-white shadow sm:rounded-2xl">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <div className="flex-1">
             <h3 className="text-lg font-medium leading-6 text-blue-600">
@@ -313,7 +314,8 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
           </dl>
         </div>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 export default CitizenProfile;

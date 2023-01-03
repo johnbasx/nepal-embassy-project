@@ -38,10 +38,7 @@ import { getUserProfile } from '@content/api-urls';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import { useRouter } from 'next/router';
-import { TbBug } from 'react-icons/tb';
-import { MdOutlineFeedback } from 'react-icons/md';
-import { BUGS_EMAIL, FEEDBACK_EMAIL } from '@content/embassy-data';
-import Link from 'next/link';
+import Footer from '@components/citizen/layout/Footer';
 
 const NocRegistration = (page: NextComponentType) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -582,8 +579,8 @@ const NocRegistration = (page: NextComponentType) => {
                 </div>
                 <div className="flex items-center justify-center px-4 py-3 text-left">
                   <p className="text-xs text-red-500">
-                    All fields marked with "*" are required while applying for
-                    NOC verification.
+                    All fields marked with &#34;*&#34; are required while
+                    applying for NOC verification.
                   </p>
                 </div>
                 <div className="flex justify-center px-4 py-3 text-right bg-white sm:px-16">
@@ -603,22 +600,7 @@ const NocRegistration = (page: NextComponentType) => {
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-start px-4 py-4 mb-3 lg:px-8">
-        <footer className="flex flex-wrap items-center space-x-6">
-          <div className="flex items-center space-x-1">
-            <TbBug className="w-4 h-4 text-red-400" />
-            <div className="text-xs text-gray-500 cursor-pointer">
-              <Link href={`mailto:${BUGS_EMAIL}`}>Report Bugs</Link>
-            </div>
-          </div>
-          <div className="flex items-center space-x-1">
-            <MdOutlineFeedback className="w-4 h-4 text-blue-400" />
-            <div className="text-xs text-gray-500 cursor-pointer">
-              <Link href={`mailto:${FEEDBACK_EMAIL}`}>Feedback</Link>
-            </div>
-          </div>
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 };
