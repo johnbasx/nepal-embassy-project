@@ -408,8 +408,11 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                     </div>
                   </li>
 
-                  {nocFiles?.map((file) => (
-                    <DocAttachments key={file.id} {...file} />
+                  {nocFiles?.map((file, index) => (
+                    <DocAttachments
+                      key={'doc file' + index + file.id}
+                      {...file}
+                    />
                   ))}
                 </ul>
               </dd>
