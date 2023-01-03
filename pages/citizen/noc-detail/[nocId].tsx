@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { CheckCircleIcon } from '@heroicons/react/outline';
 import { FetchData } from '@utils/fetcher';
 import FileViewer from '@components/fileViewer/FileViewer';
+import Footer from '@components/citizen/layout/Footer';
 import { NocDetailTypes } from '@components/admin/userList/UserListTable';
 import { NocFilesType } from '@utils/interface';
 import { PaperClipIcon } from '@heroicons/react/solid';
@@ -26,7 +27,6 @@ import { nocDocFiles } from 'content/api-urls';
 import { nocDocumentType } from '@utils/interface';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
-import Footer from '@components/citizen/layout/Footer';
 
 const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
