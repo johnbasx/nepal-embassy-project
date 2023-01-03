@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import EmptyData from '@components/common/EmptyData';
 import { FetchData } from '@utils/fetcher';
 import Report from '@components/citizen/reports/Report';
 import { ReportProps } from '@components/citizen/reports/Report';
@@ -28,9 +29,11 @@ const Reports = () => {
           <Report key={message.id} {...message} />
         ))
       ) : (
-        <>
-          <p>No Reports</p>{' '}
-        </>
+        <EmptyData
+          content="No NOC reports to show"
+          link="/citizen/profile"
+          linkContent="Go to Profile"
+        />
       )}
     </div>
   );

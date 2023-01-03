@@ -1,6 +1,7 @@
 import {
   CalendarIcon,
   ChartBarIcon,
+  CreditCardIcon,
   FolderIcon,
   HomeIcon,
   InboxIcon,
@@ -11,15 +12,21 @@ import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
 
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const navigation = [
   { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   {
-    name: 'Noc List',
+    name: 'NOC List',
     href: '/embassy-employee/nocDocList',
     icon: UsersIcon,
+    current: false,
+  },
+  {
+    name: 'NOCs With Payment',
+    href: '/embassy-employee/noc-with-payments',
+    icon: CreditCardIcon,
     current: false,
   },
 ];

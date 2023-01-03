@@ -1,6 +1,5 @@
-import { BASE_URL, IMAGE_BASE_URL, verifyByQr } from '@content/api-urls';
+import { BASE_URL, IMAGE_BASE_URL } from '@content/api-urls';
 import React, { RefObject, useEffect, useRef, useState } from 'react';
-import axios, { AxiosError } from 'axios';
 
 import { CloudDownloadIcon } from '@heroicons/react/outline';
 import { GetServerSidePropsContext } from 'next';
@@ -8,6 +7,7 @@ import HeadSection from '@components/nocCirtificate/HeadSection';
 import Loading from '@components/common/Loading';
 import QRCode from 'react-qr-code';
 import authStore from '@store/testAuthStore';
+import axios from 'axios';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import moment from 'moment';

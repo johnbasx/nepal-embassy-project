@@ -1,10 +1,13 @@
 import { BASE_URL } from '@content/api-urls';
 import { GetServerSidePropsContext } from 'next';
 import HeadSection from '@components/nocCirtificate/HeadSection';
+import { NOCType } from 'pages/citizen/download-noc';
 import React from 'react';
-import { useRouter } from 'next/router';
+import axios from 'axios';
 
-const PublicNoc = ({ data }: any) => {
+const PublicNoc: React.FC<{ certificateData: NOCType }> = ({
+  certificateData,
+}) => {
   return (
     <div
       className="mt-6
@@ -17,16 +20,19 @@ const PublicNoc = ({ data }: any) => {
         <HeadSection />
 
         <h1 className="font-bold text-gray-900 text-xs uppercase underline decoration-solid">
-          {data.letter_head}
+          TO WHOM IT MAY CONCERN
         </h1>
         <div>
           <p className="text-2xs text-gray-800 font-base indent-14 text-justify">
             Based on the documents submitted at this Embassy, this is to state
-            that <span className="font-bold">Mr. {data.full_name}</span> (holder
-            of Nepal{' '}
-            <span className="font-bold">Passport No. {data.passport}</span>
+            that{' '}
+            <span className="font-bold">Mr. {certificateData.full_name}</span>{' '}
+            (holder of Nepal{' '}
+            <span className="font-bold">
+              Passport No. {certificateData.passport}
+            </span>
             ), currently staying in India, is intending to travel to{' '}
-            {data.travel_country} using airport in India shortly.
+            {certificateData.travel_country} using airport in India shortly.
           </p>
         </div>
         <div>
@@ -47,9 +53,11 @@ const PublicNoc = ({ data }: any) => {
               alt="signature"
               className="pl-6 h-14 lg:h-32"
             />
-            <p className="font-bold text-2xs">(Chardra Kanta Parajuli)</p>
+            <p className="font-bold text-2xs">
+              ({certificateData.verified_by})
+            </p>
             <h1 className="font-medium text-right text-gray-700 text-2xs">
-              {data.signed_by}
+              Third Secretary
             </h1>
           </div>
         </div>
@@ -66,12 +74,15 @@ const PublicNoc = ({ data }: any) => {
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  //   console.log('Context Data: ', context.query);
-
-  const res = await fetch(`${BASE_URL}getNocByQr/${context.query.nocId}`, {});
-  const data = await res.json();
-  console.log(res);
-  return { props: { data } };
+  let certificateData;
+  const url = `${BASE_URL}getNocByQr/${context.query.nocId}`;
+  try {
+    const response = await axios(url);
+    certificateData = response.data;
+  } catch (e: any) {
+    throw new Error(e);
+  }
+  return { props: { certificateData } };
 }
 
 export default PublicNoc;

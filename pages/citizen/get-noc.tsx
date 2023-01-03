@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import EmptyData from '@components/common/EmptyData';
 import PendingNoc from '@components/citizen/getNoc/PendingNoc';
 import RejectedNoc from '@components/citizen/getNoc/RejectedNoc';
 import VerifiedNoc from '@components/citizen/getNoc/VerifiedNoc';
@@ -7,7 +8,6 @@ import authStore from '@store/useAuthStore';
 import axios from 'axios';
 import { citizenNocDocumentList } from 'content/api-urls';
 import pageTitleStore from '../../store/selectUsersStore';
-import { useRouter } from 'next/router';
 
 export interface NocListType {
   id?: string;
@@ -18,15 +18,11 @@ export interface NocListType {
 }
 
 const GetNoc = () => {
-  const router = useRouter();
-  const { token, isAuthenticated } = authStore();
-  // console.log(token);
-  const [verifiedStatus, setVerifiedStatus] = useState<string>('');
+  const { token } = authStore();
   const { setPageTitle } = pageTitleStore();
   const [nocList, setNocList] = useState<NocListType[]>([]);
 
   const getNocList = async () => {
-    // const url = `http://192.168.29.199:8000/citizenNocDocumentList`;
     try {
       const response = await axios(citizenNocDocumentList, {
         headers: {
@@ -83,22 +79,19 @@ const GetNoc = () => {
     </div>
   ));
 
-  // let content;
-  // if (token) {
-  //   content = (
-  //     <div className="app min-w-screen min-h-screen bg-gray-100 py-8 px-2 font-sans">
-  //       <div className="mail__wrapper mx-auto max-w-7xl space-y-3">
-  //         {listItem}
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
   return (
     <div className="app min-w-screen min-h-screen bg-gray-100 py-8 px-2 font-sans">
-      <div className="mail__wrapper mx-auto max-w-7xl space-y-3">
-        {listItem}
-      </div>
+      {nocList.length > 0 ? (
+        <div className="mail__wrapper mx-auto max-w-7xl space-y-3">
+          {listItem}
+        </div>
+      ) : (
+        <EmptyData
+          content="You haven't applied for NOC"
+          link="/citizen/apply-for-noc"
+          linkContent="Apply for NOC"
+        />
+      )}
     </div>
   );
 };

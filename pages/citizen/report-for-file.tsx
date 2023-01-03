@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import EmptyData from '@components/common/EmptyData';
 import { FetchData } from '@utils/fetcher';
 import Link from 'next/link';
 import authStore from '@store/useAuthStore';
@@ -66,9 +67,11 @@ const ReportForFile = () => {
           <Report key={message.id} {...message} />
         ))
       ) : (
-        <>
-          <p>No Reports</p>{' '}
-        </>
+        <EmptyData
+          content="No File reports reports to show"
+          link="/citizen/profile"
+          linkContent="Go to Profile"
+        />
       )}
     </div>
   );
