@@ -9,6 +9,7 @@ import type { NextPage } from 'next';
 import PersonalInfo from '@components/citizen/profile/PersonalInfo';
 import authStore from '@store/useAuthStore';
 import pageTitleStore from '../../store/selectUsersStore';
+import Footer from '@components/citizen/layout/Footer';
 
 export interface UserDetailProps {
   id: string;
@@ -78,7 +79,7 @@ const Profile: NextPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto my-4 rounded md:shadow-lg">
+    <div className="max-w-5xl mx-auto my-4 rounded md:shadow">
       <Toaster />
       <form
         className="divide-y divide-gray-200 lg:col-span-9"
@@ -179,20 +180,39 @@ const Profile: NextPage = () => {
                 id="gender"
                 required
                 name="gender"
+                value={gender}
                 autoComplete="gender"
                 className="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
               >
-                {Gender.map((item) =>
-                  item == userDetail?.gender ? (
-                    <option key={'selected' + item} defaultValue={item}>
+                {Gender.map(
+                  (item) => (
+                    <option key={'option' + item} value={item}>
                       {item}
                     </option>
-                  ) : (
-                    <option key={'unselected' + item}>{item}</option>
                   )
+                  // userDetail?.gender == item ? (
+                  //   <option key={'option' + item} value={item}>
+                  //     {item}
+                  //   </option>
+                  // ) : (
+                  //   <option key={'unselected' + item} value={item}>
+                  //     {item}
+                  //   </option>
+                  // )
+                  // item === userDetail?.gender ? (
+                  //   <option
+                  //     key={'selected' + item}
+                  //     value={'DEF'}
+                  //     // defaultValue={item+"$$"}
+                  //   >
+                  //     {item}
+                  //   </option>
+                  // ) : (
+                  //   <option key={'unselected' + item}>{item+"chup"}</option>
+                  // )
                 )}
               </select>
             </div>
@@ -279,6 +299,7 @@ const Profile: NextPage = () => {
           <option key={'Profession-datalist' + index * 2}>{data}</option>
         ))}
       </datalist>
+      <Footer />
     </div>
   );
 };

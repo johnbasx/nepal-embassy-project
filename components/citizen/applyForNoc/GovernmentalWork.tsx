@@ -7,7 +7,7 @@ const GovernmentalWork: React.FC<{
   return (
     <>
       <div className="px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-500">
+        <dt className="text-sm font-medium text-gray-700">
           Governmental letter from ministry{' '}
           <span className="text-red-500">*</span>
         </dt>
@@ -16,6 +16,7 @@ const GovernmentalWork: React.FC<{
             required
             className="form-control"
             type="file"
+            accept="application/msword, text/plain, application/pdf, .doc, .docx, .txt, application/docx, image/*"
             id="govermental-letter"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.files != null) {
@@ -25,8 +26,8 @@ const GovernmentalWork: React.FC<{
           />
         </div>
       </div>
-      <div className="px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-        <dt className="text-sm font-medium text-gray-500">
+      <div className="px-4 py-5 rounded sm:grid bg-gray-50 sm:grid-cols-2 sm:gap-4 sm:px-6">
+        <dt className="text-sm font-medium text-gray-700">
           Letter of invitation <span className="text-red-500">*</span>
         </dt>
         <div className="flex">
@@ -34,6 +35,7 @@ const GovernmentalWork: React.FC<{
             required
             className="form-control"
             type="file"
+            accept="application/msword, text/plain, application/pdf, .doc, .docx, .txt, application/docx, image/*"
             id="letter-of-invitation"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               if (e.target.files != null) {

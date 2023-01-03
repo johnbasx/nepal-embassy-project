@@ -53,7 +53,7 @@ const AirportInput = ({
       <Combobox value={selectedAirport} onChange={setSelectedAirport}>
         <Combobox.Label
           htmlFor="Travel from"
-          className="block text-sm font-medium text-gray-500 uppercase"
+          className="block text-sm font-medium text-gray-700"
         >
           Travel from <span className="text-red-500">*</span>
         </Combobox.Label>
