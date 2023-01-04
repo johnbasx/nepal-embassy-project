@@ -298,7 +298,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 detail?.email +
                 ') - ' +
                 detail?.travel_type +
-                ' Travel'}
+                ' Travel '}
+              <span className="text-base font-base leading-6 text-gray-700">
+                (Applied on {detail?.created_at})
+              </span>
             </span>
           </div>
           {nocButtonStatus(detail?.verified_status)}

@@ -186,14 +186,20 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
           <div className="flex-1">
             <h3 className="text-lg font-medium leading-6 text-blue-600">
               {detail?.travel_type == 'Connecting' ? (
-                'You applied for Connecting Travel'
+                'You applied for Connecting Travel '
               ) : detail?.travel_type == 'Direct' ? (
-                'You applied for Direct Travel'
+                'You applied for Direct Travel '
               ) : (
                 <></>
               )}
+              <span className="text-base font-base leading-6 text-gray-700">
+                (Applied on {detail?.created_at})
+              </span>
             </h3>
           </div>
+          {/* <div className="text-lg font-medium leading-6 text-blue-600 mr-2">
+            Applied on {detail?.created_at}
+          </div> */}
           {nocDocStatus(detail?.verified_status)}
         </div>
         <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
