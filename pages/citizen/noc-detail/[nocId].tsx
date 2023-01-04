@@ -116,9 +116,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         );
       default:
         return (
-          <span className="bg-blue-200 text-blue-900 text-xs font-semibold px-2.5 py-0.5 rounded-full ">
-            Pending
-          </span>
+          <span className="bg-blue-200 text-blue-900 text-xs font-semibold px-2.5 py-0.5 rounded-full "></span>
         );
     }
   };

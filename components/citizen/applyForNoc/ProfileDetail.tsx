@@ -18,9 +18,9 @@ const ProfileDetail: React.FC<{ profile: UserDetailProps | undefined }> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="order-first px-6 py-10 m-4 border rounded-lg md:m-0 md:order-last bg-gray-50 md:rounded-none md:border-none lg:col-span-2 lg:px-8 lg:py-8 xl:pr-8">
-      <div className="max-w-lg mx-auto md:py-10">
-        <h2 className="text-2xl font-bold tracking-tight text-blue-600 sm:text-2xl">
+    <div className="order-first lg:px-4 py-4 lg:py-10 bg-gray-100 md:m-0 md:order-last lg:col-span-2">
+      <div className="flex flex-col px-6 py-6 mx-auto bg-white border rounded-lg shadow lg:mx-0">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
           Profile details
         </h2>
         <dl className="mt-6 text-sm font-medium text-gray-500">

@@ -215,25 +215,25 @@ const NocRegistration = (page: NextComponentType) => {
   }, [province]);
 
   return (
-    <div className="relative bg-white">
+    <div className="relative">
       {/* <div className="absolute inset-0 bg-black">
         <div className="absolute inset-y-0 left-0 w-full" />
       </div> */}
-      <div className="relative max-w-full mx-auto lg:grid lg:grid-cols-6">
+      <div className="relative px-4 mx-auto bg-gray-100 lg:grid lg:grid-cols-5">
         <ProfileDetail profile={profile} />
-        <div className="order-last px-4 py-16 bg-white md:order-first sm:px-6 lg:col-span-4 lg:py-10 lg:px-8 xl:pl-12 ">
-          <div className="max-w-lg mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
+        <div className="order-last py-6 md:order-first lg:col-span-3 lg:py-10">
+          <div className="mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
             <form
               method="POST"
               className=""
               onSubmit={(event) => handleSubmit(event)}
             >
-              <div className="py-4 shadow lg:py-6 sm:rounded-md sm:overflow-hidden">
+              <div className="py-6 bg-white rounded-lg shadow lg:py-4 sm:overflow-hidden">
                 <div className="px-4 space-y-6 bg-white sm:px-10 sm:py-3">
-                  <div className="flex flex-col items-center justify-center">
-                    <h3 className="text-2xl font-bold tracking-tight text-blue-700 sm:text-2xl">
+                  <div className="flex flex-col items-center justify-center text-left">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
                       Apply for NOC
-                    </h3>
+                    </h2>
                     <p className="mt-1 text-sm text-gray-500">
                       NOC will be provided after your application is verified
                     </p>

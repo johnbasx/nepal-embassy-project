@@ -26,20 +26,20 @@ const ReportForFile = () => {
 
   const Report = ({ ...message }) => {
     return (
-      <div className="bg-white border border-gray-200 shadow-sm hover:shadow-lg duration-200 rounded-lg">
+      <div className="duration-200 bg-white border border-gray-200 rounded-lg shadow">
         <div className="px-4 py-5 sm:p-6">
-          <h3 className="text-lg leading-6 font-medium text-gray-900">
+          <h3 className="text-lg font-medium leading-6 text-gray-900">
             Report for file uploaded on{' '}
             <span className="font-bold text-blue-700">
               {message.doc_created_date}
             </span>
           </h3>
-          <div className="mt-2 max-w-xl text-sm text-gray-500">
+          <div className="max-w-xl mt-2 text-sm text-gray-500">
             <p>{message.message}</p>
           </div>
           <div className="mt-5 text-sm">
             <Link href={`/citizen/noc-detail/${message.doc_id}`}>
-              <a className="font-medium rounded-md py-2 px-3 bg-blue-600 text-white hover:bg-blue-500 duration-200">
+              <a className="px-3 py-2 font-medium text-white duration-200 bg-blue-600 rounded-md hover:bg-blue-500">
                 View document
                 <span className="ml-1" aria-hidden="true">
                   &rarr;
@@ -61,7 +61,7 @@ const ReportForFile = () => {
     setPageTitle('Reports for files');
   }, []);
   return (
-    <div className="max-w-7xl mx-auto py-4 space-y-4 px-2">
+    <div className="px-2 py-4 mx-auto space-y-4 max-w-7xl">
       {messages?.length != 0 ? (
         messages?.map((message, index) => (
           <Report key={message.id} {...message} />
