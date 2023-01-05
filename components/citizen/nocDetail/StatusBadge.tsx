@@ -15,7 +15,7 @@ const BadgePill = ({ label, color }: Partial<StatusBadgeProps>) => {
   return (
     <span
       className={classNames(
-        `bg-${color}-200 text-${color}-900 text-[10px] font-semibold px-2 rounded-full`
+        `bg-${color}-200 text-${color}-900 text-[10px] py-1 font-semibold px-2 rounded-full`
       )}
     >
       {label}

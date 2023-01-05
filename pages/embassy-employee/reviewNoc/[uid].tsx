@@ -1,12 +1,5 @@
 import { FetchData, Update } from '@utils/fetcher';
 import {
-  TbBan,
-  TbClipboardOff,
-  TbDownload,
-  TbFileUpload,
-  TbShieldCheck,
-} from 'react-icons/tb';
-import {
   nocDocDetail,
   nocDocFiles,
   nocVerification,
@@ -18,15 +11,20 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { CheckCircleIcon } from '@heroicons/react/outline';
 import MessageModal from '@components/admin/review/MessageModal';
-import { NocDetailTypes } from '@components/admin/userList/UserListTable';
+
 import { NocFilesType } from '@utils/interface';
 import NocMessageModal from '@components/admin/review/NocMessageModal';
 import { PaperClipIcon } from '@heroicons/react/solid';
-import ReviewOptionSelect from '@components/admin/review/ReviewOptionSelect';
 import authStore from '@store/adminAuthStore';
 import { nocDocumentType } from '@utils/interface';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
+import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
+import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
+import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
+import PaymentVerifyCard from '@components/admin/review/PaymentVerifyCard';
+import DocVerifyCard from '@components/admin/review/DocVerifyCard';
+import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 
 const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -40,51 +38,9 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const [openNocModal, setOpenNocModal] = useState(false);
   // const [nocToReject, setnocToReject] = useState('');
 
-  useEffect(() => {
-    console.log(nocFiles);
-  }, [nocFiles]);
-
-  const CitizenFields = ({ title, data }: { title: string; data?: string }) => (
-    <div className="sm:col-span-1">
-      <dt className="text-xs text-gray-500">{title}</dt>
-      <dd className="mt-1 text-sm font-medium text-gray-900">{data}</dd>
-    </div>
-  );
-
-  const ApprovedPill = () => (
-    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-teal-500 rounded-full">
-      <TbShieldCheck className="w-5 h-5" />
-      <span>Approved</span>
-    </div>
-  );
-
-  const RejectedPill = () => (
-    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-red-400 rounded-full">
-      <TbBan className="w-5 h-5" />
-      <span>Rejected</span>
-    </div>
-  );
-
-  const ResubmitPill = () => (
-    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white rounded-full bg-slate-700">
-      <TbFileUpload className="w-5 h-5" />
-      <span>Submit again</span>
-    </div>
-  );
-
-  const PendingPill = () => (
-    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-gray-400 rounded-full">
-      <TbClipboardOff className="w-5 h-5" />
-      <span>Pending</span>
-    </div>
-  );
-
-  //   This will help to render the correct pill based on the type of status from the backend/API
-  const nocDocStatus = useCallback((value?: string) => {
-    if (value == '3') return <ApprovedPill />;
-    else if (value == '1') return <PendingPill />;
-    else return <RejectedPill />;
-  }, []);
+  // useEffect(() => {
+  //   console.log(nocFiles);
+  // }, [nocFiles]);
 
   const nocButtonStatus = useCallback((value?: string) => {
     if (value == '1')
@@ -101,62 +57,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     else return <></>;
   }, []);
 
-  //   This will help to render the correct pill based on the type of status from the backend/API
-
-  const StatusBadge = ({
-    label,
-    className,
-    variant,
-    color = 'teal',
-    children,
-  }: {
-    label: string;
-    variant: string;
-    className?: string;
-    color?: string;
-    children?: React.ReactNode;
-  }) => {
-    switch (variant) {
-      case 'success':
-        return (
-          <span className="bg-green-200 text-green-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
-            {label}
-          </span>
-        );
-      case 'reject':
-        return (
-          <span className="bg-red-200 text-red-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
-            {label}
-          </span>
-        );
-      case 're-submit':
-        return (
-          <span className="bg-yellow-200 text-yellow-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">
-            {label}
-          </span>
-        );
-      case 're-verify':
-        return (
-          <span className="bg-blue-200 text-blue-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">
-            {label}
-          </span>
-        );
-      default:
-        return (
-          <span className="bg-blue-200 text-blue-900 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded ">
-            Pending
-          </span>
-        );
-    }
-  };
-
-  const fileDocStatus = useCallback((value: string) => {
-    if (value == '3') return <StatusBadge label="Approved" variant="success" />;
-    else if (value == '2')
-      return <StatusBadge label="Rejected" variant="reject" />;
-    else return <StatusBadge label="Pending" variant="pending" />;
-  }, []);
-
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, nocDocDetail + documentId);
     setDetail(data);
@@ -165,6 +65,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const getNocDocumentFiles = async () => {
     const data = await FetchData(token, nocDocFiles + documentId);
     setNocFiles(data);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -209,68 +110,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     getNocDocumentDetail();
   };
 
-  const DocAttachments = ({ ...file }: NocFilesType) => (
-    <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex items-center flex-1 pb-4 sm:pb-0">
-        <PaperClipIcon
-          className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
-          aria-hidden="true"
-        />
-        <span className="flex-1 w-0 ml-2 text-ellipsis">{file.doc_name}</span>
-      </div>
-
-      <div className="flex items-center justify-end space-x-3">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={file.document_file}
-          // onClick={() => {
-          //   router.push(
-          //     {
-          //       pathname: '/review-file',
-          //       query: { file: file.document_file },
-          //     },
-          //     '/review-file'
-          //   );
-          // }}
-          className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
-        >
-          View
-        </a>
-        {file.verification_status == '3' ? (
-          <StatusBadge label="Approved" variant="success" />
-        ) : file.verification_status == '2' ? (
-          <StatusBadge label="Rejected" variant="reject" />
-        ) : (
-          <>
-            <button
-              onClick={() => {
-                approvedFile(file.id), getNocDocumentDetail();
-              }}
-              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
-            >
-              Approve
-            </button>
-            <button
-              onClick={() => {
-                setFileIdToReject(file.id);
-                setOpen(true);
-                getNocDocumentDetail();
-              }}
-              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
-            >
-              Reject
-            </button>
-          </>
-        )}
-
-        <a href="#" className="font-medium text-blue-600 hover:text-blue-500">
-          <TbDownload className="w-5 h-5" />
-        </a>
-      </div>
-    </li>
-  );
-
   return (
     <>
       <MessageModal
@@ -286,27 +125,15 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         getNocDocumentDetail={getNocDocumentDetail}
       />
       <Toaster />
-      <div className="mx-4 mt-4 mb-6 overflow-hidden bg-white shadow sm:rounded-2xl max-w-7xl">
+      <div className="mx-4 mt-4 mb-6 overflow-hidden bg-white shadow sm:rounded-2xl">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-gray-700">
-              NOC detail for -
-            </h3>
-            <span className="text-blue-700">
-              {detail?.full_name +
-                '(' +
-                detail?.email +
-                ') - ' +
-                detail?.travel_type +
-                ' Travel '}
-              <span className="text-base font-base leading-6 text-gray-700">
-                (Applied on {detail?.created_at})
-              </span>
-            </span>
-          </div>
-          {nocButtonStatus(detail?.verified_status)}
+          <HeadingUserDetails {...detail} />
+          {/* {nocButtonStatus(detail?.verified_status)} */}
 
-          {nocDocStatus(detail?.verified_status)}
+          {/* {nocDocStatus(detail?.verified_status)} */}
+          {detail?.verified_status && (
+            <NocStatusPill verified_status={detail?.verified_status} />
+          )}
         </div>
         <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
@@ -326,7 +153,9 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               title="Travel Country"
             />
             <CitizenFields data={detail?.travel_date} title="Travel Date" />
-            <CitizenFields data={detail?.return_date} title="Return Date" />
+            {detail?.return_date && (
+              <CitizenFields data={detail?.return_date} title="Return Date" />
+            )}
             {detail?.travel_via != '' ? (
               <CitizenFields data={detail?.travel_via} title="Travel Via" />
             ) : (
@@ -347,76 +176,36 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
             />
 
             <div className="sm:col-span-3">
-              <dt className="text-sm font-medium text-gray-500">Attachments</dt>
+              <dt className="text-lg font-semibold text-gray-900">
+                Attachments
+              </dt>
+              <p className="py-2 text-xs text-red-500 md:text-sm">
+                All uploaded and rejected files will be shown here and you can
+                verify or reject the user submitted files when there is any
+                false information.
+              </p>
               <dd className="mt-1 text-sm text-gray-900">
-                <ul
-                  role="list"
-                  className="border border-gray-200 divide-y divide-gray-200 rounded-md"
-                >
-                  <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex items-center flex-1 pb-4 sm:pb-0">
-                      <PaperClipIcon
-                        className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
-                        aria-hidden="true"
-                      />
-                      <div className="flex-1 w-0 ml-2 text-ellipsis">
-                        <span>Payment Screenshot</span>
-                        {detail?.payment_verified == '1' &&
-                        detail?.payment_screen_shot != null ? (
-                          <h1 className="text-xs text-green-800 text-bold">
-                            Verify the payment screenshot
-                          </h1>
-                        ) : detail?.payment_verified == '2' ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot rejected
-                          </h1>
-                        ) : detail?.payment_verified == '3' ? (
-                          <h1 className="text-xs text-blue-600 text-semibold">
-                            Payment Screenshot verified
-                          </h1>
-                        ) : detail?.payment_screen_shot == null ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot has not been uploaded yet
-                          </h1>
-                        ) : (
-                          <></>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-end space-x-3">
-                      {detail?.payment_verified == '3' ? (
-                        <>
-                          <a
-                            className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
-                            href={detail.payment_screen_shot}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View
-                          </a>
-                          <CheckCircleIcon className="w-6 h-6 text-green-600" />
-                        </>
-                      ) : detail?.payment_verified == '1' &&
-                        detail?.payment_screen_shot != null ? (
-                        <button
-                          onClick={() => approvePaymentScreenshot()}
-                          className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                        >
-                          Approve Payment
-                        </button>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </li>
-
+                <ul role="list">
                   {nocFiles?.map((file, index) => (
-                    <DocAttachments
-                      key={'doc file' + index + file.id}
+                    <DocVerifyCard
+                      getNocDocumentDetail={getNocDocumentDetail}
+                      approvedFile={approvedFile}
+                      setFileIdToReject={setFileIdToReject}
+                      setOpen={setOpen}
                       {...file}
+                      key={'doc file' + index + file.id}
                     />
+                    // <DocAttachments
+                    //   key={'doc file' + index + file.id}
+                    //   {...file}
+                    // />
                   ))}
+                  <PaymentVerifyCard
+                    {...detail}
+                    getNocDocumentDetail={getNocDocumentDetail}
+                    setOpenNocModal={setOpenNocModal}
+                    approvePaymentScreenshot={approvePaymentScreenshot}
+                  />
                 </ul>
               </dd>
             </div>
@@ -425,18 +214,20 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
             <div className="flex justify-end w-full p-4 mt-3 space-x-4">
               <button
                 onClick={() => approvedNocDocument()}
-                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
+                className="inline-flex items-center px-4 py-2 space-x-1 text-sm font-semibold text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-400"
               >
-                Approve NOC
+                <HiThumbUp className="w-4 h-4" />
+                <span>Approve for payment</span>
               </button>
 
               <button
                 onClick={() => {
                   setOpenNocModal(true);
                 }}
-                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+                className="inline-flex items-center px-4 py-2 space-x-1 text-sm font-semibold text-white duration-150 bg-red-600 rounded-md hover:bg-red-700"
               >
-                Reject NOC
+                <HiThumbDown className="w-4 h-4" />
+                <span>Reject NOC</span>
               </button>
             </div>
           )}

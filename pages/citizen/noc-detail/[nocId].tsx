@@ -63,9 +63,9 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
                 ) : (
                   <></>
                 )}
-                <span className="text-base font-base leading-6 text-gray-700">
+                {/* <span className="text-base leading-6 text-gray-700 font-base">
                   (Applied on {detail?.created_at})
-                </span>
+                </span> */}
               </span>
             </h3>
             <p className="py-2 text-sm text-gray-600">
@@ -100,7 +100,9 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               title="Travel Country"
             />
             <CitizenFields data={detail?.travel_date} title="Travel Date" />
-            <CitizenFields data={detail?.return_date} title="Return Date" />
+            {detail?.return_date && (
+              <CitizenFields data={detail?.return_date} title="Return Date" />
+            )}
             {detail?.travel_via != '' ? (
               <CitizenFields data={detail?.travel_via} title="Travel Via" />
             ) : (
@@ -130,7 +132,7 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
                 error.
               </p>
               <dd className="mt-1 text-sm text-gray-900">
-                <ul role="list" className="">
+                <ul role="list">
                   {nocFiles?.map((file) => (
                     <DocAttachmentCard
                       key={'attachment' + file.id}

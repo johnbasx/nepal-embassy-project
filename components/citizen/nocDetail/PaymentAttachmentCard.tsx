@@ -1,9 +1,8 @@
 import { updateNocDocumentFile, IMAGE_BASE_URL } from '@content/api-urls';
-import { nocDocumentType, NocFilesType } from '@utils/interface';
-import FileStatus, { PaymentFileStatus } from 'hooks/useFileStatus';
+import { nocDocumentType } from '@utils/interface';
+import { PaymentVerifyStatus } from 'hooks/useFileStatus';
 import React from 'react';
-import { RiAttachment2, RiEyeLine, RiUploadCloud2Line } from 'react-icons/ri';
-import BadgePill from './BadgePill';
+import { RiAttachment2, RiEyeLine } from 'react-icons/ri';
 import UploadFile from './UploadFile';
 
 interface PaymentAttachmentCardProps extends Partial<nocDocumentType> {
@@ -42,6 +41,7 @@ const PaymentStatusShow = ({ ...detail }: PaymentAttachmentCardProps) => {
 };
 
 const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
+  console.log(detail);
   return (
     <div className="flex mx-0 my-3 overflow-hidden bg-white border border-gray-300 shadow rounded-xl md:mx-auto">
       {/* <!--horizantil margin is just for display--> */}
@@ -53,7 +53,9 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
               Proof of Payment
             </h2>
 
-            <PaymentFileStatus status={detail.payment_verified!} />
+            {detail.payment_verified && (
+              <PaymentVerifyStatus status={detail.payment_verified} />
+            )}
             {/* {fileDocStatus(file.verification_status)} */}
             {/* <BadgePill color="green" label="Approved" /> */}
           </div>
@@ -62,14 +64,14 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
           </span>
           {/* Status message of the payment status */}
           <PaymentStatusShow {...detail} />
-          {/* {detail.payment_screen_shot && (
+          {detail.payment_screen_shot && (
             <p className="text-gray-500">
               Uploaded on:
               <span className="ml-1 font-medium text-gray-700">
                 {detail.created_at}
               </span>
             </p>
-          )} */}
+          )}
 
           <div className="flex items-center justify-end space-x-3">
             {detail?.payment_verified === '3' ||

@@ -25,3 +25,9 @@ export function addDays(date: Date, days: number) {
   result.setDate(result.getDate() + days);
   return dateFormatter(result);
 }
+
+// Get the page number from the next url : TODO
+const secondToLast = (str: string) => {
+  let pageNo = parseInt(str.charAt(str.length - 1)) - 1;
+  return parseInt(str && str.charAt(str.length - 1)) - 1;
+};
