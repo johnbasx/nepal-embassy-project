@@ -39,6 +39,7 @@ import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import { useRouter } from 'next/router';
 import Footer from '@components/citizen/layout/Footer';
+import FamilyProfile from '@components/citizen/applyForNoc/FamilyProfile';
 
 const NocRegistration = (page: NextComponentType) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -220,7 +221,11 @@ const NocRegistration = (page: NextComponentType) => {
         <div className="absolute inset-y-0 left-0 w-full" />
       </div> */}
       <div className="relative px-4 mx-auto bg-gray-100 lg:grid lg:grid-cols-5">
-        <ProfileDetail profile={profile} />
+        {/* Profile Details */}
+        <div className="order-first py-4 bg-gray-100 lg:px-4 lg:py-10 md:m-0 md:order-last lg:col-span-2">
+          <ProfileDetail profile={profile} />
+          <FamilyProfile />
+        </div>
         <div className="order-last py-6 md:order-first lg:col-span-3 lg:py-10">
           <div className="mx-auto border rounded-lg lg:max-w-none border-gray-200/50">
             <form
@@ -587,7 +592,7 @@ const NocRegistration = (page: NextComponentType) => {
                   {!isLoading ? (
                     <button
                       type="submit"
-                      className="inline-flex justify-center w-full py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="inline-flex justify-center w-full max-w-lg py-2 text-sm font-medium text-white bg-blue-700 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Apply NOC
                     </button>

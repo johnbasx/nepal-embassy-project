@@ -137,7 +137,7 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
               disabled
               id="user-name"
               autoComplete="user-name"
-              className="block w-full px-3 py-2 mt-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
+              className="block w-full px-3 py-2 mt-1 text-gray-500 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm"
               onChange={(e) => setuserName(e.target.value)}
               defaultValue={email}
             />
@@ -184,7 +184,7 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
           {!saving ? (
             <button
               onClick={(e) => UpdateUserInfo(e)}
-              className="w-auto px-8 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-1 md:text-base"
+              className="w-auto px-8 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
             >
               Save
             </button>
@@ -201,7 +201,7 @@ const SavingButton = () => {
   return (
     <button
       type="button"
-      className="flex items-center justify-center w-auto px-4 py-4 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 md:py-1 md:text-base"
+      className="flex items-center justify-center w-auto px-4 py-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
     >
       <Loading />
       Saving

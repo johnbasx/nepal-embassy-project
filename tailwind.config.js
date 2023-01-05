@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -9,6 +10,9 @@ module.exports = {
       fontSize: {
         '2xs': '0.65rem',
         '3xs': '0.55rem',
+      },
+      colors: {
+        emerald: colors.emerald,
       },
       spacing: {
         wa4: '210mm',
