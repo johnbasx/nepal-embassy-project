@@ -57,12 +57,15 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               You applied for{' '}
               <span className="font-bold text-blue-700">
                 {detail?.travel_type == 'Connecting' ? (
-                  'Connecting Travel'
+                  'Connecting Travel '
                 ) : detail?.travel_type == 'Direct' ? (
-                  'Direct Travel'
+                  'Direct Travel '
                 ) : (
                   <></>
                 )}
+                <span className="text-base font-base leading-6 text-gray-700">
+                  (Applied on {detail?.created_at})
+                </span>
               </span>
             </h3>
             <p className="py-2 text-sm text-gray-600">
