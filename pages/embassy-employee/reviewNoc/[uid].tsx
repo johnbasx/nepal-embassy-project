@@ -1,4 +1,12 @@
-import { FetchData, Update } from '@utils/fetcher';
+import {
+  BASE_URL,
+  nocDocDetail,
+  nocDocFiles,
+  nocVerification,
+  updateNocDoc,
+  updateNocDocFile,
+} from 'content/api-urls';
+import { FetchData, PostData, Update } from '@utils/fetcher';
 import {
   TbBan,
   TbClipboardOff,
@@ -6,13 +14,6 @@ import {
   TbFileUpload,
   TbShieldCheck,
 } from 'react-icons/tb';
-import {
-  nocDocDetail,
-  nocDocFiles,
-  nocVerification,
-  updateNocDoc,
-  updateNocDocFile,
-} from 'content/api-urls';
 import toast, { Toaster } from 'react-hot-toast';
 import { useCallback, useEffect, useState } from 'react';
 
@@ -94,7 +95,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
             onClick={() => approvedNocDocument()}
             className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
           >
-            Approve NOC
+            Ready for payment
           </button>
         </div>
       );
@@ -159,13 +160,31 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
 
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, nocDocDetail + documentId);
+    console.log(data);
     setDetail(data);
   };
 
   const getNocDocumentFiles = async () => {
     const data = await FetchData(token, nocDocFiles + documentId);
+    console.log(data);
     setNocFiles(data);
+    // nocFiles?.map(file =file.verification_status=='3')
   };
+
+  const [allFilesState, setAllFilesState] = useState(false);
+  useEffect(() => {
+    function filesCheck() {
+      // let fileState = false;
+
+      return nocFiles?.every((file) => {
+        file.verification_status == '3';
+      });
+
+      // return fileState;
+    }
+    // setAllFilesState(filesCheck());
+    console.log(filesCheck());
+  }, [nocFiles]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -271,6 +290,16 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     </li>
   );
 
+  const readyForPayment = async (noc_doc_id: string | undefined) => {
+    const res = await PostData(token, BASE_URL + 'approveToUploadPayment', {
+      doc_id: noc_doc_id,
+    });
+    if (res.response.data.status == 'success') {
+      toast.success(res.response.data.message);
+    } else {
+      toast.error('Cannot approved');
+    }
+  };
   return (
     <>
       <MessageModal
@@ -304,7 +333,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               </span>
             </span>
           </div>
-          {nocButtonStatus(detail?.verified_status)}
+          {/* {nocButtonStatus(detail?.verified_status)} */}
 
           {nocDocStatus(detail?.verified_status)}
         </div>
@@ -353,63 +382,65 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                   role="list"
                   className="border border-gray-200 divide-y divide-gray-200 rounded-md"
                 >
-                  <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex items-center flex-1 pb-4 sm:pb-0">
-                      <PaperClipIcon
-                        className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
-                        aria-hidden="true"
-                      />
-                      <div className="flex-1 w-0 ml-2 text-ellipsis">
-                        <span>Payment Screenshot</span>
-                        {detail?.payment_verified == '1' &&
-                        detail?.payment_screen_shot != null ? (
-                          <h1 className="text-xs text-green-800 text-bold">
-                            Verify the payment screenshot
-                          </h1>
-                        ) : detail?.payment_verified == '2' ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot rejected
-                          </h1>
-                        ) : detail?.payment_verified == '3' ? (
-                          <h1 className="text-xs text-blue-600 text-semibold">
-                            Payment Screenshot verified
-                          </h1>
-                        ) : detail?.payment_screen_shot == null ? (
-                          <h1 className="text-xs text-red-500 text-semibold">
-                            Payment Screenshot has not been uploaded yet
-                          </h1>
+                  {detail?.upload_payment_screen_shot == true && (
+                    <li className="relative flex flex-col items-start justify-start py-3 pl-3 pr-4 text-sm sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex items-center flex-1 pb-4 sm:pb-0">
+                        <PaperClipIcon
+                          className="flex-shrink-0 w-5 h-5 text-gray-400 rotate-45"
+                          aria-hidden="true"
+                        />
+                        <div className="flex-1 w-0 ml-2 text-ellipsis">
+                          <span>Payment Screenshot</span>
+                          {detail?.payment_verified == '1' &&
+                          detail?.payment_screen_shot != null ? (
+                            <h1 className="text-xs text-green-800 text-bold">
+                              Verify the payment screenshot
+                            </h1>
+                          ) : detail?.payment_verified == '2' ? (
+                            <h1 className="text-xs text-red-500 text-semibold">
+                              Payment Screenshot rejected
+                            </h1>
+                          ) : detail?.payment_verified == '3' ? (
+                            <h1 className="text-xs text-blue-600 text-semibold">
+                              Payment Screenshot verified
+                            </h1>
+                          ) : detail?.payment_screen_shot == null ? (
+                            <h1 className="text-xs text-red-500 text-semibold">
+                              Payment Screenshot has not been uploaded yet
+                            </h1>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center justify-end space-x-3">
+                        {detail?.payment_verified == '3' ? (
+                          <>
+                            <a
+                              className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
+                              href={detail.payment_screen_shot}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              View
+                            </a>
+                            <CheckCircleIcon className="w-6 h-6 text-green-600" />
+                          </>
+                        ) : detail?.payment_verified == '1' &&
+                          detail?.payment_screen_shot != null ? (
+                          <button
+                            onClick={() => approvePaymentScreenshot()}
+                            className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                          >
+                            Approve Payment
+                          </button>
                         ) : (
                           <></>
                         )}
                       </div>
-                    </div>
-
-                    <div className="flex items-center justify-end space-x-3">
-                      {detail?.payment_verified == '3' ? (
-                        <>
-                          <a
-                            className="px-3 py-2 text-xs font-medium text-blue-600 rounded-md cursor-pointer hover:text-blue-500 bg-gray-50"
-                            href={detail.payment_screen_shot}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            View
-                          </a>
-                          <CheckCircleIcon className="w-6 h-6 text-green-600" />
-                        </>
-                      ) : detail?.payment_verified == '1' &&
-                        detail?.payment_screen_shot != null ? (
-                        <button
-                          onClick={() => approvePaymentScreenshot()}
-                          className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                        >
-                          Approve Payment
-                        </button>
-                      ) : (
-                        <></>
-                      )}
-                    </div>
-                  </li>
+                    </li>
+                  )}
 
                   {nocFiles?.map((file, index) => (
                     <DocAttachments
@@ -421,13 +452,33 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               </dd>
             </div>
           </dl>
-          {detail?.verified_status == '1' && (
+          <div className="flex justify-end w-full p-4 mt-3 space-x-4">
+            {!detail?.upload_payment_screen_shot && (
+              <button
+                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
+                onClick={() => {
+                  readyForPayment(detail?.id);
+                }}
+              >
+                Ready for payment
+              </button>
+            )}
+            <button
+              onClick={() => {
+                setOpenNocModal(true);
+              }}
+              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+            >
+              Reject NOC
+            </button>
+          </div>
+          {/* {detail?.verified_status == '1' && (
             <div className="flex justify-end w-full p-4 mt-3 space-x-4">
               <button
                 onClick={() => approvedNocDocument()}
                 className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
               >
-                Approve NOC
+                Approve document to upload payment
               </button>
 
               <button
@@ -439,7 +490,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 Reject NOC
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </>

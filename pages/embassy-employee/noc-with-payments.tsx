@@ -25,7 +25,7 @@ const NocWithPayments = () => {
     const url = BASE_URL + 'getNocWithPayment';
     const getNocWithPayment = async () => {
       const data = await FetchData(token, url);
-      setnocWithPayments(data);
+      setnocWithPayments(data.results);
     };
 
     getNocWithPayment();

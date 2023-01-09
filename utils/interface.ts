@@ -46,6 +46,7 @@ export interface nocDocumentType {
   verified_status: string;
   verified_at?: any;
   check_living_in_india: boolean;
+  upload_payment_screen_shot: boolean;
   payment_screen_shot: string;
   payment_verified: string;
   noc_profile: string;

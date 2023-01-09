@@ -16,16 +16,33 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
   {
-    name: 'NOC List',
+    name: 'Home',
+    href: '/embassy-employee/home',
+    icon: HomeIcon,
+    current: true,
+  },
+  {
+    name: 'Registered for NOC list',
+    href: '/embassy-employee/citizens-registered-for-noc',
+    icon: HomeIcon,
+    current: true,
+  },
+  {
+    name: 'Applied NOC List',
     href: '/embassy-employee/nocDocList',
     icon: UsersIcon,
     current: false,
   },
   {
-    name: 'NOCs With Payment',
+    name: 'NOCs with payment',
     href: '/embassy-employee/noc-with-payments',
+    icon: CreditCardIcon,
+    current: false,
+  },
+  {
+    name: 'NOCs issued list',
+    href: '/embassy-employee/noc-issued-list',
     icon: CreditCardIcon,
     current: false,
   },
