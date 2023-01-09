@@ -17,7 +17,7 @@ const transactions = [
 const RecentPaidNoc = () => {
   return (
     <>
-      <h2 className="max-w-6xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-8">
+      <h2 className="max-w-7xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-0">
         NOCs wiith recently uploaded payment
       </h2>
       {/* Activity list (smallest breakpoint only) */}
@@ -84,7 +84,7 @@ const RecentPaidNoc = () => {
 
       {/* Activity table (small breakpoint and up) */}
       <div className="hidden sm:block">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0">
           <div className="flex flex-col mt-2">
             <div className="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200">

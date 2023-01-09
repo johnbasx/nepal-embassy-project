@@ -1,12 +1,5 @@
-import { FetchData, Update } from '@utils/fetcher';
-import {
-  nocDocDetail,
-  nocDocFiles,
-  nocVerification,
-  updateNocDoc,
-  updateNocDocFile,
-} from 'content/api-urls';
 import { FetchData, PostData, Update } from '@utils/fetcher';
+import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 import {
   TbBan,
   TbClipboardOff,
@@ -14,25 +7,31 @@ import {
   TbFileUpload,
   TbShieldCheck,
 } from 'react-icons/tb';
+import {
+  nocDocDetail,
+  nocDocFiles,
+  nocVerification,
+  updateNocDoc,
+  updateNocDocFile,
+} from 'content/api-urls';
 import toast, { Toaster } from 'react-hot-toast';
 import { useCallback, useEffect, useState } from 'react';
 
+import { BASE_URL } from 'content/api-urls';
 import { CheckCircleIcon } from '@heroicons/react/outline';
+import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
+import DocVerifyCard from '@components/admin/review/DocVerifyCard';
+import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
 import MessageModal from '@components/admin/review/MessageModal';
-
 import { NocFilesType } from '@utils/interface';
 import NocMessageModal from '@components/admin/review/NocMessageModal';
+import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
 import { PaperClipIcon } from '@heroicons/react/solid';
+import PaymentVerifyCard from '@components/admin/review/PaymentVerifyCard';
 import authStore from '@store/adminAuthStore';
 import { nocDocumentType } from '@utils/interface';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
-import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
-import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
-import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
-import PaymentVerifyCard from '@components/admin/review/PaymentVerifyCard';
-import DocVerifyCard from '@components/admin/review/DocVerifyCard';
-import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 
 const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -235,12 +234,14 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                     //   {...file}
                     // />
                   ))}
-                  <PaymentVerifyCard
-                    {...detail}
-                    getNocDocumentDetail={getNocDocumentDetail}
-                    setOpenNocModal={setOpenNocModal}
-                    approvePaymentScreenshot={approvePaymentScreenshot}
-                  />
+                  {detail?.payment_screen_shot != null && (
+                    <PaymentVerifyCard
+                      {...detail}
+                      getNocDocumentDetail={getNocDocumentDetail}
+                      setOpenNocModal={setOpenNocModal}
+                      approvePaymentScreenshot={approvePaymentScreenshot}
+                    />
+                  )}
                 </ul>
               </dd>
             </div>
@@ -265,27 +266,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               Reject NOC
             </button>
           </div>
-          {/* {detail?.verified_status == '1' && (
-            <div className="flex justify-end w-full p-4 mt-3 space-x-4">
-              <button
-                onClick={() => approvedNocDocument()}
-                className="inline-flex items-center px-4 py-2 space-x-1 text-sm font-semibold text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-400"
-              >
-                <HiThumbUp className="w-4 h-4" />
-                <span>Approve for payment</span>
-              </button>
-
-              <button
-                onClick={() => {
-                  setOpenNocModal(true);
-                }}
-                className="inline-flex items-center px-4 py-2 space-x-1 text-sm font-semibold text-white duration-150 bg-red-600 rounded-md hover:bg-red-700"
-              >
-                <HiThumbDown className="w-4 h-4" />
-                <span>Reject NOC</span>
-              </button>
-            </div>
-          )} */}
         </div>
       </div>
     </>

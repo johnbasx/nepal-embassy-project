@@ -15,6 +15,7 @@ export interface IssuedNocsProps {
   noc_documents: string;
   verified_by: string;
   travel_purpose_value: string;
+  payment_upload_date: string;
 }
 
 const IssuedNocs = ({ ...recentNoc }: IssuedNocsProps) => {

@@ -8,18 +8,25 @@ export interface DataOverviewProps {
   title: string;
   total: number;
 }
+export interface IconBaseProps extends React.SVGAttributes<SVGElement> {
+  children?: React.ReactNode;
+  size?: string | number;
+  color?: string;
+  title?: string;
+}
+export declare type IconType = (props: IconBaseProps) => JSX.Element;
 
-const DynamicFaIcon: React.FC<{ name: string }> = ({ name }) => {
-  //  Icons = Array<string>()
-  const IconComponent = Icons[name];
+// const DynamicFaIcon: React.FC<{ name: string }> = ({ name }) => {
 
-  if (!IconComponent) {
-    // Return a default one
-    return <Icons.HiMap />;
-  }
+//   const IconComponent = Icons[name];
 
-  return <IconComponent className="text-blue-800 text-3xl" />;
-};
+//   if (!IconComponent) {
+
+//     return <Icons.HiMap />;
+//   }
+
+//   return <IconComponent className="text-blue-800 text-3xl" />;
+// };
 
 const viewAll = (title: string): string => {
   return title == 'NOC applied'
@@ -31,15 +38,12 @@ const viewAll = (title: string): string => {
 
 const OverViewCard: React.FC<DataOverviewProps> = ({ icon, title, total }) => {
   return (
-    <div
-      // key={card.name}
-      className="bg-white overflow-hidden shadow rounded-lg"
-    >
+    <div className="bg-white overflow-hidden shadow rounded-lg">
       <div className="p-5">
         <div className="flex items-center">
           <div className="flex-shrink-0">
-            <DynamicFaIcon name={icon} />
-            {/* <DynamicFaIcon /> */}
+            {/* <DynamicFaIcon name={icon} /> */}
+            <Icons.HiArchive className="text-blue-800 text-3xl" />
           </div>
           <div className="ml-5 w-0 flex-1">
             <dl>
@@ -56,10 +60,7 @@ const OverViewCard: React.FC<DataOverviewProps> = ({ icon, title, total }) => {
       <div className="bg-gray-50 px-5 py-3">
         <div className="text-sm">
           <Link href={viewAll(title)}>
-            <a
-              // href={card.href}
-              className="font-medium text-cyan-700 hover:text-cyan-900"
-            >
+            <a className="font-medium text-cyan-700 hover:text-cyan-900">
               View all
             </a>
           </Link>

@@ -1,9 +1,10 @@
-import { updateNocDocumentFile, IMAGE_BASE_URL } from '@content/api-urls';
-import { nocDocumentType } from '@utils/interface';
+import { IMAGE_BASE_URL, updateNocDocumentFile } from '@content/api-urls';
+import { RiAttachment2, RiEyeLine } from 'react-icons/ri';
+
 import { PaymentVerifyStatus } from 'hooks/useFileStatus';
 import React from 'react';
-import { RiAttachment2, RiEyeLine } from 'react-icons/ri';
 import UploadFile from './UploadFile';
+import { nocDocumentType } from '@utils/interface';
 
 interface PaymentAttachmentCardProps extends Partial<nocDocumentType> {
   getNocDocumentDetail: () => Promise<void>;
@@ -74,8 +75,31 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
           )}
 
           <div className="flex items-center justify-end space-x-3">
-            {detail?.payment_verified === '3' ||
-            (detail?.payment_screen_shot === null &&
+            {detail?.upload_payment_screen_shot && (
+              <UploadFile
+                url={updateNocDocumentFile + detail.id}
+                getContent={detail.getNocDocumentDetail}
+                uploadFor="Document"
+                label="Payment Screenshot"
+              />
+            )}
+            {detail?.payment_screen_shot != null ||
+            detail?.payment_verified == '3' ? (
+              <a
+                href={IMAGE_BASE_URL + detail.payment_screen_shot}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center px-4 py-2 space-x-1 text-xs font-medium text-gray-700 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300"
+              >
+                <RiEyeLine className="w-3 h-3 text-gray-600" />
+                <span>View</span>
+              </a>
+            ) : (
+              <></>
+            )}
+            {/* {detail?.payment_verified === '1' ||
+            detail?.payment_screen_shot === null ||
+            (!detail?.upload_payment_screen_shot &&
               detail?.verified_status === '1') ? (
               <UploadFile
                 url={updateNocDocumentFile + detail.id}
@@ -96,7 +120,7 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
               </a>
             ) : (
               <></>
-            )}
+            )} */}
           </div>
         </div>
       </div>
