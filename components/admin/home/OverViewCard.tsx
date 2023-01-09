@@ -32,7 +32,7 @@ const viewAll = (title: string): string => {
   return title == 'NOC applied'
     ? '/embassy-employee/nocDocList'
     : title == 'NOC issued'
-    ? '/embassy-employee/noc-issued'
+    ? '/embassy-employee/noc-issued-list'
     : '/embassy-employee/registered-for-noc';
 };
 
