@@ -1,6 +1,6 @@
+import FamilyProfileCard from './FamilyProfileCard';
 import Link from 'next/link';
 import React from 'react';
-import FamilyProfileCard from './FamilyProfileCard';
 
 const FamilyProfile = () => {
   return (
@@ -16,7 +16,8 @@ const FamilyProfile = () => {
           <FamilyProfileCard />
           <p className="text-sm font-normal text-gray-500">
             You can add profile for your family members if their age is below 15
-            or above 60 or don't have access to a smartphone/computer/internet.
+            or above 60 or don&apos;t have access to a
+            smartphone/computer/internet.
           </p>
 
           <div className="flex justify-center px-4 py-3 text-right bg-white sm:px-16">
