@@ -1,6 +1,6 @@
 import { devtools, persist } from 'zustand/middleware';
 
-import { NocDetailTypes } from '@components/admin/userList/UserListTable';
+import { NocDetailTypes } from '@utils/interface';
 import create from 'zustand';
 
 interface ContentType {

@@ -7,12 +7,14 @@ import { Fragment, useEffect, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 
 import { Dispatch } from 'react';
-import { nocDocumentType } from '@utils/interface';
+import { NocDetailTypes } from '@utils/interface';
 import pageContentStore from '@store/pageContentStore';
 
+// import { nocDocumentType } from '@utils/interface';
+
+
+
 // import { NocDetailTypes } from '@components/admin/userList/UserListTable';
-
-
 
 const people = [
   { name: 'All' },
@@ -22,7 +24,7 @@ const people = [
 ];
 
 const Filter: React.FC<{
-  setNocRegisteredCitizen: Dispatch<nocDocumentType[]>;
+  setNocRegisteredCitizen: Dispatch<NocDetailTypes[]>;
 }> = ({ setNocRegisteredCitizen }) => {
   const { nocList } = pageContentStore();
   const [selected, setSelected] = useState(people[0]);

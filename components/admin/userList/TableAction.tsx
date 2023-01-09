@@ -1,11 +1,16 @@
+import { ArrowRightIcon, PlusIcon, SearchIcon } from '@heroicons/react/solid';
 import React, { Dispatch, useState } from 'react';
 
 import CommadPalette from '@components/common/CommandPalette';
 import Filter from './Filter';
 import Link from 'next/link';
-import { NocDetailTypes } from '@components/admin/userList/UserListTable';
-import { ArrowRightIcon, PlusIcon, SearchIcon } from '@heroicons/react/solid';
+import { NocDetailTypes } from '@utils/interface';
 import Search from '../Search';
+
+// import { nocDocumentType } from '@utils/interface';
+
+
+// import { NocDetailTypes } from '@components/admin/userList/UserListTable';
 
 export const projects = [
   {
