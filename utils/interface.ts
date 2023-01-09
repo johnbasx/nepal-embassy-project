@@ -73,6 +73,25 @@ export interface DetailType {
   documents_verified: boolean;
 }
 
+export interface NocDetailTypes {
+  id: string;
+  full_name: string;
+  email: string;
+  dob: string;
+  age: string;
+  district: string;
+  province: string;
+  passport_number: number;
+  travel_type: 'Direct' | 'Connecting';
+  travel_from: string;
+  travel_country: string;
+  travel_purpose_value: string;
+  verified_status?: string;
+  travel_date: string;
+  return_date: string;
+  created_at: string;
+}
+
 export interface NocFilesType {
   id: string;
   doc_name: string;

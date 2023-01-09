@@ -22,9 +22,9 @@ const Layout = ({ children }: any) => {
   return (
     <div className="overflow-hidden ">
       <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="md:pl-64 flex flex-col ">
+      <div className="flex flex-col min-h-screen md:pl-64 ">
         <HeadNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 bg-gray-100">{children}</main>
       </div>
     </div>
   );

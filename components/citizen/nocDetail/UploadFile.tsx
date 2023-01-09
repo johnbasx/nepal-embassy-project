@@ -4,6 +4,7 @@ import { Update, UpdateHandler } from '@utils/fetcher';
 
 import authStore from '@store/useAuthStore';
 import { toast } from 'react-hot-toast';
+import { RiUploadCloud2Line } from 'react-icons/ri';
 export interface UploadFileProps {
   url: string;
   getContent: () => void;
@@ -56,9 +57,10 @@ const UploadFile: React.FC<UploadFileProps> = ({
         onClick={() => {
           setOpen(true);
         }}
-        className="px-4 py-2 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+        className="inline-flex items-center justify-center px-4 py-2 space-x-1 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-0 active:bg-gray-800"
       >
-        Upload
+        <RiUploadCloud2Line className="w-3 h-3 text-white" />
+        <span>Upload file</span>
       </button>
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -106,7 +108,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
                                 {label}
                                 <br />
                                 <span className="text-xs font-normal text-red-500">
-                                  Proof of bank account statement
+                                  Proof of transaction statement/screenshot
                                 </span>
                               </dt>
 
@@ -133,13 +135,13 @@ const UploadFile: React.FC<UploadFileProps> = ({
                     <div className="px-4 py-3 bg-gray-50 sm:flex sm:flex-row-reverse sm:px-6">
                       <button
                         type="submit"
-                        className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
+                        className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                       >
                         Confirm
                       </button>
                       <button
                         type="button"
-                        className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        className="inline-flex justify-center w-full px-4 py-2 mt-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         onClick={() => setOpen(false)}
                         ref={cancelButtonRef}
                       >

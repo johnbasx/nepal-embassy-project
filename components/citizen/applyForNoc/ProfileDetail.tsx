@@ -18,14 +18,14 @@ const ProfileDetail: React.FC<{ profile: UserDetailProps | undefined }> = ({
 }) => {
   const router = useRouter();
   return (
-    <div className="order-first px-6 py-10 m-4 border rounded-lg md:m-0 md:order-last bg-gray-50 md:rounded-none md:border-none lg:col-span-2 lg:px-8 lg:py-8 xl:pr-8">
-      <div className="max-w-lg mx-auto md:py-10">
-        <h2 className="text-2xl font-bold tracking-tight text-blue-600 sm:text-2xl">
+    
+      <div className="flex flex-col px-6 py-6 mx-auto bg-white border rounded-lg shadow lg:mx-0">
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-2xl">
           Profile details
         </h2>
         <dl className="mt-6 text-sm font-medium text-gray-500">
-          <div className="mt-6">
-            <dt className="sr-only">Phone number</dt>
+          <div className="mt-2">
+            <dt className="sr-only">Full Name</dt>
             <dd className="flex">
               <UserIcon
                 className="flex-shrink-0 w-5 h-5 text-blue-500"
@@ -107,7 +107,7 @@ const ProfileDetail: React.FC<{ profile: UserDetailProps | undefined }> = ({
           </p>
         )}
       </div>
-    </div>
+
   );
 };
 
