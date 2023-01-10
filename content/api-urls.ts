@@ -1,11 +1,11 @@
 // export const BASE_URL = 'http://192.168.29.199:8000/';
 // export const BASE_URL = 'https://cube69.pythonanywhere.com/';
 
-export const BASE_URL = 'http://64.227.136.150/np/api/';
-export const IMAGE_BASE_URL = 'http://64.227.136.150';
+// export const BASE_URL = 'http://64.227.136.150/np/api/';
+// export const IMAGE_BASE_URL = 'http://64.227.136.150';
 
-// export const BASE_URL = 'http://127.0.0.1:8000/np/api/';
-// export const IMAGE_BASE_URL = 'http://127.0.0.1:8000';
+export const BASE_URL = 'http://127.0.0.1:8000/np/api/';
+export const IMAGE_BASE_URL = 'http://127.0.0.1:8000';
 
 export const requestPasswordReset = BASE_URL + 'request-reset-email/';
 
@@ -45,7 +45,6 @@ export const rejectNocDocumentWithMessage =
 export const nocDocFiles = BASE_URL + 'nocDocFiles/';
 export const updateNocDocFile = BASE_URL + 'updateNocDocFile/';
 export const rejectFileWithMessage = BASE_URL + 'rejectFileWithMessage';
-export const nocVerification = BASE_URL + 'nocVerification/';
 
 // CITIZEN API
 export const getUserProfile = BASE_URL + 'getUserProfile';

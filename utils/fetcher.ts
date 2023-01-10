@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 
 export interface FetchDataType {
   token: string;
@@ -25,7 +25,7 @@ export const Update = async (token: string, url: string, data: object) => {
         authorization: 'Bearer ' + token,
       },
     });
-    console.log(response);
+    // console.log(response);
     return 1;
   } catch (e: any) {
     console.log(e);

@@ -1,24 +1,14 @@
-import { FetchData, PostData, Update } from '@utils/fetcher';
-import { HiThumbDown, HiThumbUp } from 'react-icons/hi';
 import {
-  TbBan,
-  TbClipboardOff,
-  TbDownload,
-  TbFileUpload,
-  TbShieldCheck,
-} from 'react-icons/tb';
-import {
+  BASE_URL,
   nocDocDetail,
   nocDocFiles,
-  nocVerification,
   updateNocDoc,
   updateNocDocFile,
 } from 'content/api-urls';
+import { FetchData, PostData, Update } from '@utils/fetcher';
 import toast, { Toaster } from 'react-hot-toast';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { BASE_URL } from 'content/api-urls';
-import { CheckCircleIcon } from '@heroicons/react/outline';
 import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
 import DocVerifyCard from '@components/admin/review/DocVerifyCard';
 import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
@@ -26,7 +16,6 @@ import MessageModal from '@components/admin/review/MessageModal';
 import { NocFilesType } from '@utils/interface';
 import NocMessageModal from '@components/admin/review/NocMessageModal';
 import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
-import { PaperClipIcon } from '@heroicons/react/solid';
 import PaymentVerifyCard from '@components/admin/review/PaymentVerifyCard';
 import authStore from '@store/adminAuthStore';
 import { nocDocumentType } from '@utils/interface';
@@ -43,38 +32,18 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const [open, setOpen] = useState(false);
   const [fileIdToReject, setFileIdToReject] = useState('');
   const [openNocModal, setOpenNocModal] = useState(false);
-  // const [nocToReject, setnocToReject] = useState('');
-
-  // useEffect(() => {
-  //   console.log(nocFiles);
-  // }, [nocFiles]);
-
-  const nocButtonStatus = useCallback((value?: string) => {
-    if (value == '1')
-      return (
-        <div className="px-4">
-          <button
-            onClick={() => approvedNocDocument()}
-            className="px-3 py-2 text-xs font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-          >
-            Ready for payment
-          </button>
-        </div>
-      );
-    else return <></>;
-  }, []);
 
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, nocDocDetail + documentId);
-    console.log(data);
+    // console.log(data);
     setDetail(data);
   };
 
   const getNocDocumentFiles = async () => {
     const data = await FetchData(token, nocDocFiles + documentId);
-    console.log(data);
+    // console.log(data);
     setNocFiles(data);
-    console.log(data);
+    // console.log(data);
   };
 
   const [allFilesState, setAllFilesState] = useState(false);
@@ -89,7 +58,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       // return fileState;
     }
     // setAllFilesState(filesCheck());
-    console.log(filesCheck());
+    // console.log(filesCheck());
   }, [nocFiles]);
 
   useEffect(() => {
@@ -104,7 +73,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const returnValue = await Update(token, updateNocDocFile + file_id, {
       verification_status: '3',
     });
-    console.log(returnValue);
+    // console.log(returnValue);
     returnValue == 1
       ? toast.success('File approved!')
       : toast.error('Cannot approve file!');
@@ -113,10 +82,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   };
 
   const approvedNocDocument = async () => {
-    const returnValue = await Update(token, nocVerification + documentId, {
-      verified_status: '3',
+    const returnValue = await Update(token, BASE_URL + 'nocVerification', {
+      doc_id: documentId,
     });
-    console.log(returnValue);
+    // console.log(returnValue);
     returnValue == 1
       ? toast.success('NOC approved')
       : toast.error('Please verify all files and Payment screenshot!');
@@ -127,7 +96,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const returnValue = await Update(token, updateNocDoc + documentId, {
       payment_verified: '3',
     });
-    console.log(returnValue);
+    // console.log(returnValue);
     returnValue == 1
       ? toast.success('Payment screenshot verified')
       : toast.error('Cannot verify Payment screenshot');
@@ -144,6 +113,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       toast.error('Cannot approved');
     }
   };
+
   return (
     <>
       <MessageModal
@@ -257,11 +227,20 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 Ready for payment
               </button>
             )}
+
+            <button
+              onClick={() => {
+                approvedNocDocument();
+              }}
+              className="px-3 py-2 text-base font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600 tracking-wider"
+            >
+              Issue NOC
+            </button>
             <button
               onClick={() => {
                 setOpenNocModal(true);
               }}
-              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+              className="px-3 py-2 text-base font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600 tracking-wider"
             >
               Reject NOC
             </button>

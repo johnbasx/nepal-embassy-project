@@ -1,11 +1,12 @@
-import { updateNocDocumentFile, IMAGE_BASE_URL } from '@content/api-urls';
-import { nocDocumentType, NocFilesType } from '@utils/interface';
 import FileStatus, { PaymentVerifyStatus } from 'hooks/useFileStatus';
-import React from 'react';
+import { IMAGE_BASE_URL, updateNocDocumentFile } from '@content/api-urls';
+import { NocFilesType, nocDocumentType } from '@utils/interface';
 import { RiAttachment2, RiEyeLine, RiUploadCloud2Line } from 'react-icons/ri';
+
 import BadgePill from '@components/citizen/nocDetail/BadgePill';
-import UploadFile from '@components/citizen/nocDetail/UploadFile';
+import React from 'react';
 import { TbCheck } from 'react-icons/tb';
+import UploadFile from '@components/citizen/nocDetail/UploadFile';
 
 interface PaymentVerifyCardProps extends Partial<nocDocumentType> {
   approvePaymentScreenshot: () => Promise<void>;
@@ -52,7 +53,6 @@ const PaymentVerifyCard = ({
   getNocDocumentDetail,
   ...detail
 }: PaymentVerifyCardProps) => {
-  console.log(detail);
   return (
     <div className="flex mx-0 my-3 overflow-hidden bg-white border border-gray-300 shadow rounded-xl md:mx-auto">
       {/* <!--horizantil margin is just for display--> */}

@@ -43,7 +43,7 @@ const OverViewCard: React.FC<DataOverviewProps> = ({ icon, title, total }) => {
         <div className="flex items-center">
           <div className="flex-shrink-0">
             {/* <DynamicFaIcon name={icon} /> */}
-            <Icons.HiArchive className="text-blue-800 text-3xl" />
+            <Icons.HiArchive className="text-blue-700 text-3xl" />
           </div>
           <div className="ml-5 w-0 flex-1">
             <dl>

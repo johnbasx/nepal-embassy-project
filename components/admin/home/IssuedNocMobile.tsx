@@ -1,6 +1,7 @@
 import { CashIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
 import { IssuedNocsProps } from './IssuedNocs';
+import Link from 'next/link';
 import React from 'react';
 
 const IssuedNocMobile = ({
@@ -9,8 +10,8 @@ const IssuedNocMobile = ({
   recentlyIssuedNocs: IssuedNocsProps[];
 }) => {
   return (
-    <div className="shadow sm:hidden mx-2">
-      <h3 className="max-w-7xl mx-auto mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-0">
+    <div className="shadow sm:hidden bg-white rounded-md">
+      <h3 className="mx-auto pt-3 mt-8 px-4 text-lg leading-6 font-medium text-gray-900 sm:px-6 lg:px-0">
         Recent NOC issued
       </h3>
       <ul
@@ -19,23 +20,23 @@ const IssuedNocMobile = ({
       >
         {recentlyIssuedNocs.map((detail) => (
           <li key={'recently_issued_noc' + detail.id}>
-            <a
-              href="!#"
-              //   href={detail.href}
-              className="block px-4 py-4 bg-white hover:bg-gray-50"
-            >
+            <a href="!#" className="block px-4 py-4 bg-white hover:bg-gray-50">
               <span className="flex items-center space-x-4">
                 <span className="flex-1 flex space-x-2 truncate">
                   <CashIcon
-                    className="flex-shrink-0 h-5 w-5 text-gray-400"
+                    className="flex-shrink-0 h-5 w-5 text-blue-700"
                     aria-hidden="true"
                   />
                   <span className="flex flex-col text-gray-500 text-sm truncate">
-                    <span className="truncate">
-                      Payment by {detail.full_name}
-                    </span>
+                    <Link
+                      href={`/embassy-employee/reviewNoc/${detail.noc_documents}`}
+                    >
+                      <span className="truncate text-gray-700 font-medium cursor-pointer">
+                        Payment by {detail.full_name}
+                      </span>
+                    </Link>
                     <span>
-                      <span className="text-gray-900 font-medium">
+                      <span className="text-gray-500 font-medium">
                         {detail.travel_purpose_value}
                       </span>{' '}
                     </span>
@@ -44,10 +45,14 @@ const IssuedNocMobile = ({
                     </time>
                   </span>
                 </span>
-                <ChevronRightIcon
-                  className="flex-shrink-0 h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
+                <Link
+                  href={`/embassy-employee/reviewNoc/${detail.noc_documents}`}
+                >
+                  <ChevronRightIcon
+                    className="flex-shrink-0 h-5 w-5 text-blue-700"
+                    aria-hidden="true"
+                  />
+                </Link>
               </span>
             </a>
           </li>
@@ -59,12 +64,11 @@ const IssuedNocMobile = ({
         aria-label="Pagination"
       >
         <div className="flex-1 flex justify-between">
-          <a
-            href="#"
-            className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-100 bg-blue-700 hover:bg-blue-80"
-          >
-            View all
-          </a>
+          <Link href="/embassy-employee/nocDocList">
+            <span className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-cyan-700 hover:text-cyan-900">
+              View all
+            </span>
+          </Link>
         </div>
       </nav>
     </div>

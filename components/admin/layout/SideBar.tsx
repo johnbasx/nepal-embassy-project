@@ -1,6 +1,7 @@
 import {
   CalendarIcon,
   ChartBarIcon,
+  ClipboardListIcon,
   CreditCardIcon,
   FolderIcon,
   HomeIcon,
@@ -11,6 +12,7 @@ import {
 import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
 
+import { CashIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -23,21 +25,21 @@ const navigation = [
     current: true,
   },
   {
-    name: 'Registered for NOC list',
+    name: 'Registered users',
     href: '/embassy-employee/citizens-registered-for-noc',
-    icon: HomeIcon,
+    icon: UsersIcon,
     current: true,
   },
   {
     name: 'Applied NOC List',
     href: '/embassy-employee/nocDocList',
-    icon: UsersIcon,
+    icon: ClipboardListIcon,
     current: false,
   },
   {
     name: 'NOCs with payment',
     href: '/embassy-employee/noc-with-payments',
-    icon: CreditCardIcon,
+    icon: CashIcon,
     current: false,
   },
   {

@@ -7,12 +7,11 @@ import IssuedNocMobile from '@components/admin/home/IssuedNocMobile';
 import IssuedNocs from '@components/admin/home/IssuedNocs';
 import { IssuedNocsProps } from '@components/admin/home/IssuedNocs';
 import IssuedNocsWrap from '@components/admin/home/IssuedNocsWrap';
+import { NocWithPaymentProps } from './noc-with-payments';
 import OverViewCard from '@components/admin/home/OverViewCard';
 import RecentPaidNoc from '@components/admin/home/RecentPaidNoc';
 import authStore from '@store/adminAuthStore';
 import { nocDocumentType } from '@utils/interface';
-
-// import { NocDetailTypes } from '@components/admin/userList/UserListTable';
 
 export default function Example() {
   const { token } = authStore();
@@ -20,9 +19,9 @@ export default function Example() {
   const [recentlyIssuedNocs, setRecentlyIssuedNocs] = useState<
     IssuedNocsProps[]
   >([]);
-  const [recentlyPaidNocs, setRecentlyPaidNocs] = useState<nocDocumentType[]>(
-    []
-  );
+  const [recentlyPaidNocs, setRecentlyPaidNocs] = useState<
+    NocWithPaymentProps[]
+  >([]);
 
   const getOverview = async () => {
     const data = await FetchData(token, BASE_URL + 'getDataOverview');
@@ -48,7 +47,7 @@ export default function Example() {
     <div className="px-8">
       <main className="flex-1 pb-8">
         <div className="mt-8">
-          <div className=" mx-auto px-4 sm:px-6 lg:px-0">
+          <div className=" mx-auto px-0 sm:px-0 lg:px-0">
             <div className="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {dataOverview?.map((data) => (
                 <OverViewCard
@@ -68,7 +67,7 @@ export default function Example() {
             ))}
           </IssuedNocsWrap>
 
-          <RecentPaidNoc />
+          <RecentPaidNoc recentlyPaidNocs={recentlyPaidNocs} />
         </div>
       </main>
     </div>

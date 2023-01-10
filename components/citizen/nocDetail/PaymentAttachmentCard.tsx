@@ -1,4 +1,4 @@
-import { IMAGE_BASE_URL, updateNocDocumentFile } from '@content/api-urls';
+import { BASE_URL, IMAGE_BASE_URL } from '@content/api-urls';
 import { RiAttachment2, RiEyeLine } from 'react-icons/ri';
 
 import { PaymentVerifyStatus } from 'hooks/useFileStatus';
@@ -69,7 +69,7 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
             <p className="text-gray-500">
               Uploaded on:
               <span className="ml-1 font-medium text-gray-700">
-                {detail.created_at}
+                {detail.payment_upload_date}
               </span>
             </p>
           )}
@@ -77,7 +77,7 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
           <div className="flex items-center justify-end space-x-3">
             {detail?.upload_payment_screen_shot && (
               <UploadFile
-                url={updateNocDocumentFile + detail.id}
+                url={BASE_URL + 'uploadPaymentScreenShot/' + detail.id}
                 getContent={detail.getNocDocumentDetail}
                 uploadFor="Document"
                 label="Payment Screenshot"

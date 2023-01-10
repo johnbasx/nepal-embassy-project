@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { BASE_URL } from '@content/api-urls';
 import { FetchData } from '@utils/fetcher';
 import Link from 'next/link';
-import authStore from '@store/adminAuthStore';
 import { VerificationStatus } from 'hooks/useFileStatus';
+import authStore from '@store/adminAuthStore';
 
 export interface NocWithPaymentProps {
   id: string;
@@ -14,6 +14,7 @@ export interface NocWithPaymentProps {
   travel_purpose_value: string;
   payment_screen_shot: string;
   payment_verified: string;
+  payment_upload_date: string;
 }
 
 const NocWithPayments = () => {
@@ -26,11 +27,17 @@ const NocWithPayments = () => {
     const url = BASE_URL + 'getNocWithPayment';
     const getNocWithPayment = async () => {
       const data = await FetchData(token, url);
+      // console.log(data);
+
       setnocWithPayments(data.results);
     };
 
     getNocWithPayment();
   }, []);
+
+  useEffect(() => {
+    console.log(nocWithPayments);
+  }, [nocWithPayments]);
 
   return (
     <div className="flex flex-col m-8">

@@ -49,6 +49,7 @@ export interface nocDocumentType {
   upload_payment_screen_shot: boolean;
   payment_screen_shot: string;
   payment_verified: string;
+  payment_upload_date: string;
   noc_profile: string;
   verified_by?: any;
 }
