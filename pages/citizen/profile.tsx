@@ -4,29 +4,29 @@ import React, { useEffect, useState } from 'react';
 import { getUserProfile, updateUserProfile } from '@content/api-urls';
 import toast, { Toaster } from 'react-hot-toast';
 
+import Footer from '@components/citizen/layout/Footer';
 import Loading from '@components/common/Loading';
 import type { NextPage } from 'next';
 import PersonalInfo from '@components/citizen/profile/PersonalInfo';
 import authStore from '@store/useAuthStore';
 import pageTitleStore from '../../store/selectUsersStore';
-import Footer from '@components/citizen/layout/Footer';
 
 export interface UserDetailProps {
   id: string;
   full_name: string;
   email: string;
-  contact_number?: string;
-  dob?: string;
+  contact_number: string;
+  dob: string;
   profile_photo?: any;
   age?: number;
   gender: string;
-  profession?: string;
+  profession: string;
   qualification?: string;
   fathers_name?: string;
   mothers_name?: string;
   fathers_qualification?: string;
   mothers_qualification?: any;
-  created_at: Date;
+  created_at: string;
   user: number;
 }
 

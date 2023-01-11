@@ -1,26 +1,22 @@
-import React, { useEffect, useState } from 'react';
-
-import Button from '@components/common/Button';
-import DropdownMenu from '@components/common/DropdownMenu';
-import Link from 'next/link';
-import moment from 'moment';
-import { useRouter } from 'next/router';
-import Pages from '@components/admin/pagination/Pages';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
-import PageNumber from '../pagination/PageNumber';
-import { classNames } from '@utils/helpers';
-import { BsThreeDots } from 'react-icons/bs';
-import VerifiedStatus from './VerifiedStatus';
-import { NocDetailTypes } from '@utils/interface';
-import useSelectAll from 'hooks/useSelectAll';
 import {
-  TableCellHead,
-  tableHeaders,
-  TableCellBody,
-  TableCellWrapper,
   TableAllSelector,
+  TableCellBody,
+  TableCellHead,
+  TableCellWrapper,
   TableIndividualSelector,
+  tableHeaders,
 } from './TableComponents';
+
+import { BsThreeDots } from 'react-icons/bs';
+import { NocDetailTypes } from '@utils/interface';
+import PageNumber from '../pagination/PageNumber';
+import Pages from '@components/admin/pagination/Pages';
+import React from 'react';
+import VerifiedStatus from './VerifiedStatus';
+import { classNames } from '@utils/helpers';
+import moment from 'moment';
+import useSelectAll from 'hooks/useSelectAll';
 
 const UserListTable: React.FC<{
   nocRegisteredCitizen: NocDetailTypes[];
@@ -29,7 +25,6 @@ const UserListTable: React.FC<{
   nextPage: string;
   prevPage: string;
 }> = ({ nocRegisteredCitizen, loadNextPage, total, nextPage, prevPage }) => {
-  const router = useRouter();
   const { selectAll, setSelectedUsers, onChangeHandler, selectedUsers } =
     useSelectAll();
 
@@ -43,7 +38,7 @@ const UserListTable: React.FC<{
         <h2 className="font-semibold text-gray-800">
           Total -{' '}
           <span className="text-sm font-medium text-gray-500">
-            {total} Applications
+            {total} {total > 1 ? 'Applications' : 'Application'}
           </span>
         </h2>
       </header>
@@ -75,26 +70,42 @@ const UserListTable: React.FC<{
                   }}
                 >
                   <TableIndividualSelector list={list} />
-                  <TableCellBody data={list.full_name} unique docId={list.id} />
-                  <TableCellBody data={list.email} docId={list.id} />
-                  <TableCellBody data={list.travel_country} docId={list.id} />
-                  <TableCellBody data={list.travel_type} docId={list.id} />
+                  <TableCellBody
+                    data={list.full_name}
+                    unique
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
+                  <TableCellBody
+                    data={list.email}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
+                  <TableCellBody
+                    data={list.travel_country}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
+                  <TableCellBody
+                    data={list.travel_type}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
                   <TableCellBody
                     data={
                       Math.floor(moment().diff(list.dob, 'years', true)) +
                       ' years'
                     }
-                    docId={list.id}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
                   <TableCellBody
                     data={list.return_date ? list.return_date : '-'}
-                    docId={list.id}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
                   <TableCellBody
                     data={list.passport_number.toString()}
-                    docId={list.id}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
-                  <TableCellBody data={list.created_at} docId={list.id} />
+                  <TableCellBody
+                    data={list.created_at}
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
                   <TableCellWrapper>
                     <VerifiedStatus status={list.verified_status} />
                   </TableCellWrapper>
@@ -160,29 +171,6 @@ const UserListTable: React.FC<{
               </nav>
             </div>
           </div>
-
-          {/* <div className="flex justify-end p-4 space-x-6">
-            <button
-              type="button"
-              className="flex justify-center px-4 py-1 text-sm font-medium text-blue-700 border border-transparent rounded-md shadow-sm "
-              onClick={() => {
-                setSelectedUsers([]);
-                loadNextPage(prevPage);
-              }}
-            >
-              Prev
-            </button>
-            <button
-              type="button"
-              className="flex justify-center px-4 py-1 text-sm font-medium text-blue-700 border border-transparent rounded-md shadow-sm "
-              onClick={() => {
-                setSelectedUsers([]);
-                loadNextPage(nextPage);
-              }}
-            >
-              <span className="">Next</span>
-            </button>
-          </div> */}
         </div>
       </div>
     </div>

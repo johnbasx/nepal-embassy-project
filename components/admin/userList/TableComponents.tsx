@@ -1,7 +1,7 @@
 import Link from 'next/link';
+import { NocDetailTypes } from '@utils/interface';
 import { classNames } from '@utils/helpers';
 import useSelectAll from 'hooks/useSelectAll';
-import { NocDetailTypes } from '@utils/interface';
 
 export const tableHeaders = [
   'Name',
@@ -87,20 +87,20 @@ export const TableCellWrapper = ({
 
 export const TableCellBody = ({
   data,
-  docId,
+  link,
   unique = false,
   linkRedirect = true,
   children,
 }: {
   data: string;
-  docId: string;
+  link: string;
   unique?: boolean;
   linkRedirect?: boolean;
   children?: React.ReactNode;
 }) => {
   return (
     <TableCellWrapper>
-      <Link href={linkRedirect ? `/embassy-employee/reviewNoc/${docId}` : '#!'}>
+      <Link href={linkRedirect ? link : '#!'}>
         <div className="flex items-center">
           <div
             className={classNames(
