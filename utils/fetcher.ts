@@ -55,9 +55,13 @@ export const PostData = async (
   }
 };
 
-export const CreateUser = async (url: string, data: object) => {
+export const CreateUser = async (token: string | undefined , url: string, data: object) => {
   try {
-    const response = await axios.post(url, data);
+    const response = await axios.post(url, data, {
+      headers: {
+        authorization: 'Bearer ' + token
+      }
+    });
     console.log(response);
     return 1;
   } catch (e: any) {

@@ -1,8 +1,39 @@
-import FamilyProfileCard from './FamilyProfileCard';
-import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
+import { BASE_URL } from '@content/api-urls';
+import FamilyProfileCard from './FamilyProfileCard';
+import { FetchData } from '@utils/fetcher';
+import Link from 'next/link';
+import authStore from '@store/useAuthStore';
+
+export interface RelativeProfileProps {
+  id: string;
+  relationship: string;
+  full_name: string;
+  contact_number: string;
+  email: string;
+  dob: string;
+  gender: string;
+  profession: string;
+  qualification: string;
+  fathers_name: string;
+  mothers_name: string;
+  created_at: Date;
+  add_by: string;
+}
 const FamilyProfile = () => {
+  const { token } = authStore();
+  const [relatives, setRelatives] = useState<RelativeProfileProps[]>([]);
+
+  const getRelatives = async () => {
+    const data = await FetchData(token, BASE_URL + 'getRelatives');
+    console.log(data);
+    setRelatives(data);
+  };
+  useEffect(() => {
+    getRelatives();
+  }, []);
+
   return (
     <div className="flex flex-col px-6 py-6 mx-auto mt-4 bg-white border rounded-lg shadow lg:mx-0">
       <h2 className="text-2xl font-bold text-gray-900 sm:text-2xl">
@@ -13,7 +44,9 @@ const FamilyProfile = () => {
           <h2 className="text-lg font-semibold text-gray-900">
             Your Family Members
           </h2>
-          <FamilyProfileCard />
+          {relatives.map((relative, index) => (
+            <FamilyProfileCard {...relative} />
+          ))}
           <p className="text-sm font-normal text-gray-500">
             You can add profile for your family members if their age is below 15
             or above 60 or don&apos;t have access to a

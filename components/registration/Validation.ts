@@ -16,6 +16,7 @@ export interface RegisterFormTypes {
   profession: string;
   password: string;
   confirm_password: string;
+  simple_text_input: string;
 }
 
 const phoneRegExp =
@@ -103,4 +104,11 @@ export const RegistrationSchema = yup.object().shape({
     .max(32, 'Max password length is 32')
     .required('This field is required')
     .oneOf([yup.ref('password')], 'Passwords do not match!'),
+
+  relationship: yup
+    .string()
+    .matches(/^[A-Za-z ]*$/, 'Please enter a valid name')
+    .min(3, 'Enter a valid name')
+    .max(32, 'Enter a valid name')
+    .required("Mother's Name is required"),
 });
