@@ -9,12 +9,18 @@ import axios from 'axios';
 import { citizenNocDocumentList } from 'content/api-urls';
 import pageTitleStore from '../../store/selectUsersStore';
 
+export interface nocOwner {
+  full_name: string;
+  dob: string;
+  email: string;
+}
 export interface NocListType {
   id?: string;
   created_at?: string;
-  noc_type?: string;
+  travel_type?: string;
   verified_status?: string;
   payment_screen_shot?: string | null;
+  profile: nocOwner;
 }
 
 const GetNoc = () => {
@@ -29,6 +35,7 @@ const GetNoc = () => {
           authorization: 'Bearer ' + token,
         },
       });
+      // console.log(response);
       setNocList(response.data);
     } catch (e) {
       console.log(e);
@@ -41,8 +48,9 @@ const GetNoc = () => {
   }, []);
 
   const GetDocuments = ({
+    profile,
     verified_status,
-    noc_type,
+    travel_type,
     id,
     created_at,
     payment_screen_shot,
@@ -50,8 +58,9 @@ const GetNoc = () => {
     if (verified_status == '1') {
       return (
         <PendingNoc
+          profile={profile}
           nocId={id}
-          NocType={noc_type}
+          travel_type={travel_type}
           NocId={id}
           ApplyDate={created_at}
           paymentScreenShot={payment_screen_shot}
@@ -59,20 +68,31 @@ const GetNoc = () => {
       );
     } else if (verified_status == '3') {
       return (
-        <VerifiedNoc NocType={noc_type} NocId={id} ApplyDate={created_at} />
+        <VerifiedNoc
+          profile={profile}
+          travel_type={travel_type}
+          NocId={id}
+          ApplyDate={created_at}
+        />
       );
     } else if (verified_status == '2') {
       return (
-        <RejectedNoc NocType={noc_type} NocId={id} ApplyDate={created_at} />
+        <RejectedNoc
+          profile={profile}
+          travel_type={travel_type}
+          NocId={id}
+          ApplyDate={created_at}
+        />
       );
     } else return null;
   };
   const listItem = nocList.map((noc, index) => (
     <div key={index}>
       <GetDocuments
+        profile={noc.profile}
         verified_status={noc.verified_status}
         id={noc.id}
-        noc_type={noc.noc_type}
+        travel_type={noc.travel_type}
         created_at={noc.created_at}
         payment_screen_shot={noc.payment_screen_shot}
       />

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { getUserProfile, updateUserProfile } from '@content/api-urls';
 import toast, { Toaster } from 'react-hot-toast';
 
+import FamilyProfile from '@components/citizen/applyForNoc/FamilyProfile';
 import Footer from '@components/citizen/layout/Footer';
 import Loading from '@components/common/Loading';
 import type { NextPage } from 'next';
@@ -304,6 +305,8 @@ const Profile: NextPage = () => {
             <option key={'Profession-datalist' + index * 2}>{data}</option>
           ))}
         </datalist>
+
+        <FamilyProfile />
         <Footer />
       </div>
     </div>

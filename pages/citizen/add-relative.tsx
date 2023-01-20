@@ -1,8 +1,8 @@
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import {
   RegisterFormTypes,
-  RegistrationSchema,
-} from '@components/registration/Validation';
+  RelativeValidationSchema,
+} from '@components/registration/RelativeValidation';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { BASE_URL } from 'content/api-urls';
@@ -25,14 +25,13 @@ const Signup = () => {
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormTypes>({
     mode: 'onBlur',
-    resolver: yupResolver(RegistrationSchema),
+    resolver: yupResolver(RelativeValidationSchema),
   });
 
   const { token } = authStore();
   const router = useRouter();
 
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
-    console.log(data);
     const newdata = {
       ...data,
       contact_number: '+91' + data['contact_number'],
@@ -55,7 +54,7 @@ const Signup = () => {
       <Toaster />
       <div className="flex flex-col items-center px-4 py-6 mx-auto justify-top">
         <Form
-          buttonLabel="Add relative"
+          buttonLabel="Add relative data"
           register={register}
           handleSubmit={handleSubmit}
           onSubmit={submitHandler}
@@ -84,7 +83,7 @@ const Signup = () => {
             label="Relation"
             wrapperClass="mt-3 flex flex-col col-span-4"
             placeholder="Enter your relation"
-            error={errors.simple_text_input?.message}
+            error={errors.relationship?.message}
           />
           <Input
             name="fathers_name"

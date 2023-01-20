@@ -2,8 +2,8 @@ import { Combobox, Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect, useState } from 'react';
 import React, { Dispatch } from 'react';
 
+import { BASE_URL } from '@content/api-urls';
 import { SearchIcon } from '@heroicons/react/solid';
-import { searchCitizen } from '@content/api-urls';
 import useDebounce from 'hooks/useDebounce';
 import { useRouter } from 'next/router';
 
@@ -32,7 +32,9 @@ function classNames(...classes: any) {
 const Search: React.FC<{
   searchBar: boolean;
   setSearchBar: Dispatch<boolean>;
-}> = ({ searchBar, setSearchBar }) => {
+  searchApi: String;
+  link: string;
+}> = ({ searchBar, setSearchBar, searchApi, link }) => {
   const [query, setQuery] = useState('');
   const [citizens, setCitizens] = useState<citizenListType[]>([]);
 
@@ -44,11 +46,11 @@ const Search: React.FC<{
       if (query == '') {
         return;
       } else {
-        const data = await fetch(searchCitizen + debouncedSearch).then((res) =>
-          res.json()
+        const data = await fetch(BASE_URL + searchApi + debouncedSearch).then(
+          (res) => res.json()
         );
         setCitizens(data);
-        console.log(data);
+        // console.log(data);
       }
     };
     if (debouncedSearch) {
@@ -130,11 +132,7 @@ const Search: React.FC<{
                     {({ active }) => (
                       <div
                         onKeyDown={keyDownEvent}
-                        onClick={() =>
-                          router.push(
-                            `/embassy-employee/apply-noc/${citizen.id}`
-                          )
-                        }
+                        onClick={() => router.push(link + citizen.id)}
                         className={`space-x-1 px-4 py-2 cursor-pointer ${
                           active ? 'bg-indigo-600' : 'bg-white'
                         }`}

@@ -73,7 +73,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const returnValue = await Update(token, updateNocDocFile + file_id, {
       verification_status: '3',
     });
-    // console.log(returnValue);
+
     returnValue == 1
       ? toast.success('File approved!')
       : toast.error('Cannot approve file!');
@@ -85,7 +85,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const returnValue = await Update(token, BASE_URL + 'nocVerification', {
       doc_id: documentId,
     });
-    // console.log(returnValue);
+
     returnValue == 1
       ? toast.success('NOC approved')
       : toast.error('Please verify all files and Payment screenshot!');
@@ -96,7 +96,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const returnValue = await Update(token, updateNocDoc + documentId, {
       payment_verified: '3',
     });
-    // console.log(returnValue);
+
     returnValue == 1
       ? toast.success('Payment screenshot verified')
       : toast.error('Cannot verify Payment screenshot');
@@ -107,10 +107,10 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const res = await PostData(token, BASE_URL + 'approveToUploadPayment', {
       doc_id: noc_doc_id,
     });
-    if (res.response.data.status == 'success') {
+    if (res.response.data.success) {
       toast.success(res.response.data.message);
     } else {
-      toast.error('Cannot approved');
+      toast.error(res.response.data.message);
     }
   };
 
@@ -219,7 +219,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
           <div className="flex justify-end w-full p-4 mt-3 space-x-4">
             {!detail?.upload_payment_screen_shot && (
               <button
-                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600"
+                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
                 onClick={() => {
                   readyForPayment(detail?.id);
                 }}
@@ -228,19 +228,22 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               </button>
             )}
 
-            <button
-              onClick={() => {
-                approvedNocDocument();
-              }}
-              className="px-3 py-2 text-base font-medium text-white duration-150 bg-blue-500 rounded-md hover:bg-blue-600 tracking-wider"
-            >
-              Issue NOC
-            </button>
+            {detail?.upload_payment_screen_shot &&
+              detail.payment_verified === '3' && (
+                <button
+                  onClick={() => {
+                    approvedNocDocument();
+                  }}
+                  className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
+                >
+                  Issue NOC
+                </button>
+              )}
             <button
               onClick={() => {
                 setOpenNocModal(true);
               }}
-              className="px-3 py-2 text-base font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600 tracking-wider"
+              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
             >
               Reject NOC
             </button>

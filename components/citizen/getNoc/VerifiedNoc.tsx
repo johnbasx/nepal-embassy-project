@@ -1,20 +1,28 @@
 import { NocListType } from 'pages/citizen/get-noc';
 import React from 'react';
 import authStore from '@store/useAuthStore';
+import { nocOwner } from 'pages/citizen/get-noc';
 import { useRouter } from 'next/router';
 
 const VerifiedNoc: React.FC<{
-  NocType: NocListType['noc_type'];
+  profile: nocOwner;
+  travel_type: NocListType['travel_type'];
   NocId: NocListType['id'];
   ApplyDate: NocListType['created_at'];
-}> = ({ NocType, NocId, ApplyDate }) => {
+}> = ({ profile, travel_type, NocId, ApplyDate }) => {
   const router = useRouter();
   const { token } = authStore();
   return (
     <div className="flex w-full items-center justify-between divide-x-2 divide-dashed divide-slate-200 rounded-lg border bg-white py-4 px-4 shadow-md md:px-6">
       <div>
         <h3 className="">
-          NOC-Doc-{NocType}-{NocId}
+          <span className="capitalize">{profile.full_name}&nbsp;</span>
+          <span className="uppercase">{NocId?.slice(0, 8)}</span>{' '}
+          <span className="text-blue-700">
+            {' '}
+            &nbsp;
+            {travel_type} travel
+          </span>
         </h3>
         <p className="text-sm text-gray-500">Applied on {ApplyDate}</p>
         <div className="mt-4 flex items-center justify-start space-x-1 text-xs text-gray-500">

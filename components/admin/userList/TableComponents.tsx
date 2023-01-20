@@ -4,6 +4,7 @@ import { classNames } from '@utils/helpers';
 import useSelectAll from 'hooks/useSelectAll';
 
 export const tableHeaders = [
+  'id',
   'Name',
   'Email',
   'Travel Country',
@@ -12,7 +13,7 @@ export const tableHeaders = [
   'Return Date',
   'Passport No.',
   'Applied on',
-  'Status',
+  // 'Status',
 ];
 
 export const TableAllSelector = () => {
@@ -90,12 +91,14 @@ export const TableCellBody = ({
   link,
   unique = false,
   linkRedirect = true,
+  className = '',
   children,
 }: {
   data: string;
   link: string;
   unique?: boolean;
   linkRedirect?: boolean;
+  className?: string;
   children?: React.ReactNode;
 }) => {
   return (
@@ -105,6 +108,7 @@ export const TableCellBody = ({
           <div
             className={classNames(
               'font-medium',
+              className,
               unique ? 'text-blue-700' : ' text-gray-800'
             )}
           >

@@ -22,6 +22,7 @@ import LivingInIndia from '@components/travel/LivingInIndia';
 import LivingInIndiaFiles from '@components/citizen/apply-relative-noc/LivingInIndia';
 import Loading from '@components/common/Loading';
 import { NocFilesProps } from 'content/files-for-noc';
+import ProfileDetail from '@components/citizen/apply-relative-noc/profileDetail';
 import RespectiveFiles from '@components/citizen/apply-relative-noc/RespectiveFIles';
 import TravelVia from '@components/travel/TravelVia';
 import authStore from '@store/useAuthStore';
@@ -124,6 +125,7 @@ const ApplyRelativeNoc: React.FC<{ relativeId: string }> = ({ relativeId }) => {
         {/* Profile Details */}
         <div className="order-first py-4 bg-gray-100 lg:px-4 lg:py-10 md:m-0 md:order-last lg:col-span-2">
           {/* <ProfileDetail profile={profile} /> */}
+          <ProfileDetail relativeId={relativeId} />
         </div>
         <div className="order-last py-6 md:order-first lg:col-span-3 lg:py-10">
           <div className="mx-auto border rounded-lg lg:max-w-none border-gray-200/50">

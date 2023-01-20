@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
-import { useRouter } from 'next/router';
+import { NocFilesType, nocDocumentType } from '@utils/interface';
 import {
+  citizenNocDocumentDetail,
+  nocDocumentFiles,
   updateNocDocument,
   updateNocDocumentFile,
   uploadPaymentScreenShot,
-  citizenNocDocumentDetail,
-  nocDocumentFiles,
 } from 'content/api-urls';
-import { FetchData } from '@utils/fetcher';
-import { nocDocumentType, NocFilesType } from '@utils/interface';
-import authStore from '@store/useAuthStore';
+import toast, { Toaster } from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 
 import { CheckCircleIcon } from '@heroicons/react/outline';
-import { PaperClipIcon } from '@heroicons/react/solid';
-
-import pageTitleStore from '@store/selectUsersStore';
-import Footer from '@components/citizen/layout/Footer';
-import UploadFile from '@components/citizen/nocDetail/UploadFile';
-import DocAttachmentCard from '@components/citizen/nocDetail/DocAttachmentCard';
 import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
+import DocAttachmentCard from '@components/citizen/nocDetail/DocAttachmentCard';
+import { FetchData } from '@utils/fetcher';
+import Footer from '@components/citizen/layout/Footer';
 import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
+import { PaperClipIcon } from '@heroicons/react/solid';
 import PaymentAttachmentCard from '@components/citizen/nocDetail/PaymentAttachmentCard';
+import UploadFile from '@components/citizen/nocDetail/UploadFile';
+import authStore from '@store/useAuthStore';
+import pageTitleStore from '@store/selectUsersStore';
+import { useRouter } from 'next/router';
 
 const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -84,9 +83,9 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
         <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           {/* <FileViewer docs={docs} /> */}
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
-            <CitizenFields data={detail?.full_name} title="Full Name" />
-            <CitizenFields data={detail?.email} title="Email address" />
-            <CitizenFields data={detail?.dob} title="Date of birth" />
+            <CitizenFields data={detail?.profile.full_name} title="Full Name" />
+            <CitizenFields data={detail?.profile.email} title="Email address" />
+            <CitizenFields data={detail?.profile.dob} title="Date of birth" />
             <CitizenFields
               title="Application for"
               data={detail?.travel_purpose_value}

@@ -4,8 +4,8 @@
 export const BASE_URL = 'http://64.227.136.150/np/api/';
 export const IMAGE_BASE_URL = 'http://64.227.136.150';
 
-// export const BASE_URL = 'http://127.0.0.1:8000/np/api/';
-// export const IMAGE_BASE_URL = 'http://127.0.0.1:8000';
+// export const BASE_URL = 'http://127.0.0.1:8001/np/api/';
+// export const IMAGE_BASE_URL = 'http://127.0.0.1:8001';
 
 export const requestPasswordReset = BASE_URL + 'request-reset-email/';
 
@@ -36,7 +36,6 @@ export const loginUrl = BASE_URL + 'authentication';
 export const createUser = BASE_URL + 'createUser';
 export const userProfile = BASE_URL + 'getUserProfile';
 
-export const searchCitizen = BASE_URL + 'searchCitizen/?q=';
 export const nocDocList = BASE_URL + 'nocDocList';
 export const nocDocDetail = BASE_URL + 'nocDocDetail/';
 export const updateNocDoc = BASE_URL + 'updateNocDoc/';

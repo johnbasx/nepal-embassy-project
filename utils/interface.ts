@@ -1,3 +1,6 @@
+import { nocOwner } from 'pages/citizen/get-noc';
+import { profile } from 'console';
+
 export interface nocdataType {
   travelFrom: string;
   travelCountry: string;
@@ -26,6 +29,7 @@ export interface nocdataType {
 }
 
 export interface nocDocumentType {
+  profile: nocOwner;
   id: string;
   created_at: string;
   travel_date: string;
@@ -75,6 +79,7 @@ export interface DetailType {
 }
 
 export interface NocDetailTypes {
+  profile: nocOwner;
   id: string;
   full_name: string;
   email: string;

@@ -32,6 +32,7 @@
     "react-icons": "^4.7.1",
     "react-pdf": "^5.7.2",
     "react-qr-code": "^2.0.8",
+    "react-query": "^3.39.2",
     "yup": "^0.32.11",
     "zustand": "^4.1.1"
   },

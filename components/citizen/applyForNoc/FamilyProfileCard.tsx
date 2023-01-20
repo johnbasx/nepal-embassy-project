@@ -20,9 +20,11 @@ const FamilyProfileCard = ({ ...relative }: RelativeProfileProps) => {
           </div>
 
           <div className="text-gray-700">
-            <h3 className="text-lg font-medium cursor-pointer">
-              {relative.full_name}
-            </h3>
+            <Link href={`/citizen/relative-profile/${relative.id}`}>
+              <span className="text-lg font-medium cursor-pointer">
+                {relative.full_name}
+              </span>
+            </Link>
 
             <p className="text-sm text-gray-700">{relative.gender}</p>
 
@@ -45,7 +47,7 @@ const FamilyProfileCard = ({ ...relative }: RelativeProfileProps) => {
               <Link href={`/citizen/apply-relative-noc/${relative.id}`}>
                 <button
                   type="button"
-                  className="inline-flex items-center px-3 py-1 shadow-sm font-base rounded-2xl text-white hover:text-gray-900 bg-blue-600 hover:bg-gray-50 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 sm:text-xs"
+                  className="inline-flex items-center px-3 py-1 shadow-sm font-base rounded-md text-white hover:text-gray-900 bg-blue-600 hover:bg-gray-200 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 sm:text-xs"
                 >
                   Apply NOC
                 </button>

@@ -2,23 +2,25 @@ import Link from 'next/link';
 import { NocListType } from 'pages/citizen/get-noc';
 import React from 'react';
 import authStore from '@store/useAuthStore';
-import { useRouter } from 'next/router';
+import { nocOwner } from 'pages/citizen/get-noc';
 
 const PendingNoc: React.FC<{
+  profile: nocOwner;
   nocId: NocListType['id'];
-  NocType: NocListType['noc_type'];
+  travel_type: NocListType['travel_type'];
   NocId: NocListType['id'];
   ApplyDate: NocListType['created_at'];
   paymentScreenShot: NocListType['payment_screen_shot'];
-}> = ({ nocId, NocType, NocId, ApplyDate, paymentScreenShot }) => {
-  const router = useRouter();
+}> = ({ profile, nocId, travel_type, NocId, ApplyDate, paymentScreenShot }) => {
   const { token } = authStore();
   return (
     <div className="flex w-full items-center justify-between divide-x-2 divide-dashed divide-slate-200 rounded-lg border bg-white py-4 px-4 shadow-md md:px-6">
       <div className="pr-1">
         <Link href={`/citizen/noc-detail/${nocId}`}>
           <a>
-            NOC-Doc-{NocType}-{NocId}
+            {profile.full_name}-
+            <span className="uppercase">{NocId?.slice(0, 8)}</span>- NOC-Doc for{' '}
+            {travel_type} travel
           </a>
         </Link>
         <p className="text-sm text-gray-500">Applied on {ApplyDate}</p>

@@ -5,12 +5,11 @@ import { FetchData } from '@utils/fetcher';
 import Link from 'next/link';
 import { VerificationStatus } from 'hooks/useFileStatus';
 import authStore from '@store/adminAuthStore';
+import { nocOwner } from 'pages/citizen/get-noc';
 
 export interface NocWithPaymentProps {
   id: string;
-  full_name: string;
-  email: string;
-  dob: string;
+  profile: nocOwner;
   travel_purpose_value: string;
   payment_screen_shot: string;
   payment_verified: string;
@@ -85,11 +84,11 @@ const NocWithPayments = () => {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {nocWithPayments?.map((detail, index) => (
-                  <tr key={detail.email + index}>
+                  <tr key={detail.profile.email + index}>
                     <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                       <Link href={`/embassy-employee/reviewNoc/${detail.id}`}>
                         <a className="text-blue-700 cursor-pointer">
-                          {detail.full_name}
+                          {detail.profile.full_name}
                         </a>
                       </Link>
                     </td>
@@ -97,7 +96,7 @@ const NocWithPayments = () => {
                       {detail.travel_purpose_value}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                      {detail.email}
+                      {detail.profile.email}
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                       <VerificationStatus status={detail.payment_verified} />

@@ -71,12 +71,18 @@ const UserListTable: React.FC<{
                 >
                   <TableIndividualSelector list={list} />
                   <TableCellBody
-                    data={list.full_name}
+                    className="uppercase"
+                    data={list.id.slice(0, 8)}
                     unique
                     link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
                   <TableCellBody
-                    data={list.email}
+                    data={list.profile.full_name}
+                    unique
+                    link={`/embassy-employee/reviewNoc/${list.id}`}
+                  />
+                  <TableCellBody
+                    data={list.profile.email}
                     link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
                   <TableCellBody
@@ -89,8 +95,9 @@ const UserListTable: React.FC<{
                   />
                   <TableCellBody
                     data={
-                      Math.floor(moment().diff(list.dob, 'years', true)) +
-                      ' years'
+                      Math.floor(
+                        moment().diff(list.profile.dob, 'years', true)
+                      ) + ' years'
                     }
                     link={`/embassy-employee/reviewNoc/${list.id}`}
                   />
@@ -110,12 +117,12 @@ const UserListTable: React.FC<{
                     <VerifiedStatus status={list.verified_status} />
                   </TableCellWrapper>
 
-                  <TableCellWrapper>
+                  {/* <TableCellWrapper>
                     <button className="text-gray-400 rounded-full hover:text-gray-500">
                       <span className="sr-only">Menu</span>
                       <BsThreeDots className="w-5 h-5" />
                     </button>
-                  </TableCellWrapper>
+                  </TableCellWrapper> */}
                 </tr>
               ))}
               <tr className="h-28">

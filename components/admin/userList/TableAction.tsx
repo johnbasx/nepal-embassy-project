@@ -9,7 +9,6 @@ import Search from '../Search';
 
 // import { nocDocumentType } from '@utils/interface';
 
-
 // import { NocDetailTypes } from '@components/admin/userList/UserListTable';
 
 export const projects = [
@@ -101,7 +100,12 @@ const TableAction: React.FC<{
       </div>
 
       <div>
-        <Search searchBar={searchBar} setSearchBar={setSearchBar} />
+        <Search
+          searchBar={searchBar}
+          setSearchBar={setSearchBar}
+          searchApi="searchCitizen/?q="
+          link="/embassy-employee/apply-noc/"
+        />
       </div>
       {/* <CommadPalette
         searchBar={searchBar}
