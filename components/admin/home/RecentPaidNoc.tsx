@@ -119,11 +119,11 @@ const RecentPaidNoc = ({
                       <td className="px-6 py-4 text-left whitespace-nowrap text-sm text-gray-500">
                         <Link href={`/embassy-employee/reviewNoc/${detail.id}`}>
                           <span className="text-blue-700 font-medium cursor-pointer">
-                            Payment by {detail.full_name}
+                            Payment by {detail.profile.full_name}
                           </span>
                         </Link>
                         <br />
-                        {detail.email}
+                        {detail.profile.email}
                       </td>
 
                       <td className="max-w-0 px-6 py-4 whitespace-nowrap text-sm text-gray-900">
