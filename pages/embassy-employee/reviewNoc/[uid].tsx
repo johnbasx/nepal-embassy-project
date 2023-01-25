@@ -6,12 +6,14 @@ import {
   updateNocDocFile,
 } from 'content/api-urls';
 import { FetchData, PostData, Update } from '@utils/fetcher';
+import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useEffect, useState } from 'react';
 
 import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
 import DocVerifyCard from '@components/admin/review/DocVerifyCard';
 import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
+import Link from 'next/link';
+import Loading from '@components/common/Loading';
 import MessageModal from '@components/admin/review/MessageModal';
 import { NocFilesType } from '@utils/interface';
 import NocMessageModal from '@components/admin/review/NocMessageModal';
@@ -32,6 +34,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const [open, setOpen] = useState(false);
   const [fileIdToReject, setFileIdToReject] = useState('');
   const [openNocModal, setOpenNocModal] = useState(false);
+  const [readyPayLoading, setReadyPayLoading] = useState(false);
 
   const getNocDocumentDetail = async () => {
     const data = await FetchData(token, nocDocDetail + documentId);
@@ -104,14 +107,19 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   };
 
   const readyForPayment = async (noc_doc_id: string | undefined) => {
+    setReadyPayLoading(true);
     const res = await PostData(token, BASE_URL + 'approveToUploadPayment', {
       doc_id: noc_doc_id,
     });
+    console.log(res.response.data);
     if (res.response.data.success) {
       toast.success(res.response.data.message);
     } else {
-      toast.error(res.response.data.message);
+      // toast.error(res.response.data.message);
+      toast.error('Cannot approved for payment');
     }
+    getNocDocumentDetail();
+    setReadyPayLoading(false);
   };
 
   return (
@@ -141,8 +149,11 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
         </div>
         <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
-            <CitizenFields data={detail?.full_name} title={'Full Name'} />
-            <CitizenFields data={detail?.email} title="Email address" />
+            <CitizenFields
+              data={detail?.profile.full_name}
+              title={'Full Name'}
+            />
+            <CitizenFields data={detail?.profile.email} title="Email address" />
             <CitizenFields title="Date of birth" data="12/10/1998" />
             <CitizenFields
               title="Application for"
@@ -192,6 +203,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                 <ul role="list">
                   {nocFiles?.map((file, index) => (
                     <DocVerifyCard
+                      docStatus={detail?.verified_status}
                       getNocDocumentDetail={getNocDocumentDetail}
                       approvedFile={approvedFile}
                       setFileIdToReject={setFileIdToReject}
@@ -216,43 +228,70 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               </dd>
             </div>
           </dl>
-          <div className="flex justify-end w-full p-4 mt-3 space-x-4">
-            {!detail?.upload_payment_screen_shot && (
-              <button
-                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
-                onClick={() => {
-                  readyForPayment(detail?.id);
-                }}
-              >
-                Ready for payment
-              </button>
-            )}
-
-            {detail?.upload_payment_screen_shot &&
-              detail.payment_verified === '3' && (
-                <button
-                  onClick={() => {
-                    approvedNocDocument();
-                  }}
-                  className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
-                >
-                  Issue NOC
-                </button>
+          {detail?.verified_status === '2' ? (
+            <div className="flex justify-end p-2 mt-1 font-medium text-gray-800">
+              This document has been&nbsp;{' '}
+              <span className="text-red-500 font-bold">rejected</span>
+            </div>
+          ) : (
+            <div className="flex justify-end w-full p-4 mt-3 space-x-4">
+              {!detail?.upload_payment_screen_shot && (
+                <>
+                  {readyPayLoading ? (
+                    <LoadingButton btnWidth="w-32" />
+                  ) : (
+                    <button
+                      className="w-32 px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
+                      onClick={() => {
+                        readyForPayment(detail?.id);
+                      }}
+                    >
+                      Ready for payment
+                    </button>
+                  )}
+                </>
               )}
-            <button
-              onClick={() => {
-                setOpenNocModal(true);
-              }}
-              className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
-            >
-              Reject NOC
-            </button>
-          </div>
+
+              {detail?.upload_payment_screen_shot &&
+                detail.payment_verified === '3' &&
+                detail?.verified_status != '3' && (
+                  <button
+                    onClick={() => {
+                      approvedNocDocument();
+                    }}
+                    className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
+                  >
+                    Issue NOC
+                  </button>
+                )}
+
+              <button
+                onClick={() => {
+                  setOpenNocModal(true);
+                }}
+                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+              >
+                Reject NOC
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
 };
+
+const LoadingButton: React.FC<{ btnWidth: string }> = ({ btnWidth }) => {
+  return (
+    <button
+      className={`px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700 flex justify-center ${btnWidth}`}
+    >
+      <Loading />
+      Loading
+    </button>
+  );
+};
+
 export default CitizenProfile;
 export async function getServerSideProps(context: any) {
   const { uid } = context.params;

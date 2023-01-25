@@ -279,7 +279,7 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                 />
               </div>
             </div>
-            <div className="flex items-center justify-end px-2 pb-6">
+            <div className="flex items-center justify-end px-2 py-6">
               {!relProfileUpdate.isLoading ? (
                 <button
                   onClick={(e) => updateRelativeHandler(e)}

@@ -75,14 +75,15 @@ const PaymentAttachmentCard = ({ ...detail }: PaymentAttachmentCardProps) => {
           )}
 
           <div className="flex items-center justify-end space-x-3">
-            {detail?.upload_payment_screen_shot && (
-              <UploadFile
-                url={BASE_URL + 'uploadPaymentScreenShot/' + detail.id}
-                getContent={detail.getNocDocumentDetail}
-                uploadFor="Document"
-                label="Payment Screenshot"
-              />
-            )}
+            {detail?.upload_payment_screen_shot &&
+              detail.payment_screen_shot == null && (
+                <UploadFile
+                  url={BASE_URL + 'uploadPaymentScreenShot/' + detail.id}
+                  getContent={detail.getNocDocumentDetail}
+                  uploadFor="Document"
+                  label="Payment Screenshot"
+                />
+              )}
             {detail?.payment_screen_shot != null ||
             detail?.payment_verified == '3' ? (
               <a

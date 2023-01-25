@@ -17,7 +17,9 @@ const HeadingUserDetails = ({ ...detail }: HeadingUserDetailsProps) => {
       <div className="py-2 space-y-1 text-sm text-blue-700">
         <div className="flex items-center space-x-2">
           <BiUser className="w-4 h-4" />
-          <span>{detail?.full_name + ' (' + detail?.email + ') '}</span>
+          <span>
+            {detail.profile?.full_name + ' (' + detail.profile?.email + ') '}
+          </span>
         </div>
         <div className="flex items-center space-x-2">
           <TbPlaneDeparture className="w-4 h-4" />

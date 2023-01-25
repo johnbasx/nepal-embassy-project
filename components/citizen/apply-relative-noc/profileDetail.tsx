@@ -102,7 +102,7 @@ const ProfileDetail = ({ relativeId }: { relativeId: string }) => {
       {router.pathname.includes('/citizen/') && (
         <p className="mt-6 text-sm text-gray-500">
           Need changes?{' '}
-          <Link href="/citizen/profile">
+          <Link href={'/citizen/relative-profile/' + relativeId}>
             <a className="font-medium text-blue-600 underline hover:text-blue-700">
               Update here
             </a>

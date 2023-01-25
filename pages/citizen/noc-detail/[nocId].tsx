@@ -140,13 +140,12 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
                     />
                   ))}
 
-                  {/* {/* {nocFiles?.map((file) => (
-                    <DocAttachments key={file.id} {...file} />
-                  ))} */}
-                  <PaymentAttachmentCard
-                    {...detail}
-                    getNocDocumentDetail={getNocDocumentDetail}
-                  />
+                  {detail?.upload_payment_screen_shot && (
+                    <PaymentAttachmentCard
+                      {...detail}
+                      getNocDocumentDetail={getNocDocumentDetail}
+                    />
+                  )}
                 </ul>
               </dd>
             </div>

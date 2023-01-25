@@ -25,6 +25,7 @@ const LivingInIndia: React.FC<{
               className="form-control"
               type="file"
               id="offer-letter"
+              accept="application/msword, text/plain, application/pdf, .doc, .docx, .txt, application/docx, image/*"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 if (e.target.files != null) {
                   setNocFiles({

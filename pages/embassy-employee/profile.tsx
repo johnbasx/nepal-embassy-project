@@ -7,6 +7,7 @@ import {
 } from '@content/api-urls';
 import React, { Fragment, useEffect, useRef, useState } from 'react';
 
+import CreatePin from '@components/admin/emp-profile/CreatePin';
 import Image from 'next/image';
 import authStore from '@store/adminAuthStore';
 import { profile } from 'console';
@@ -105,17 +106,12 @@ const Profile = () => {
             className="lg:col-start-3 lg:col-span-1"
           >
             <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
-              <div className="mt-6 flex flex-col justify-stretch">
-                {/* <button
-                  type="button"
-                  className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Upload Signature
-                </button> */}
+              <div className="mt-6 flex flex-col justify-center space-y-4 ">
                 <UploadSignature
                   getProfile={getProfile}
                   profileId={profile?.id}
                 />
+                <CreatePin />
               </div>
             </div>
           </section>

@@ -28,15 +28,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   if (router.pathname.includes(admin_root_path)) {
     return (
-      <AdminLayout>
-        <Head>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-          />
-        </Head>
-        <Component {...pageProps} />
-      </AdminLayout>
+      <QueryClientProvider client={queryClient}>
+        <AdminLayout>
+          <Head>
+            <meta
+              name="viewport"
+              content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+            />
+          </Head>
+          <Component {...pageProps} />
+        </AdminLayout>
+      </QueryClientProvider>
     );
   } else if (router.pathname.includes(citizen_root_path)) {
     return (

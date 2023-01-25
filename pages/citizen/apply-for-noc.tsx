@@ -15,13 +15,15 @@ import {
   nepalDistricts,
   provinces,
 } from 'content/drop-down-items';
-import { dateFormatter, todayDateSetter, addYears } from '@utils/helpers';
+import { addYears, dateFormatter, todayDateSetter } from '@utils/helpers';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { CheckTravelPurpose } from '@utils/applyNoc';
 import CommonFiles from '@components/citizen/applyForNoc/CommonFiles';
 import { Countries } from 'content/drop-down-items';
+import FamilyProfile from '@components/citizen/applyForNoc/FamilyProfile';
 import { FetchData } from '@utils/fetcher';
+import Footer from '@components/citizen/layout/Footer';
 import GulfAirportSelect from '@components/travel/GulfAiportSelect';
 import GulfSelect from '@components/travel/GulfSelect';
 import LivingInIndia from '@components/travel/LivingInIndia';
@@ -38,8 +40,6 @@ import { getUserProfile } from '@content/api-urls';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import { useRouter } from 'next/router';
-import Footer from '@components/citizen/layout/Footer';
-import FamilyProfile from '@components/citizen/applyForNoc/FamilyProfile';
 
 const NocRegistration = (page: NextComponentType) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -614,7 +614,7 @@ const LoadingButton = () => {
   return (
     <button
       type="button"
-      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 max-w-lg"
     >
       <Loading />
       Loading
