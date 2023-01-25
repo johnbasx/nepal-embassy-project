@@ -12,7 +12,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import CitizenFields from '@components/citizen/nocDetail/CitizenFields';
 import DocVerifyCard from '@components/admin/review/DocVerifyCard';
 import HeadingUserDetails from '@components/admin/review/HeadingUserDetails';
-import Link from 'next/link';
+import IssueNoc from '@components/admin/review/IssueNoc';
 import Loading from '@components/common/Loading';
 import MessageModal from '@components/admin/review/MessageModal';
 import { NocFilesType } from '@utils/interface';
@@ -46,23 +46,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
     const data = await FetchData(token, nocDocFiles + documentId);
     // console.log(data);
     setNocFiles(data);
-    // console.log(data);
   };
-
-  const [allFilesState, setAllFilesState] = useState(false);
-  useEffect(() => {
-    function filesCheck() {
-      // let fileState = false;
-
-      return nocFiles?.every((file) => {
-        file.verification_status == '3';
-      });
-
-      // return fileState;
-    }
-    // setAllFilesState(filesCheck());
-    // console.log(filesCheck());
-  }, [nocFiles]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -82,17 +66,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       : toast.error('Cannot approve file!');
     getNocDocumentFiles();
     setIsLoading(false);
-  };
-
-  const approvedNocDocument = async () => {
-    const returnValue = await Update(token, BASE_URL + 'nocVerification', {
-      doc_id: documentId,
-    });
-
-    returnValue == 1
-      ? toast.success('NOC approved')
-      : toast.error('Please verify all files and Payment screenshot!');
-    getNocDocumentDetail();
   };
 
   const approvePaymentScreenshot = async () => {
@@ -140,9 +113,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
       <div className="mx-4 mt-4 mb-6 overflow-hidden bg-white shadow sm:rounded-2xl">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
           <HeadingUserDetails {...detail} />
-          {/* {nocButtonStatus(detail?.verified_status)} */}
-
-          {/* {nocDocStatus(detail?.verified_status)} */}
           {detail?.verified_status && (
             <NocStatusPill verified_status={detail?.verified_status} />
           )}
@@ -211,10 +181,6 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                       {...file}
                       key={'doc file' + index + file.id}
                     />
-                    // <DocAttachments
-                    //   key={'doc file' + index + file.id}
-                    //   {...file}
-                    // />
                   ))}
                   {detail?.payment_screen_shot != null && (
                     <PaymentVerifyCard
@@ -255,24 +221,21 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               {detail?.upload_payment_screen_shot &&
                 detail.payment_verified === '3' &&
                 detail?.verified_status != '3' && (
-                  <button
-                    onClick={() => {
-                      approvedNocDocument();
-                    }}
-                    className="px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
-                  >
-                    Issue NOC
-                  </button>
+                  <IssueNoc
+                    documentId={documentId}
+                    getNocDocumentDetail={getNocDocumentDetail}
+                  />
                 )}
-
-              <button
-                onClick={() => {
-                  setOpenNocModal(true);
-                }}
-                className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
-              >
-                Reject NOC
-              </button>
+              {detail?.verified_status != '3' && (
+                <button
+                  onClick={() => {
+                    setOpenNocModal(true);
+                  }}
+                  className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+                >
+                  Reject NOC
+                </button>
+              )}
             </div>
           )}
         </div>

@@ -2,9 +2,10 @@ import { Dialog, Transition } from '@headlessui/react';
 import React, { Fragment, useRef, useState } from 'react';
 import { Update, UpdateHandler } from '@utils/fetcher';
 
+import { RiUploadCloud2Line } from 'react-icons/ri';
 import authStore from '@store/useAuthStore';
 import { toast } from 'react-hot-toast';
-import { RiUploadCloud2Line } from 'react-icons/ri';
+
 export interface UploadFileProps {
   url: string;
   getContent: () => void;
@@ -118,6 +119,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
                                   className="form-control"
                                   type="file"
                                   id="file"
+                                  accept="application/msword, text/plain, application/pdf, .doc, .docx, .txt, application/docx, image/*"
                                   onChange={(
                                     e: React.ChangeEvent<HTMLInputElement>
                                   ) => {
