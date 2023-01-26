@@ -111,6 +111,23 @@ export interface NocFilesType {
   verified_by: number;
 }
 
+export interface NOCType {
+  id: string;
+  full_name: string;
+  travel_from: string;
+  travel_country: string;
+  reference_number: number;
+  verified_on: string;
+  letter_head: string;
+  letter_body: string;
+  letter_ending: string;
+  signed_by: string;
+  noc_documents: string;
+  passport: number;
+  signature: string;
+  verified_by: string;
+}
+
 export interface CityType {
   city: string;
   post_code: string;

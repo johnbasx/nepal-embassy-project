@@ -25,7 +25,7 @@ const GetNocCard = ({ ...detail }: NocDetailsProps) => {
   const { token } = authStore();
 
   return (
-    <article className="p-3 bg-white border border-blue-100 rounded-xl sm:p-4">
+    <article className="p-3 bg-white border border-slate-200 rounded-xl sm:p-4">
       {/* <Link href={`/citizen/noc-detail/${detail.id}`}> */}
       <div className="flex items-start space-x-3">
         <div className="flex items-center justify-center py-1">
@@ -79,7 +79,7 @@ const GetNocCard = ({ ...detail }: NocDetailsProps) => {
               <Link href={`/citizen/noc-detail/${detail.id}`}>
                 <button
                   type="button"
-                  className="inline-flex items-center space-x-1 px-3 py-1.5 text-sm font-medium text-gray-600 transition duration-150 bg-gray-200 rounded-md shadow-sm hover:text-gray-700 hover:bg-gray-300 focus:outline-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 disabled:bg-slate-300 disabled:text-slate-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center px-3 py-2 space-x-1 text-sm font-medium text-gray-600 transition duration-150 bg-gray-200 rounded-md shadow-sm hover:text-gray-700 hover:bg-gray-300 focus:outline-gray-300 focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 disabled:bg-slate-300 disabled:text-slate-50 disabled:cursor-not-allowed"
                 >
                   <TbEye className="w-4 h-4" />
                   <span>View</span>
@@ -89,18 +89,18 @@ const GetNocCard = ({ ...detail }: NocDetailsProps) => {
                 onClick={() => {
                   router.push(
                     {
-                      pathname: '/citizen/download-noc',
+                      pathname: '/citizen/generate-noc',
                       query: {
                         nocId: detail.id,
                         token: token,
                       },
                     },
-                    '/citizen/download-noc'
+                    '/citizen/generate-noc'
                   );
                 }}
                 type="button"
                 disabled={detail?.verified_status == '3' ? false : true}
-                className="inline-flex items-center space-x-1 px-3 py-1.5 text-sm font-medium text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center px-3 py-2 space-x-1 text-sm font-medium text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
               >
                 <span>Download NOC</span>
                 <TbArrowRight className="w-4 h-4 text-white" />
