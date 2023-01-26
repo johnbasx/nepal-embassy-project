@@ -1,6 +1,6 @@
-import React, { FC, createElement } from "react";
-import { ReactNode } from "react";
-import Spinner from "./Spinner";
+import React, { FC, createElement } from 'react';
+import { ReactNode } from 'react';
+import Spinner from './Spinner';
 
 export type classNameType = string;
 export type childrenType = ReactNode;
@@ -18,7 +18,7 @@ export interface IFormProps {
 
 const Form: FC<IFormProps> = ({
   defaultValues,
-  buttonLabel = "Submit",
+  buttonLabel = 'Submit',
   children,
   onSubmit,
   handleSubmit,
@@ -43,10 +43,10 @@ const Form: FC<IFormProps> = ({
             })
           : children}
       </div>
-      <button className="mt-5 text-white appearance-none focus:ring-2 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-400 w-full inline-flex items-center justify-center">
+      <button className="mt-8 text-white appearance-none focus:ring-2 font-medium rounded-lg max-w-lg mx-auto text-sm px-4 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-400 w-full inline-flex items-center justify-center">
         {loading ? (
           <span>
-            <Spinner className="h-4 w-4 p-0 mr-2" />
+            <Spinner className="w-4 h-4 p-0 mr-2" />
             Loading...
           </span>
         ) : (

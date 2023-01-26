@@ -46,7 +46,7 @@ const FamilyProfileCard = ({ ...relative }: RelativeProfileProps) => {
             <Link href={`/citizen/apply-relative-noc/${relative.id}`}>
               <button
                 type="button"
-                className="inline-flex items-center px-3 py-1 text-white bg-blue-600 rounded-md shadow-sm font-base hover:text-gray-900 hover:bg-gray-200 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 sm:text-xs"
+                className="inline-flex items-center px-3 py-1.5 text-white bg-blue-600 rounded-md shadow-sm font-base hover:bg-blue-700 hover:text-white focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 sm:text-xs transition duration-150"
               >
                 Apply NOC
               </button>

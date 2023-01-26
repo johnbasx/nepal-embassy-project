@@ -69,7 +69,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="full_name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Full name
+                  Full name{' '}
+                  <span className="text-xs font-normal text-red-500">
+                    (required)*
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -91,7 +94,7 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  email
+                  Email
                 </label>
                 <input
                   type="email"
@@ -107,6 +110,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                     })
                   }
                 />
+                <span className="leading-snug text-gray-500 text-2xs">
+                  Please provide email for the registered user if the email for
+                  the applicant is not available
+                </span>
               </div>
               <div className="col-span-12 sm:col-span-6">
                 <label
@@ -134,6 +141,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                     }
                   />
                 </div>
+                <span className="leading-snug text-gray-500 text-2xs">
+                  Please provide contact number for the registered user if the
+                  contact number for the applicant is not available
+                </span>
               </div>
 
               <div className="col-span-12 sm:col-span-6">
@@ -141,7 +152,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="profession"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Profession
+                  Profession{' '}
+                  <span className="text-xs font-normal text-gray-400">
+                    (optional)
+                  </span>
                 </label>
                 <input
                   type="profession"
@@ -165,7 +179,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="dob"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Date of Birth
+                  Date of Birth{' '}
+                  <span className="text-xs font-normal text-red-500">
+                    (required)*
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -189,7 +206,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="gender"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Gender
+                  Gender{' '}
+                  <span className="text-xs font-normal text-red-500">
+                    (required)*
+                  </span>
                 </label>
                 <select
                   id="gender"
@@ -218,7 +238,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="relation"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Relation
+                  Relation{' '}
+                  <span className="text-xs font-normal text-gray-400">
+                    (relationship with the registered user)
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -239,7 +262,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="father-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Father Name
+                  Father&apos; Name{' '}
+                  <span className="text-xs font-normal text-red-500">
+                    (required)*
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -261,7 +287,10 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
                   htmlFor="mother-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Mother Name
+                  Mother&apos; Name{' '}
+                  <span className="text-xs font-normal text-red-500">
+                    (required)*
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -283,9 +312,9 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
               {!relProfileUpdate.isLoading ? (
                 <button
                   onClick={(e) => updateRelativeHandler(e)}
-                  className="w-auto px-8 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+                  className="w-auto px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
                 >
-                  Save
+                  Save changes
                 </button>
               ) : (
                 <SavingButton />
@@ -302,10 +331,11 @@ const SavingButton = () => {
   return (
     <button
       type="button"
-      className="flex items-center justify-center w-auto px-4 py-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+      disabled
+      className="flex items-center justify-center w-auto px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md cursor-not-allowed hover:bg-blue-700"
     >
       <Loading />
-      Saving
+      Saving...
     </button>
   );
 };

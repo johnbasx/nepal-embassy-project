@@ -6,6 +6,8 @@ import { classNameType } from './Form';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
+  extraLabel?: React.ReactNode;
+  extraInfo?: React.ReactNode;
   error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
   register?: any;
   wrapperClass?: classNameType;
@@ -18,6 +20,8 @@ const PhoneInput: FC<InputProps> = ({
   name,
   error,
   label,
+  extraLabel,
+  extraInfo,
   wrapperClass,
   phone,
   ...rest
@@ -32,7 +36,7 @@ const PhoneInput: FC<InputProps> = ({
             error ? 'text-red-500 font-medium' : 'text-gray-700'
           )}
         >
-          {label}
+          {label} {extraLabel}
         </label>
       )}
       <div className="relative mt-1 rounded-lg">
@@ -42,7 +46,7 @@ const PhoneInput: FC<InputProps> = ({
         <input
           aria-invalid={error ? 'true' : 'false'}
           className={classNames(
-            'py-2 placeholder-gray-400 pl-16 sm:pl-14 focus:ring-2 -ring-offset-1 w-full outline-none rounded-lg border border-gray-300 bg-gray-100',
+            'py-2 placeholder-gray-400 pl-16 sm:pl-14 focus:ring-2 -ring-offset-1 w-full outline-none rounded-lg border border-gray-300 bg-gray-50',
             error
               ? 'border-red-500 focus:ring-red-300'
               : 'text-slate-900 border-gray-300 focus:ring-blue-300 focus:border-blue-500'
@@ -51,6 +55,7 @@ const PhoneInput: FC<InputProps> = ({
           {...rest}
         />
       </div>
+      {extraInfo}
       {error && (
         <span
           role="alert"
