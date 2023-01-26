@@ -13,6 +13,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import WithoutAuthLayout from '@components/common/Layout';
 import authStore from '@store/useAuthStore';
 import { useRouter } from 'next/router';
+import NextNProgress from 'nextjs-progressbar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (router.pathname.includes(admin_root_path)) {
     return (
       <QueryClientProvider client={queryClient}>
+        <NextNProgress />
         <AdminLayout>
           <Head>
             <meta
@@ -43,6 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   } else if (router.pathname.includes(citizen_root_path)) {
     return (
       <QueryClientProvider client={queryClient}>
+        <NextNProgress />
         <CitizenLayout>
           <Head>
             <meta
@@ -58,6 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   } else {
     return (
       <QueryClientProvider client={queryClient}>
+        <NextNProgress />
         <Component {...pageProps} />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
