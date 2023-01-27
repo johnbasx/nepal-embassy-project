@@ -21,9 +21,10 @@ import { PdfButtons } from './NocDownloadButton';
 
 export interface PDfGenProps extends NOCType {
   qrCodeValue: string;
+  allowDownload?: boolean;
 }
 
-const PDF = ({ ...data }: PDfGenProps) => {
+const PDF = ({ allowDownload = true, ...data }: PDfGenProps) => {
   // const printRef = useRef <React.>();
 
   const NocPage = () => (
@@ -60,7 +61,7 @@ const PDF = ({ ...data }: PDfGenProps) => {
 
   return (
     <div className="w-full max-w-2xl px-4 mx-auto book">
-      <PdfButtons />
+      {allowDownload && <PdfButtons />}
       <NocPage />
     </div>
   );
