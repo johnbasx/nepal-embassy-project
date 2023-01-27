@@ -6,6 +6,7 @@ import authStore from '@store/useAuthStore';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import pageTitleStore from '@store/selectUsersStore';
+import BreadCrums from '@components/breadcrum/BreadCrum';
 
 const Layout = ({ children }: any) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -31,7 +32,10 @@ const Layout = ({ children }: any) => {
       <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col min-h-screen md:pl-64 ">
         <HeadNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1 bg-gray-100">{children}</main>
+        <main className="flex-1 bg-gray-100">
+          {/* <BreadCrums /> */}
+          {children}
+        </main>
       </div>
     </div>
   );
