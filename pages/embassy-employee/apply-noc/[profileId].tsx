@@ -33,7 +33,6 @@ import pageTitleStore from '@store/selectUsersStore';
 const NocRegistration: React.FC<{ profileId: string }> = ({ profileId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { token } = authStore();
-  const { setPageTitle } = pageTitleStore();
 
   const [travelFrom, setTravelFrom] = useState('');
   const [travelVia, setTravelVia] = useState<string>('');
@@ -162,6 +161,8 @@ const NocRegistration: React.FC<{ profileId: string }> = ({ profileId }) => {
       setIsLoading(false);
     }
   };
+  const { setPageTitle } = pageTitleStore();
+
   useEffect(() => {
     setPageTitle('Apply for NOC');
   }, []);
