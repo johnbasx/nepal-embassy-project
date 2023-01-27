@@ -17,6 +17,8 @@ import authStore from '@store/useAuthStore';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
+import pageTitleStore from '@store/selectUsersStore';
+import { useEffect } from 'react';
 
 const Signup = () => {
   const {
@@ -49,6 +51,11 @@ const Signup = () => {
       router.push('/citizen/profile');
     } else toast.error('Could not add relative');
   };
+  const { setPageTitle } = pageTitleStore();
+
+  useEffect(() => {
+    setPageTitle('Add relative profile');
+  }, []);
 
   return (
     <>

@@ -10,6 +10,7 @@ import { RelativeProfileProps } from '@components/citizen/applyForNoc/FamilyProf
 import { UpdateHandler } from '@utils/fetcher';
 import authStore from '@store/useAuthStore';
 import axios from 'axios';
+import pageTitleStore from '@store/selectUsersStore';
 
 const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
   const { token } = authStore();
@@ -51,6 +52,11 @@ const RelativeProfile: React.FC<{ relativeId: string }> = ({ relativeId }) => {
     relProfileUpdate.mutate(dataToUpdate);
     setDataToUpdate({});
   };
+  const { setPageTitle } = pageTitleStore();
+  useEffect(() => {
+    setPageTitle('Relative Profile');
+  }, []);
+
   if (isLoading) return <p>Loading ...</p>;
   return (
     <>
