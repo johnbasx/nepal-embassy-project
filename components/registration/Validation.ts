@@ -105,10 +105,10 @@ export const RegistrationSchema = yup.object().shape({
     .required('This field is required')
     .oneOf([yup.ref('password')], 'Passwords do not match!'),
 
-  relationship: yup
-    .string()
-    .matches(/^[A-Za-z ]*$/, 'Please enter a valid name')
-    .min(3, 'Enter a valid name')
-    .max(32, 'Enter a valid name')
-    .required("Mother's Name is required"),
+  // relationship: yup
+  //   .string()
+  //   .matches(/^[A-Za-z ]*$/, 'Please enter a valid name')
+  //   .min(3, 'Enter a valid name')
+  //   .max(32, 'Enter a valid name')
+  //   .required("Mother's Name is required"),
 });

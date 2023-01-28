@@ -35,7 +35,7 @@ const Signup = () => {
   // const { token } = authStore();
   const router = useRouter();
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
-    // console.log(data);
+    console.log(data);
     // return new Promise((resolve) => {
     // setTimeout(async () => {
     const newdata = {
@@ -129,7 +129,7 @@ const Signup = () => {
 
           <Input
             name="dob"
-            type="date"
+            type="text"
             label="Date of birth"
             placeholder="Select DOB"
             min="1899-01-01"

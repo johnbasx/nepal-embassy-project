@@ -16,9 +16,9 @@ const Layout = ({ children }: any) => {
     }
   }, []);
 
-  // if (!token) {
-  //   return <></>;
-  // } else {
+  if (token == '') {
+    return <></>;
+  }
   return (
     <div className="overflow-hidden ">
       <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
