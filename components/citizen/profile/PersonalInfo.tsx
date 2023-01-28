@@ -184,9 +184,9 @@ const PersonalInfo: React.FC<PersonalInfoType> = ({
           {!saving ? (
             <button
               onClick={(e) => UpdateUserInfo(e)}
-              className="w-auto px-8 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+              className="w-auto px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
             >
-              Save
+              Save changes
             </button>
           ) : (
             <SavingButton />

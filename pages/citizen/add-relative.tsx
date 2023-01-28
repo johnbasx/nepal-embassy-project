@@ -16,6 +16,9 @@ import Select from '@components/registration/Select';
 import authStore from '@store/useAuthStore';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Image from 'next/image';
+import pageTitleStore from '@store/selectUsersStore';
+import { useEffect } from 'react';
 
 const Signup = () => {
   const {
@@ -48,40 +51,68 @@ const Signup = () => {
       router.push('/citizen/profile');
     } else toast.error('Could not add relative');
   };
+  const { setPageTitle } = pageTitleStore();
+
+  useEffect(() => {
+    setPageTitle('Add relative profile');
+  }, []);
 
   return (
     <>
       <Toaster />
       <div className="flex flex-col items-center px-4 py-6 mx-auto justify-top">
+        <div className="mb-3 text-xl font-semibold">
+          Add relative profile details
+        </div>
         <Form
           buttonLabel="Add relative data"
           register={register}
           handleSubmit={handleSubmit}
           onSubmit={submitHandler}
           loading={isSubmitting}
-          className="flex flex-col w-full max-w-lg px-4 py-2 bg-white rounded-lg md:p-8 justify-evenly sm:w-3/5 lg:w-1/2 xl:w-2/3 2xl:w-2/5"
+          className="flex flex-col w-full px-4 py-2 bg-white max-w-7xl rounded-xl md:p-8 justify-evenly"
         >
           <Input
             name="full_name"
             type="text"
             label="Full Name"
-            wrapperClass="col-span-4"
-            placeholder="Enter your full name"
+            extraLabel={requiredLabel}
+            wrapperClass="mt-3 md:mt-0 col-span-4 md:col-span-2"
+            placeholder="Enter full name"
             error={errors.full_name?.message}
           />
           <Input
             name="email"
             type="email"
             label="Email"
-            wrapperClass="mt-3 flex flex-col col-span-4"
-            placeholder="Enter your email"
+            extraLabel={requiredLabel}
+            extraInfo={extraEmailInfo}
+            wrapperClass="mt-3 md:mt-0 flex flex-col col-span-4 md:col-span-2"
+            placeholder="Enter email"
             error={errors.email?.message}
+          />
+          <div className="col-span-4 mt-3">
+            <h3 className="text-gray-700">
+              Please provide details of the registered user if the relative of
+              the person you are applying for(applicant) has no valid details
+              such as email or contact number.
+            </h3>
+          </div>
+          <PhoneInput
+            name="contact_number"
+            type="tel"
+            label="Contact Number"
+            extraLabel={requiredLabel}
+            wrapperClass="mt-3 col-span-4 md:col-span-2"
+            placeholder="9986670093"
+            error={errors.contact_number?.message}
           />
           <Input
             name="relationship"
             type="text"
             label="Relation"
-            wrapperClass="mt-3 flex flex-col col-span-4"
+            extraLabel={requiredRelationLabel}
+            wrapperClass="mt-3 flex flex-col col-span-4 lg:col-span-2"
             placeholder="Enter your relation"
             error={errors.relationship?.message}
           />
@@ -89,7 +120,8 @@ const Signup = () => {
             name="fathers_name"
             type="text"
             label="Father's Name"
-            wrapperClass="mt-3 col-span-4"
+            extraLabel={requiredLabel}
+            wrapperClass="mt-3 flex flex-col col-span-4 lg:col-span-2"
             placeholder="Enter your father's name"
             error={errors.fathers_name?.message}
           />
@@ -98,24 +130,17 @@ const Signup = () => {
             name="mothers_name"
             type="text"
             label="Mother's Name"
-            wrapperClass="mt-3 col-span-4"
+            extraLabel={requiredLabel}
+            wrapperClass="mt-3 col-span-4 md:col-span-2"
             placeholder="Enter your mother's name"
             error={errors.mothers_name?.message}
-          />
-
-          <PhoneInput
-            name="contact_number"
-            type="tel"
-            label="Contact Number"
-            wrapperClass="mt-3 col-span-4 md:col-span-2"
-            placeholder="9986670093"
-            error={errors.contact_number?.message}
           />
 
           <Input
             name="dob"
             type="date"
             label="Date of birth"
+            extraLabel={requiredLabel}
             placeholder="Select DOB"
             min="1899-01-01"
             max="2007-01-01"
@@ -130,6 +155,7 @@ const Signup = () => {
                 {...field}
                 options={Gender}
                 label="Gender"
+                extraLabel={requiredLabel}
                 error={errors.gender?.message}
               />
             )}
@@ -139,6 +165,7 @@ const Signup = () => {
             name="profession"
             type="text"
             label="Profession"
+            extraLabel={optionalLabel}
             // list="profession-list"
             placeholder="Enter profession"
             wrapperClass="mt-3 grid col-span-4 md:col-span-2"
@@ -180,13 +207,33 @@ const professions = [
   'Others',
 ];
 
+let requiredLabel = (
+  <span className="text-xs font-normal text-red-500">(required)*</span>
+);
+let requiredRelationLabel = (
+  <span className="text-xs font-normal text-red-500">
+    (required)* Relationship with the registered user
+  </span>
+);
+let optionalLabel = (
+  <span className="text-xs font-normal text-gray-400">(optional)</span>
+);
+let extraEmailInfo = (
+  <span className="mt-1 leading-snug text-gray-500 text-2xs">
+    Please provide email for the registered user if the email for the applicant
+    is not available.
+  </span>
+);
+
 // Registration Header
 const Heading = () => (
   <div className="px-4 py-6 text-center">
-    <img
+    <Image
       className="w-auto h-20 mx-auto"
       src="/images/logo-only.jpg"
       alt="Nepal Embassy Logo"
+      height={80}
+      width={80}
     />
     <h2 className="mt-4 text-lg font-medium text-gray-700">
       User Registration

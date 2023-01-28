@@ -4,10 +4,14 @@ import HeadNav from './HeadNav';
 import SideBar from './SideBar';
 import authStore from '@store/useAuthStore';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+import pageTitleStore from '@store/selectUsersStore';
 
 const Layout = ({ children }: any) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { token } = authStore();
+  const { title } = pageTitleStore();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -21,6 +25,9 @@ const Layout = ({ children }: any) => {
   }
   return (
     <div className="overflow-hidden ">
+      <Head>
+        <title>{title} | NOC - Embassy of Nepal</title>
+      </Head>
       <SideBar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col min-h-screen md:pl-64 ">
         <HeadNav sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

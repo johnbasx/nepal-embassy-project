@@ -1,12 +1,12 @@
 import create from 'zustand';
-import {devtools, persist} from 'zustand/middleware'
+import { devtools, persist } from 'zustand/middleware';
 
 interface pageState {
   title: string;
   setPageTitle: (title: string) => void;
 }
 const pageTitleStore = create<pageState>((set) => ({
-  title: '',
+  title: 'Embassy of Nepal - New Delhi',
   setPageTitle: (title) =>
     set((state) => ({
       ...state,

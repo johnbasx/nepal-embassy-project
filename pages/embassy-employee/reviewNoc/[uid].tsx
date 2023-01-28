@@ -197,7 +197,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
           {detail?.verified_status === '2' ? (
             <div className="flex justify-end p-2 mt-1 font-medium text-gray-800">
               This document has been&nbsp;{' '}
-              <span className="text-red-500 font-bold">rejected</span>
+              <span className="font-bold text-red-500">rejected</span>
             </div>
           ) : (
             <div className="flex justify-end w-full p-4 mt-3 space-x-4">

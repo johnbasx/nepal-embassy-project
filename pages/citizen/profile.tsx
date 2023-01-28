@@ -256,7 +256,7 @@ const Profile: NextPage = () => {
                   htmlFor="father-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Father Name
+                  Father&apos;s Name
                 </label>
                 <input
                   type="text"
@@ -273,7 +273,7 @@ const Profile: NextPage = () => {
                   htmlFor="mother-name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Mother Name
+                  Mother&apos;s Name
                 </label>
                 <input
                   type="text"
@@ -292,9 +292,9 @@ const Profile: NextPage = () => {
           {!updating ? (
             <button
               onClick={(e) => UpdateProfile(e)}
-              className="w-auto px-8 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+              className="w-auto px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
             >
-              Save
+              Save changes
             </button>
           ) : (
             <UpdatingButton />
@@ -317,7 +317,8 @@ const UpdatingButton = () => {
   return (
     <button
       type="button"
-      className="flex items-center justify-center w-auto px-4 py-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
+      disabled
+      className="flex items-center justify-center w-auto px-4 py-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md cursor-not-allowed hover:bg-blue-700"
     >
       <Loading />
       Saving

@@ -8,7 +8,13 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        '2xs': '0.65rem',
+        '2xs': [
+          '0.65rem',
+          {
+            lineHeight: '1rem',
+            letterSpacing: '-0.01em',
+          },
+        ],
         '3xs': '0.55rem',
       },
       colors: {
