@@ -36,9 +36,9 @@ const FamilyProfile = () => {
     getRelatives();
   }, []);
 
-  if (token == '') {
-    return <></>;
-  }
+  // if (token == '') {
+  //   return null;
+  // }
   return (
     <div className="flex flex-col px-6 py-6 mx-auto mt-4 bg-white border rounded-lg shadow lg:mx-0">
       <h2 className="text-2xl font-bold text-gray-900 sm:text-2xl">

@@ -5,21 +5,17 @@ import {
 } from '@components/registration/Validation';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { CreateUser } from '@utils/fetcher';
-import DatePicker from 'react-datepicker';
+import { BASE_URL } from 'content/api-urls';
 import Form from '@components/registration/Form';
 import { Gender } from '@content/drop-down-items';
 import Input from '@components/registration/Input';
 import Link from 'next/link';
 import PhoneInput from '@components/registration/PhoneInput';
 import Select from '@components/registration/Select';
-import authStore from '@store/adminAuthStore';
-import { createUser } from 'content/api-urls';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
 const Signup = () => {
   const {
     register,
@@ -32,26 +28,20 @@ const Signup = () => {
     resolver: yupResolver(RegistrationSchema),
   });
 
-  // const { token } = authStore();
   const router = useRouter();
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
-    console.log(data);
     // return new Promise((resolve) => {
     // setTimeout(async () => {
     const newdata = {
       ...data,
       contact_number: '+91' + data['contact_number'],
     };
-    // console.log(newdata);
-    const token = undefined;
-    const returnValue = await CreateUser(token, createUser, newdata);
-    if (returnValue == 1) {
-      // resolve(isSubmitting);
-      toast.success('Link has sent to your email to activate your account');
-      router.push('/login');
-    } else toast.error('Could not create account');
-    // }, 3000);
-    // });
+
+    const response = await axios.post(BASE_URL + 'createUser', newdata);
+    response.status == 201
+      ? (toast.success('Link has sent to your email to activate your account'),
+        router.push('/login'))
+      : toast.error('Could not create account');
   };
 
   return (
@@ -129,7 +119,7 @@ const Signup = () => {
 
           <Input
             name="dob"
-            type="text"
+            type="date"
             label="Date of birth"
             placeholder="Select DOB"
             min="1899-01-01"

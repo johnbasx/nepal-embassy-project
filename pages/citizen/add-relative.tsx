@@ -9,16 +9,16 @@ import { BASE_URL } from 'content/api-urls';
 import { CreateUser } from '@utils/fetcher';
 import Form from '@components/registration/Form';
 import { Gender } from '@content/drop-down-items';
+import Image from 'next/image';
 import Input from '@components/registration/Input';
 import Link from 'next/link';
 import PhoneInput from '@components/registration/PhoneInput';
 import Select from '@components/registration/Select';
 import authStore from '@store/useAuthStore';
-import { useRouter } from 'next/router';
-import { yupResolver } from '@hookform/resolvers/yup';
-import Image from 'next/image';
 import pageTitleStore from '@store/selectUsersStore';
 import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const Signup = () => {
   const {
@@ -61,9 +61,10 @@ const Signup = () => {
     <>
       <Toaster />
       <div className="flex flex-col items-center px-4 py-6 mx-auto justify-top">
-        <div className="mb-3 text-xl font-semibold">
+        {/* <div className="mb-3 text-xl font-semibold">
           Add relative profile details
-        </div>
+        </div> */}
+        <Heading />
         <Form
           buttonLabel="Add relative data"
           register={register}
@@ -227,22 +228,22 @@ let extraEmailInfo = (
 
 // Registration Header
 const Heading = () => (
-  <div className="px-4 py-6 text-center">
-    <Image
+  <div className="px-4 py-2 text-center w-full flex-row">
+    {/* <Image
       className="w-auto h-20 mx-auto"
       src="/images/logo-only.jpg"
       alt="Nepal Embassy Logo"
       height={80}
       width={80}
-    />
-    <h2 className="mt-4 text-lg font-medium text-gray-700">
-      User Registration
+    /> */}
+    <h2 className=" text-lg font-medium text-gray-700">
+      Add relative profile details
     </h2>
-    <h1 className="text-3xl font-extrabold">NOC Portal Signup</h1>
+    {/* <h1 className="text-3xl font-extrabold">NOC Portal Signup</h1>
     <h3 className="mt-2 text-lg font-medium text-red-500">Embassy of Nepal</h3>
     <p className="text-xs font-semibold tracking-widest text-gray-500 uppercase">
       New Delhi, India
-    </p>
+    </p> */}
   </div>
 );
 
