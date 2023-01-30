@@ -55,7 +55,7 @@ const CustomPage = () => {
         <GulfSelect setSelectedGulf={setSelectedGulf} />
         {selectedGulf && <GulfAirportSelect selectedCountry={selectedGulf} />}
 
-        <Select
+        {/* <Select
           name="travel_to"
           {...register}
           label={viaCountryLabel}
@@ -63,7 +63,7 @@ const CustomPage = () => {
           error={errors.travel_to?.message}
           options={gulfCountries.map((country) => country.country)}
           autoFocus
-        />
+        /> */}
       </div>
     </div>
   );
