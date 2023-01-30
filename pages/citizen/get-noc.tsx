@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 
 import EmptyData from '@components/common/EmptyData';
 import GetNocCard from '@components/citizen/getNoc/GetNocCard';
+import PaymentDetail from '@components/common/PaymentDetail';
 import authStore from '@store/useAuthStore';
 import axios from 'axios';
 import { citizenNocDocumentList } from 'content/api-urls';
@@ -54,11 +55,7 @@ const GetNoc = () => {
     <div className="min-h-screen px-2 py-8 font-sans bg-gray-100 app min-w-screen">
       <div className="mx-auto space-y-3 lg:px-4">
         <div className="bg-white rounded-xl text-gray-800 text-sm p-4 px-6 space-y-1">
-          <h3 className="text-2xl font-bold">Payment Details</h3>
-          <p>Name: Embassy of Nepal</p>
-          <p>A/C No: 50200058949431</p>
-          <p>IFSC Code: HDFC0001220</p>
-          <p>HDFC Bank, M-36 Cammaught Place</p>
+          <PaymentDetail />
         </div>
         {nocList.length > 0 &&
           nocList.map((detail, index) => (

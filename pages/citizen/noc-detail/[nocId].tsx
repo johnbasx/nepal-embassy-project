@@ -17,6 +17,7 @@ import Footer from '@components/citizen/layout/Footer';
 import NocStatusPill from '@components/citizen/nocDetail/NocStatusPill';
 import { PaperClipIcon } from '@heroicons/react/solid';
 import PaymentAttachmentCard from '@components/citizen/nocDetail/PaymentAttachmentCard';
+import PaymentDetail from '@components/common/PaymentDetail';
 import UploadFile from '@components/citizen/nocDetail/UploadFile';
 import authStore from '@store/useAuthStore';
 import pageTitleStore from '@store/selectUsersStore';
@@ -150,8 +151,12 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               </dd>
             </div>
           </dl>
+          <div className="bg-white rounded-xl text-gray-800 text-sm p-4 px-6 space-y-1">
+            <PaymentDetail />
+          </div>
         </div>
       </div>
+
       <Footer />
     </div>
   );
