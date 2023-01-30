@@ -1,15 +1,20 @@
-import { classNames } from "@utils/helpers";
-import React from "react";
-import { FieldError } from "react-hook-form";
-import { Merge } from "react-hook-form";
-import { FieldErrorsImpl } from "react-hook-form";
-import { BiDownArrowAlt, BiCheck } from "react-icons/bi";
+import { BiCheck, BiDownArrowAlt } from 'react-icons/bi';
+
+import { FieldError } from 'react-hook-form';
+import { FieldErrorsImpl } from 'react-hook-form';
+import { Merge } from 'react-hook-form';
+import React from 'react';
+import { classNames } from '@utils/helpers';
 
 interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
   options: string[];
   label?: string;
-  error?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>>;
+  error?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined;
   register?: any;
   wrapperClass?: string;
   className?: string;
@@ -30,8 +35,8 @@ const Select: React.FC<SelectProps> = ({
         <label
           htmlFor={name}
           className={classNames(
-            "text-xs block font-bold mb-2 uppercase tracking-wide ",
-            error ? "text-red-500 font-semibold" : "text-gray-500"
+            'text-xs block font-bold mb-2 uppercase tracking-wide ',
+            error ? 'text-red-500 font-semibold' : 'text-gray-500'
           )}
         >
           {label}
@@ -44,12 +49,12 @@ const Select: React.FC<SelectProps> = ({
         <select
           ref={register}
           name="ageGroup"
-          aria-invalid={error ? "true" : "false"}
+          aria-invalid={error ? 'true' : 'false'}
           className={classNames(
-            "py-2 px-4 pr-8 appearance-none placeholder-gray-300 focus:ring-2 -ring-offset-1 w-full outline-none rounded-md border border-gray-200 shadow-md overflow-hidden text-ellipsis",
+            'py-2 px-4 pr-8 appearance-none placeholder-gray-300 focus:ring-2 -ring-offset-1 w-full outline-none rounded-md border border-gray-200 shadow-md overflow-hidden text-ellipsis',
             error
-              ? "border-red-500 focus:ring-red-300"
-              : "text-slate-900 border-gray-200 focus:ring-indigo-300 focus:border-indigo-500"
+              ? 'border-red-500 focus:ring-red-300'
+              : 'text-slate-900 border-gray-200 focus:ring-indigo-300 focus:border-indigo-500'
           )}
           {...register}
           {...rest}
@@ -59,7 +64,7 @@ const Select: React.FC<SelectProps> = ({
             <option
               className="truncate"
               value={option}
-              key={option + "option" + index}
+              key={option + 'option' + index}
             >
               {option}
             </option>
@@ -70,8 +75,8 @@ const Select: React.FC<SelectProps> = ({
         <span
           role="alert"
           className={classNames(
-            "text-xs text-red-500 mt-1",
-            error ? "visible" : "invisible"
+            'text-xs text-red-500 mt-1',
+            error ? 'visible' : 'invisible'
           )}
         >
           {error.toString()}
