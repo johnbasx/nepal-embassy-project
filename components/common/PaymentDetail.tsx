@@ -7,7 +7,7 @@ const PaymentDetail = () => {
       <p>Name: Embassy of Nepal</p>
       <p>A/C No: 50200058949431</p>
       <p>IFSC Code: HDFC0001220</p>
-      <p>HDFC Bank, M-36 Cammaught Place</p>
+      <p>HDFC Bank, M-36 Cannaught Place</p>
     </>
   );
 };
