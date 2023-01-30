@@ -1,11 +1,13 @@
-import React from 'react';
-import PDF from '@components/test/PDF';
-// import Layout from '@components/PDF/invoice/layout';
 import { PDFDownloadLink, PDFViewer } from '@react-pdf/renderer';
+
 import { BASE_URL } from '@content/api-urls';
-import axios from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { NOCType } from '@utils/interface';
+import React from 'react';
+import axios from 'axios';
+
+// import PDF from '@components/test/PDF';
+// import Layout from '@components/PDF/invoice/layout';
 
 const PdfView = () => {
   return (
@@ -23,7 +25,7 @@ const PdfView = () => {
       {/* <PDFDownloadLink document={<Layout />} fileName="invoice.pdf">
         {({ loading }) => (loading ? "Loading document..." : "Download")}
       </PDFDownloadLink> */}
-      <PDF />
+      {/* <PDF /> */}
     </div>
   );
 };
