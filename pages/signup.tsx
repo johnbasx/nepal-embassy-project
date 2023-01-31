@@ -1,4 +1,9 @@
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  Controller,
+  SubmitHandler,
+  useForm,
+  useFormState,
+} from 'react-hook-form';
 import {
   RegisterFormTypes,
   RegistrationSchema,
@@ -20,6 +25,7 @@ const Signup = () => {
   const {
     register,
     watch,
+    reset,
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -37,11 +43,26 @@ const Signup = () => {
       contact_number: '+91' + data['contact_number'],
     };
 
-    const response = await axios.post(BASE_URL + 'createUser', newdata);
-    response.status == 201
-      ? (toast.success('Link has sent to your email to activate your account'),
-        router.push('/login'))
-      : toast.error('Could not create account');
+    try {
+      const response = await axios.post(BASE_URL + 'createUser', newdata);
+      console.log(response);
+      toast.success(
+        'Activation link has been sent to your email. Please verify your email'
+      );
+      router.push('/login');
+    } catch (e: any) {
+      e.response.data.email
+        ? (console.log(e.response.data.email[0]),
+          errors.email?.message,
+          toast.error(e.response.data.email[0]))
+        : toast.error(e.response.data.message);
+      reset();
+    }
+
+    // response.status == 201
+    //   ? (toast.success('Link has sent to your email to activate your account'),
+    //     router.push('/login'))
+    //   : toast.error('Could not create account');
   };
 
   return (

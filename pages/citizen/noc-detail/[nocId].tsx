@@ -48,7 +48,7 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
   }, [router.isReady]);
 
   return (
-    <div className="px-4">
+    <div className="p-4">
       <Toaster />
       <div className="p-2 mx-auto my-4 overflow-hidden bg-white shadow rounded-2xl">
         <div className="flex items-center justify-between px-4 py-5 sm:px-6">
@@ -68,6 +68,7 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
                 </span> */}
               </span>
             </h3>
+
             <p className="py-2 text-sm text-gray-600">
               Applied on:{' '}
               <span className="font-semibold text-gray-800">
@@ -75,11 +76,13 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               </span>
             </p>
           </div>
-
-          {/* Refactored to component */}
-          {detail?.verified_status && (
-            <NocStatusPill verified_status={detail?.verified_status} />
-          )}
+          <div className="flex flex-col gap-3">
+            {/* Refactored to component */}
+            {detail?.verified_status && (
+              <NocStatusPill verified_status={detail?.verified_status} />
+            )}
+            <DownloadNOCButton {...detail} />
+          </div>
         </div>
         <div className="px-4 py-5 border-t border-gray-200 sm:px-6">
           {/* <FileViewer docs={docs} /> */}
@@ -159,6 +162,35 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
 
       <Footer />
     </div>
+  );
+};
+
+export const DownloadNOCButton = ({ ...detail }) => {
+  const router = useRouter();
+  const { token } = authStore();
+
+  return detail?.verified_status == '1' ? (
+    <button
+      onClick={() => {
+        router.push(
+          {
+            pathname: '/citizen/generate-noc',
+            query: {
+              nocId: detail?.id,
+              token: token,
+            },
+          },
+          '/citizen/generate-noc'
+        );
+      }}
+      type="button"
+      disabled={detail?.verified_status == '1' ? false : true}
+      className="inline-flex items-center text-center justify-center px-3 py-2 space-x-1 text-xs font-medium text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
+    >
+      Download
+    </button>
+  ) : (
+    <></>
   );
 };
 export default NocDetail;
