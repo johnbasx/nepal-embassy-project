@@ -8,7 +8,7 @@ export const DocDetails = ({ ...data }) => (
   >
     <div className="inline-flex space-x-1">
       <p className="">Ref. No.</p>
-      <span className="text-sm">078/79/GR-FRI/10000</span>
+      <span className="text-sm">{data.ref_no}</span>
     </div>
 
     <div className="inline-flex space-x-1">

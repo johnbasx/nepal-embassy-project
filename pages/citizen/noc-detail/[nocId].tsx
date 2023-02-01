@@ -169,7 +169,7 @@ export const DownloadNOCButton = ({ ...detail }) => {
   const router = useRouter();
   const { token } = authStore();
 
-  return detail?.verified_status == '1' ? (
+  return detail?.verified_status == '3' ? (
     <button
       onClick={() => {
         router.push(
@@ -184,7 +184,7 @@ export const DownloadNOCButton = ({ ...detail }) => {
         );
       }}
       type="button"
-      disabled={detail?.verified_status == '1' ? false : true}
+      disabled={detail?.verified_status == '3' ? false : true}
       className="inline-flex items-center text-center justify-center px-3 py-2 space-x-1 text-xs font-medium text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
     >
       Download

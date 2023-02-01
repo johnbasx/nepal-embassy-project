@@ -108,7 +108,7 @@ const IssueNoc: React.FC<{
                           type="password"
                           //   autoComplete="auth_pin"
                           placeholder="Enter your pin"
-                          autoComplete="off"
+                          autoComplete="disable"
                           required
                           value={authPin}
                           className="w-full px-3 py-2.5 text-sm bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 active:outline-none"
