@@ -5,6 +5,7 @@ import { CloudDownloadIcon } from '@heroicons/react/outline';
 import { GetServerSidePropsContext } from 'next';
 import HeadSection from '@components/nocCirtificate/HeadSection';
 import Loading from '@components/common/Loading';
+import { NOCType } from '@utils/interface';
 import QRCode from 'react-qr-code';
 import authStore from '@store/testAuthStore';
 import axios from 'axios';
@@ -13,24 +14,6 @@ import { jsPDF } from 'jspdf';
 import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import useWindowDimensions from '@utils/useWindowDimensions';
-
-export interface NOCType {
-  id: string;
-  full_name: string;
-  travel_from: string;
-  travel_country: string;
-  reference_number: number;
-  verified_on: string;
-  letter_head: string;
-  letter_body: string;
-  letter_ending: string;
-  signed_by: string;
-  noc_documents: string;
-  passport: number;
-  signature: string;
-  verified_by: string;
-}
-// type CertificateDataType = {};
 
 const DownloadNoc: React.FC<{ certificateData: NOCType }> = ({
   certificateData,

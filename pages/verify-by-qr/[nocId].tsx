@@ -1,11 +1,12 @@
 import { BASE_URL, IMAGE_BASE_URL } from '@content/api-urls';
+import React, { useEffect, useState } from 'react';
+
+import Footer from '@components/citizen/layout/Footer';
 import { GetServerSidePropsContext } from 'next';
 import HeadSection from '@components/nocCirtificate/HeadSection';
-import { NOCType } from 'pages/citizen/download-noc';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import { NOCType } from '@utils/interface';
 import PDF from '@components/PDF';
-import Footer from '@components/citizen/layout/Footer';
+import axios from 'axios';
 import pageTitleStore from '@store/selectUsersStore';
 
 const PublicNoc: React.FC<{ certificateData: NOCType }> = ({
