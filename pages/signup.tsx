@@ -38,9 +38,11 @@ const Signup = () => {
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
     // return new Promise((resolve) => {
     // setTimeout(async () => {
+    console.log(data);
     const newdata = {
       ...data,
-      contact_number: '+91' + data['contact_number'],
+      contact_number:
+        data['contact_number'] != '' ? '+91' + data['contact_number'] : '',
     };
 
     try {
@@ -55,14 +57,11 @@ const Signup = () => {
         ? (console.log(e.response.data.email[0]),
           errors.email?.message,
           toast.error(e.response.data.email[0]))
-        : toast.error(e.response.data.message);
+        : e.response.data.message
+        ? toast.error(e.response.data.message)
+        : toast.error('Something went wrong');
       reset();
     }
-
-    // response.status == 201
-    //   ? (toast.success('Link has sent to your email to activate your account'),
-    //     router.push('/login'))
-    //   : toast.error('Could not create account');
   };
 
   return (
@@ -130,6 +129,7 @@ const Signup = () => {
           <PhoneInput
             name="contact_number"
             type="tel"
+            required={false}
             label="Contact Number"
             wrapperClass="mt-3 col-span-4 md:col-span-2"
             placeholder="9986670093"

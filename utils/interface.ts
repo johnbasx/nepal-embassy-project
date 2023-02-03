@@ -116,7 +116,7 @@ export interface NOCType {
   full_name: string;
   travel_from: string;
   travel_country: string;
-  reference_number: string;
+  ref_no: string;
   verified_on: string;
   letter_head: string;
   letter_body: string;

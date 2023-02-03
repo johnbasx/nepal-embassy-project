@@ -9,7 +9,7 @@ export const DocDetails = ({ ...data }: NOCType) => (
   >
     <div className="inline-flex space-x-1">
       <p className="">Ref. No.</p>
-      <span className="text-sm">{data.reference_number}</span>
+      <span className="text-sm">{data.ref_no}</span>
     </div>
 
     <div className="inline-flex space-x-1">

@@ -37,7 +37,8 @@ const Signup = () => {
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
     const newdata = {
       ...data,
-      contact_number: '+91' + data['contact_number'],
+      contact_number:
+        data['contact_number'] != '' ? '+91' + data['contact_number'] : '',
     };
     console.log(newdata);
     const returnValue = await CreateUser(
@@ -103,7 +104,7 @@ const Signup = () => {
             name="contact_number"
             type="tel"
             label="Contact Number"
-            extraLabel={requiredLabel}
+            extraLabel={optionalLabel}
             wrapperClass="mt-3 col-span-4 md:col-span-2"
             placeholder="9986670093"
             error={errors.contact_number?.message}

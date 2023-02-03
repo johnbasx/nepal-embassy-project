@@ -4,8 +4,8 @@
 // export const BASE_URL = 'https://64.227.136.150/np/api/';
 // export const IMAGE_BASE_URL = 'https://64.227.136.150';
 
-export const BASE_URL = 'https://gov.eondelhi.com/np/api/';
-export const IMAGE_BASE_URL = 'https://gov.eondelhi.com';
+export const BASE_URL = 'https://gov.eondelhi.org/np/api/';
+export const IMAGE_BASE_URL = 'https://gov.eondelhi.org';
 
 // export const BASE_URL = 'http://127.0.0.1:8001/np/api/';
 // export const IMAGE_BASE_URL = 'http://127.0.0.1:8001';

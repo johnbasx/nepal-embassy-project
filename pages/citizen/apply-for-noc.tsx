@@ -368,39 +368,6 @@ const NocRegistration = (page: NextComponentType) => {
                       )}
                     </div>
 
-                    {travelType == 'Direct' && (
-                      <div className="col-span-6 sm:col-span-6 lg:col-span-6">
-                        <dl>
-                          <div className="px-4 py-5 rounded-md bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                            <dt className="text-sm font-medium text-gray-700">
-                              Bank Statement proof(proof of 6 Lakhs in Bank){' '}
-                              <span className="text-red-500">*</span>
-                              <br />
-                              <span className="text-xs font-normal text-red-500">
-                                (This is required only for citizens travelling
-                                directly to any of the 9 Gulf countries.)
-                              </span>
-                            </dt>
-                            <div className="flex">
-                              <input
-                                required
-                                className="form-control"
-                                type="file"
-                                id="bank-proof"
-                                onChange={(
-                                  e: React.ChangeEvent<HTMLInputElement>
-                                ) => {
-                                  if (e.target.files != null) {
-                                    setBankProof(e.target.files[0]);
-                                  }
-                                }}
-                              />
-                            </div>
-                          </div>
-                        </dl>
-                      </div>
-                    )}
-
                     <div className="col-span-6 sm:col-span-6 lg:col-span-2">
                       <label
                         htmlFor="travel-date"
@@ -580,6 +547,38 @@ const NocRegistration = (page: NextComponentType) => {
                         setTransferCertificate={setTransferCertificate}
                       />
                     </dl>
+                    {travelType == 'Direct' && (
+                      <div className="col-span-6 sm:col-span-6 lg:col-span-6">
+                        <dl>
+                          <div className="px-4 py-5 rounded-md bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                            <dt className="text-sm font-medium text-gray-700">
+                              Bank Statement proof(proof of 6 Lakhs in Bank){' '}
+                              {/* <span className="text-red-500">*</span> */}
+                              <br />
+                              <span className="text-xs font-normal text-red-500">
+                                (This is required only for citizens travelling
+                                directly to any of the 9 Gulf countries.)
+                              </span>
+                            </dt>
+                            <div className="flex">
+                              <input
+                                required
+                                className="form-control"
+                                type="file"
+                                id="bank-proof"
+                                onChange={(
+                                  e: React.ChangeEvent<HTMLInputElement>
+                                ) => {
+                                  if (e.target.files != null) {
+                                    setBankProof(e.target.files[0]);
+                                  }
+                                }}
+                              />
+                            </div>
+                          </div>
+                        </dl>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center justify-center px-4 py-3 text-left">

@@ -3,7 +3,6 @@
 import { IMAGE_BASE_URL } from '@content/api-urls';
 import { PDfGenProps } from '.';
 import QRCode from 'react-qr-code';
-import Signature from './Signature';
 import { textBodyStyles } from './NocContent';
 
 const PDfFooter = ({ ...data }: PDfGenProps) => (

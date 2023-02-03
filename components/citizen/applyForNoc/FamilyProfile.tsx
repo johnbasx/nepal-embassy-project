@@ -24,7 +24,6 @@ export interface RelativeProfileProps {
 const FamilyProfile = () => {
   const { token } = authStore();
 
-  console.log(token == '');
   const [relatives, setRelatives] = useState<RelativeProfileProps[]>([]);
 
   const getRelatives = async () => {
@@ -36,9 +35,6 @@ const FamilyProfile = () => {
     getRelatives();
   }, []);
 
-  // if (token == '') {
-  //   return null;
-  // }
   return (
     <div className="flex flex-col px-6 py-6 mx-auto mt-4 bg-white border rounded-lg shadow lg:mx-0">
       <h2 className="text-2xl font-bold text-gray-900 sm:text-2xl">
@@ -53,8 +49,8 @@ const FamilyProfile = () => {
               <span>No relatives found</span>
             )}
           </h2>
-          {relatives &&
-            relatives.map((relative, index) => (
+          {relatives.length > 0 &&
+            relatives?.map((relative, index) => (
               <FamilyProfileCard key={relative.id} {...relative} />
             ))}
           <p className="text-sm font-normal text-gray-500">
