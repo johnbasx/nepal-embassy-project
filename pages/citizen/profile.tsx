@@ -164,7 +164,7 @@ const Profile: NextPage = () => {
                   Date of Birth
                 </label>
                 <input
-                  type="text"
+                  type="date"
                   name="dob"
                   id="dob"
                   autoComplete="dob"

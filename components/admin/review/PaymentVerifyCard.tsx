@@ -105,20 +105,17 @@ const PaymentVerifyCard = ({
                 <span>Reject</span>
               </button>
             )}
-            {detail?.payment_screen_shot != null &&
-              (detail?.payment_verified == '3' ? (
-                <a
-                  href={detail.payment_screen_shot}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center px-4 py-2 space-x-1 text-xs font-medium text-gray-700 duration-150 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300"
-                >
-                  <RiEyeLine className="w-3 h-3 text-gray-600" />
-                  <span>View</span>
-                </a>
-              ) : (
-                <></>
-              ))}
+            {detail?.payment_screen_shot != null && (
+              <a
+                href={detail.payment_screen_shot}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center px-4 py-2 space-x-1 text-xs font-medium text-gray-700 duration-150 bg-gray-200 rounded-md cursor-pointer hover:bg-gray-300"
+              >
+                <RiEyeLine className="w-3 h-3 text-gray-600" />
+                <span>View</span>
+              </a>
+            )}
           </div>
         </div>
       </div>

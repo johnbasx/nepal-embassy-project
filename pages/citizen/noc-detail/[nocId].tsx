@@ -22,6 +22,11 @@ import UploadFile from '@components/citizen/nocDetail/UploadFile';
 import authStore from '@store/useAuthStore';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
+import {
+  dateReverseFormat,
+  dateWithSlash,
+  dateFormatter,
+} from '@utils/helpers';
 
 const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -89,7 +94,10 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
           <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
             <CitizenFields data={detail?.profile.full_name} title="Full Name" />
             <CitizenFields data={detail?.profile.email} title="Email address" />
-            <CitizenFields data={detail?.profile.dob} title="Date of birth" />
+            <CitizenFields
+              data={dateReverseFormat(detail?.profile.dob)}
+              title="Date of birth"
+            />
             <CitizenFields
               title="Application for"
               data={detail?.travel_purpose_value}
@@ -102,9 +110,15 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               data={detail?.travel_country}
               title="Travel Country"
             />
-            <CitizenFields data={detail?.travel_date} title="Travel Date" />
+            <CitizenFields
+              data={dateWithSlash(detail?.travel_date)}
+              title="Travel Date"
+            />
             {detail?.return_date && (
-              <CitizenFields data={detail?.return_date} title="Return Date" />
+              <CitizenFields
+                data={dateWithSlash(detail?.return_date)}
+                title="Return Date"
+              />
             )}
             {detail?.travel_via != '' ? (
               <CitizenFields data={detail?.travel_via} title="Travel Via" />
@@ -154,7 +168,7 @@ const NocDetail: React.FC<{ documentId: string }> = ({ documentId }) => {
               </dd>
             </div>
           </dl>
-          <div className="bg-white rounded-xl text-gray-800 text-sm p-4 px-6 space-y-1">
+          <div className="p-4 px-6 space-y-1 text-sm text-gray-800 bg-white rounded-xl">
             <PaymentDetail />
           </div>
         </div>
@@ -185,7 +199,7 @@ export const DownloadNOCButton = ({ ...detail }) => {
       }}
       type="button"
       disabled={detail?.verified_status == '3' ? false : true}
-      className="inline-flex items-center text-center justify-center px-3 py-2 space-x-1 text-xs font-medium text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
+      className="inline-flex items-center justify-center px-3 py-2 space-x-1 text-xs font-medium text-center text-white transition duration-150 bg-blue-600 rounded-md shadow-sm hover:text-white hover:bg-blue-700 focus:outline-blue-700 focus:ring-2 focus:ring-offset-2 focus:ring-blue-700 disabled:bg-gray-300 disabled:text-gray-50 disabled:cursor-not-allowed"
     >
       Download
     </button>

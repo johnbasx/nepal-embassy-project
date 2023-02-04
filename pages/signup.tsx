@@ -144,7 +144,7 @@ const Signup = () => {
             label="Date of birth"
             placeholder="Select DOB"
             min="1899-01-01"
-            max="2007-01-01"
+            max="2022-01-01"
             wrapperClass="mt-3 grid col-span-4 md:col-span-2 md:h-16"
             error={errors.dob?.message}
           />

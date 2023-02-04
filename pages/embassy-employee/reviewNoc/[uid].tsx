@@ -23,6 +23,7 @@ import authStore from '@store/adminAuthStore';
 import { nocDocumentType } from '@utils/interface';
 import pageTitleStore from '@store/selectUsersStore';
 import { useRouter } from 'next/router';
+import { dateReverseFormat } from '@utils/helpers';
 
 const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
   const router = useRouter();
@@ -124,22 +125,31 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
               title={'Full Name'}
             />
             <CitizenFields data={detail?.profile.email} title="Email address" />
-            <CitizenFields title="Date of birth" data="12/10/1998" />
+            <CitizenFields
+              title="Date of birth"
+              data={dateReverseFormat(detail?.profile.dob)}
+            />
             <CitizenFields
               title="Application for"
               data={detail?.travel_purpose_value}
             />
             <CitizenFields title="Qualification" data="Graduate" />
-            <CitizenFields data={detail?.province} title="District" />
-            <CitizenFields data={detail?.district} title="Province" />
+            <CitizenFields data={detail?.district} title="District" />
+            <CitizenFields data={detail?.province} title="Province" />
             <CitizenFields data={detail?.travel_from} title="Travel From" />
             <CitizenFields
               data={detail?.travel_country}
               title="Travel Country"
             />
-            <CitizenFields data={detail?.travel_date} title="Travel Date" />
+            <CitizenFields
+              data={dateReverseFormat(detail?.travel_date)}
+              title="Travel Date"
+            />
             {detail?.return_date && (
-              <CitizenFields data={detail?.return_date} title="Return Date" />
+              <CitizenFields
+                data={dateReverseFormat(detail?.return_date)}
+                title="Return Date"
+              />
             )}
             {detail?.travel_via != '' ? (
               <CitizenFields data={detail?.travel_via} title="Travel Via" />
@@ -207,7 +217,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                     <LoadingButton btnWidth="w-32" />
                   ) : (
                     <button
-                      className="w-32 px-3 py-2 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
+                      className="inline-flex px-4 py-3 text-xs font-medium text-white duration-150 bg-blue-600 rounded-md hover:bg-blue-700"
                       onClick={() => {
                         readyForPayment(detail?.id);
                       }}
@@ -231,7 +241,7 @@ const CitizenProfile: React.FC<{ documentId: string }> = ({ documentId }) => {
                   onClick={() => {
                     setOpenNocModal(true);
                   }}
-                  className="px-3 py-2 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
+                  className="inline-flex items-center px-4 py-3 text-xs font-medium text-white duration-150 bg-red-500 rounded-md hover:bg-red-600"
                 >
                   Reject NOC
                 </button>

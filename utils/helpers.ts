@@ -1,6 +1,15 @@
 export function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ');
 }
+// Reverse Date
+export const dateReverseFormat = (date?: string) => {
+  return date?.split('-').reverse().join('-');
+};
+
+// reverse date with slash
+export const dateWithSlash = (date?: string) => {
+  return date?.split('/').join('-');
+};
 
 // Helper function to format ISO dates to normal dates
 export const dateFormatter = (date: Date) => {

@@ -145,7 +145,7 @@ const Signup = () => {
             extraLabel={requiredLabel}
             placeholder="Select DOB"
             min="1899-01-01"
-            max="2007-01-01"
+            max="2022-01-01"
             wrapperClass="mt-3 grid col-span-4 md:col-span-2 md:h-16"
             error={errors.dob?.message}
           />
@@ -229,7 +229,7 @@ let extraEmailInfo = (
 
 // Registration Header
 const Heading = () => (
-  <div className="px-4 py-2 text-center w-full flex-row">
+  <div className="flex-row w-full px-4 py-2 text-center">
     {/* <Image
       className="w-auto h-20 mx-auto"
       src="/images/logo-only.jpg"
@@ -237,7 +237,7 @@ const Heading = () => (
       height={80}
       width={80}
     /> */}
-    <h2 className=" text-lg font-medium text-gray-700">
+    <h2 className="text-lg font-medium text-gray-700 ">
       Add relative profile details
     </h2>
     {/* <h1 className="text-3xl font-extrabold">NOC Portal Signup</h1>

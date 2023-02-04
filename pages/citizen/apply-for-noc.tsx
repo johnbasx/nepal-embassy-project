@@ -4,7 +4,6 @@ import AirportInput, {
   AirportTypes,
   airports,
 } from '@components/travel/AirportInput';
-import { CityType, DistrictCityType } from '@utils/interface';
 import {
   GulfCountriesProps,
   gulfCountries,
@@ -15,7 +14,7 @@ import {
   nepalDistricts,
   provinces,
 } from 'content/drop-down-items';
-import { addYears, dateFormatter, todayDateSetter } from '@utils/helpers';
+import { addYears, todayDateSetter } from '@utils/helpers';
 import toast, { Toaster } from 'react-hot-toast';
 
 import { CheckTravelPurpose } from '@utils/applyNoc';
@@ -33,11 +32,9 @@ import { NextComponentType } from 'next';
 import ProfileDetail from '@components/citizen/applyForNoc/ProfileDetail';
 import RespectiveFiles from '@components/citizen/applyForNoc/RespectiveFiles';
 import TravelVia from '@components/travel/TravelVia';
-import { TryProvince } from 'content/drop-down-items';
 import { UserDetailProps } from './profile';
 import authStore from '@store/useAuthStore';
 import { getUserProfile } from '@content/api-urls';
-import moment from 'moment';
 import pageTitleStore from '../../store/selectUsersStore';
 import { useRouter } from 'next/router';
 
@@ -552,7 +549,7 @@ const NocRegistration = (page: NextComponentType) => {
                         <dl>
                           <div className="px-4 py-5 rounded-md bg-gray-50 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
                             <dt className="text-sm font-medium text-gray-700">
-                              Bank Statement proof(proof of 6 Lakhs in Bank){' '}
+                              Proof of Financial Capacity (minimum 6 lakhs)
                               {/* <span className="text-red-500">*</span> */}
                               <br />
                               <span className="text-xs font-normal text-red-500">
@@ -613,7 +610,7 @@ const LoadingButton = () => {
   return (
     <button
       type="button"
-      className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 max-w-lg"
+      className="flex justify-center w-full max-w-lg px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
     >
       <Loading />
       Loading

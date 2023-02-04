@@ -1412,8 +1412,8 @@ export const provinces = [
   },
   {
     pid: 5,
-    label: 'Province Five',
-    value: 'Province Five',
+    label: 'Lumbini Province',
+    value: 'Lumbini Province',
   },
   {
     pid: 6,
