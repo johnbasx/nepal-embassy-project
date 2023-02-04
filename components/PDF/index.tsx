@@ -1,13 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useRef } from 'react';
-import PdfHeader from './PDFHeader';
-// import PDfFooter from "./PDFFooter";
-import '@styles/pdf.module.css';
-import ReactToPrint from 'react-to-print';
-import { NOCType } from '@utils/interface';
 
-import QRCode from 'react-qr-code';
-import { EmbassyStamp } from './EmbassyStamp';
+import '@styles/pdf.module.css';
+
 import {
   ContentBodyNOC_1,
   ContentBodyNOC_2,
@@ -16,8 +10,17 @@ import {
   pageStyle,
   textBodyStyles,
 } from './NocContent';
+import React, { useRef } from 'react';
+
+import { EmbassyStamp } from './EmbassyStamp';
+import { NOCType } from '@utils/interface';
 import PDfFooter from './PDFFooter';
 import { PdfButtons } from './NocDownloadButton';
+import PdfHeader from './PDFHeader';
+import QRCode from 'react-qr-code';
+import ReactToPrint from 'react-to-print';
+
+// import PDfFooter from "./PDFFooter";
 
 export interface PDfGenProps extends NOCType {
   qrCodeValue: string;
@@ -30,7 +33,7 @@ const PDF = ({ allowDownload = true, ...data }: PDfGenProps) => {
   const NocPage = () => (
     <div
       className="mx-auto shadow-lg NOCPrintPage print:scale-110 print:m-0 print:shadow-none page pt-4 max-w-[210mm] max-h-[297mm]"
-      id="invoicePageOne"
+      id="pageone"
       style={pageStyle}
     >
       <div className="relative subpage">

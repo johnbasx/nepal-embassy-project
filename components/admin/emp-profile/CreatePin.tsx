@@ -7,30 +7,40 @@ import Loading from '@components/common/Loading';
 import authStore from '@store/adminAuthStore';
 import axios from 'axios';
 
-const CreatePin = () => {
+const CreatePin = ({
+  getProfile,
+  isPin,
+}: {
+  getProfile: () => void;
+  isPin?: Boolean;
+}) => {
   const { token } = authStore();
   const [data, setData] = useState({});
   const [loading, setloading] = useState(false);
 
   const relProfileUpdate = useMutation(createPin);
   async function createPin(dataToUpdate: any) {
+    // let status = false;
+
     const response = await axios.put(BASE_URL + 'createEmployeePin', data, {
       headers: {
         authorization: 'Bearer ' + token,
       },
     });
 
-    console.log(response);
-
-    if (response.data.success) {
-      response.data.message
-        ? toast.success(response.data.message)
-        : toast.success('Pin created successfully');
-    } else {
-      response.data.message
-        ? toast.error(response.data.message)
-        : toast.error('Unable to create pin');
-    }
+    // console.log(response.data.success);
+    response.data.success
+      ? toast.success(response.data.message)
+      : toast.error('Unable to create pin');
+    // if (response.data.success) {
+    //   response.data.message
+    //     ? toast.success(response.data.message)
+    //     : toast.success('Pin created successfully');
+    // } else {
+    //   response.data.message
+    //     ? toast.error(response.data.message)
+    //     : toast.error('Unable to create pin');
+    // }
   }
 
   const createPinHandler = (e: React.MouseEvent<HTMLElement>) => {
@@ -86,7 +96,11 @@ const CreatePin = () => {
                     type="submit"
                     className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                   >
-                    Create pin
+                    {isPin ? (
+                      <span>Update pin</span>
+                    ) : (
+                      <span>Create new pin</span>
+                    )}
                   </button>
                 ) : (
                   <AuthenticatingButton />

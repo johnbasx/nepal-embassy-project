@@ -116,7 +116,7 @@ export interface NOCType {
   full_name: string;
   travel_from: string;
   travel_country: string;
-  reference_number: number;
+  ref_no: string;
   verified_on: string;
   letter_head: string;
   letter_body: string;
@@ -126,6 +126,7 @@ export interface NOCType {
   passport: number;
   signature: string;
   verified_by: string;
+  employee_desigation: string;
 }
 
 export interface CityType {

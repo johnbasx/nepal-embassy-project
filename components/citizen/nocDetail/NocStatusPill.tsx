@@ -1,4 +1,3 @@
-import { nocDocumentType } from '@utils/interface';
 import React, { useCallback } from 'react';
 import {
   TbBan,
@@ -7,6 +6,8 @@ import {
   TbShieldCheck,
 } from 'react-icons/tb';
 
+import { nocDocumentType } from '@utils/interface';
+
 const NocStatusPill = ({
   verified_status,
 }: {
@@ -14,8 +15,8 @@ const NocStatusPill = ({
 }) => {
   // Status = 1
   const PendingPill = () => (
-    <div className="flex items-center justify-center px-4 py-1 space-x-1 text-xs text-white bg-gray-400 rounded-full">
-      <TbClipboardOff className="w-5 h-5" />
+    <div className="flex items-center justify-center px-3 py-1 space-x-1 text-2xs lg:text-sm text-white bg-gray-400 rounded-full">
+      <TbClipboardOff className="w-4 h-4" />
       <span>Pending</span>
     </div>
   );

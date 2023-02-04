@@ -1,7 +1,8 @@
-import { classNames } from '@utils/helpers';
-import React, { FC, InputHTMLAttributes } from 'react';
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+import React, { FC, InputHTMLAttributes } from 'react';
+
 import { classNameType } from './Form';
+import { classNames } from '@utils/helpers';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -45,6 +46,7 @@ const PhoneInput: FC<InputProps> = ({
         </div>
         <input
           aria-invalid={error ? 'true' : 'false'}
+          type="tel"
           className={classNames(
             'py-2 placeholder-gray-400 pl-16 sm:pl-14 focus:ring-2 -ring-offset-1 w-full outline-none rounded-lg border border-gray-300 bg-gray-50',
             error

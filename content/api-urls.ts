@@ -1,8 +1,11 @@
 // export const BASE_URL = 'http://192.168.29.199:8000/';
 // export const BASE_URL = 'https://cube69.pythonanywhere.com/';
 
-export const BASE_URL = 'http://64.227.136.150/np/api/';
-export const IMAGE_BASE_URL = 'http://64.227.136.150';
+// export const BASE_URL = 'https://64.227.136.150/np/api/';
+// export const IMAGE_BASE_URL = 'https://64.227.136.150';
+
+export const BASE_URL = 'https://gov.eondelhi.org/np/api/';
+export const IMAGE_BASE_URL = 'https://gov.eondelhi.org';
 
 // export const BASE_URL = 'http://127.0.0.1:8001/np/api/';
 // export const IMAGE_BASE_URL = 'http://127.0.0.1:8001';
@@ -31,9 +34,7 @@ export const createNocWTOGATSByEmp = BASE_URL + 'createNocWTOGATSByEmp';
 export const createNocEducationalPurposeByEmp =
   BASE_URL + 'createNocEducationalPurposeByEmp';
 
-// export const getUserProfile = BASE_URL + 'getUserProfile';
 export const loginUrl = BASE_URL + 'authentication';
-export const createUser = BASE_URL + 'createUser';
 export const userProfile = BASE_URL + 'getUserProfile';
 
 export const nocDocList = BASE_URL + 'nocDocList';

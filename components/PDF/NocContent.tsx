@@ -1,14 +1,15 @@
+import { NOCType } from '@utils/interface';
 import moment from 'moment';
 
 // NOC Document registration and date details
-export const DocDetails = ({ ...data }) => (
+export const DocDetails = ({ ...data }: NOCType) => (
   <div
     className="flex justify-between font-serif text-sm font-bold"
     style={textBodyStyles}
   >
     <div className="inline-flex space-x-1">
       <p className="">Ref. No.</p>
-      <span className="text-sm">078/79/GR-FRI/10000</span>
+      <span className="text-sm">{data.ref_no}</span>
     </div>
 
     <div className="inline-flex space-x-1">

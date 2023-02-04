@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
+import Head from 'next/head';
 import HeadNav from './HeadNav';
 import SideBar from './SideBar';
 import authStore from '@store/useAuthStore';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
 import pageTitleStore from '@store/selectUsersStore';
-import BreadCrums from '@components/breadcrum/BreadCrum';
+import { useRouter } from 'next/router';
 
 const Layout = ({ children }: any) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -21,9 +20,9 @@ const Layout = ({ children }: any) => {
     }
   }, []);
 
-  // if (!token) {
-  //   return <></>;
-  // } else {
+  // if (token == '') {
+  //   return null;
+  // }
   return (
     <div className="overflow-hidden ">
       <Head>

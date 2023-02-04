@@ -23,6 +23,7 @@ export interface RelativeProfileProps {
 }
 const FamilyProfile = () => {
   const { token } = authStore();
+
   const [relatives, setRelatives] = useState<RelativeProfileProps[]>([]);
 
   const getRelatives = async () => {
@@ -48,9 +49,10 @@ const FamilyProfile = () => {
               <span>No relatives found</span>
             )}
           </h2>
-          {relatives.map((relative, index) => (
-            <FamilyProfileCard key={relative.id} {...relative} />
-          ))}
+          {relatives.length > 0 &&
+            relatives?.map((relative, index) => (
+              <FamilyProfileCard key={relative.id} {...relative} />
+            ))}
           <p className="text-sm font-normal text-gray-500">
             You can add profile for your family members if their age is below 15
             or above 60 or don&apos;t have access to a

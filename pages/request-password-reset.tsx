@@ -1,12 +1,14 @@
 import toast, { Toaster } from 'react-hot-toast';
 
+import { BASE_URL } from '@content/api-urls';
 import Link from 'next/link';
 import Loading from '@components/common/Loading';
 import { LockClosedIcon } from '@heroicons/react/outline';
 import type { NextPage } from 'next';
 import axios from 'axios';
 import { useState } from 'react';
-import { requestPasswordReset } from '@content/api-urls';
+
+// import { requestPasswordReset } from '@content/api-urls';
 
 const RequestPasswordReset: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,25 +19,18 @@ const RequestPasswordReset: NextPage = () => {
   ) => {
     event.preventDefault();
     setIsLoading(true);
-    const url = 'requestPasswordReset';
+    const url = 'request-reset-email';
+    console.log(email);
     try {
-      const response = await axios.post(
-        url,
-        {
-          email: email,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      const response = await axios.post(BASE_URL + url, {
+        email: email,
+      });
       console.log(response.data);
-      toast.success(response.data.success);
+      toast.success(response.data.message);
       setIsLoading(false);
     } catch (e: any) {
       console.log(e);
-      toast.error(e.response.data.fail);
+      toast.error(e.response.data.message);
       setIsLoading(false);
     }
   };
@@ -61,8 +56,7 @@ const RequestPasswordReset: NextPage = () => {
           </div>
           <form
             className="mt-8 space-y-6"
-            action="#"
-            method="POST"
+            method="post"
             onSubmit={(event) => requestPasswordReset(event)}
           >
             <input type="hidden" name="remember" defaultValue="true" />

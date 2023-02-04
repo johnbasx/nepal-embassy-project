@@ -1,17 +1,17 @@
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
-export function printDocument() {
-  const input = document.getElementsByClassName("NOCPrintPage");
+export async function printDocument() {
+  const input = document.getElementsByClassName('NOCPrintPage');
 
   const pdf = new jsPDF();
 
-  html2canvas(input[0] as HTMLElement).then((canvas) => {
-    console.log(canvas);
-    const imgData = canvas.toDataURL("image/png");
+  await html2canvas(input[0] as HTMLElement).then((canvas) => {
+    // console.log(canvas);
+    const imgData = canvas.toDataURL('image/png');
     // pdf.addImage(imgData, "JPEG", 0, 0);
-    pdf.addImage(imgData, "JPEG", 0, 0, 210, 297, "pdf", "NONE", 0);
-    pdf.save("NOC-download.pdf");
+    pdf.addImage(imgData, 'JPEG', 0, 0, 210, 297, 'pdf', 'NONE', 0);
+    pdf.save('NOC-download.pdf');
   });
 
   // for (let i = 1; i < input.length; i++) {

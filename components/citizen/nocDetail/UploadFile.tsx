@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast';
 
 export interface UploadFileProps {
   url: string;
-  getContent: () => void;
+  getContent: () => Promise<void>;
   uploadFor: string;
   label: string;
 }
@@ -41,7 +41,7 @@ const UploadFile: React.FC<UploadFileProps> = ({
     if (response.data.status == 'success') {
       response.data.message
         ? toast.success(response.data.message)
-        : toast.error('File uploaded successfully');
+        : toast.success('File uploaded successfully');
       getContent();
       setOpen(false);
     } else {

@@ -22,6 +22,7 @@ export interface RegisterFormTypes {
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
+const PHONENUMBER_REGEX = /^[0-9\- ]{10}$/;
 function parseDateString(value: any, originalValue: any) {
   const parsedDate = moment(originalValue).format('DD/MM/yyyy');
   return parsedDate;
@@ -69,9 +70,13 @@ export const RegistrationSchema = yup.object().shape({
   // Contact number validate
   contact_number: yup
     .string()
-    .matches(phoneRegExp, 'Phone number is not valid')
-    .min(10, 'Phone number should be of 10 digits')
-    .max(10, "Phone number can't be more than 10 digits"),
+    .matches(PHONENUMBER_REGEX, {
+      message: 'Phone number is not valid',
+      excludeEmptyString: true,
+    })
+    // .min(10, 'Phone number should be of 10 digits')
+    .nullable()
+    .max(9999999999, "Phone number can't be more than 10 digits"),
 
   // DOB validation
   dob: yup.string().required().transform(parseDateString),
@@ -105,10 +110,10 @@ export const RegistrationSchema = yup.object().shape({
     .required('This field is required')
     .oneOf([yup.ref('password')], 'Passwords do not match!'),
 
-  relationship: yup
-    .string()
-    .matches(/^[A-Za-z ]*$/, 'Please enter a valid name')
-    .min(3, 'Enter a valid name')
-    .max(32, 'Enter a valid name')
-    .required("Mother's Name is required"),
+  // relationship: yup
+  //   .string()
+  //   .matches(/^[A-Za-z ]*$/, 'Please enter a valid name')
+  //   .min(3, 'Enter a valid name')
+  //   .max(32, 'Enter a valid name')
+  //   .required("Mother's Name is required"),
 });

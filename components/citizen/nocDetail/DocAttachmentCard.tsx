@@ -35,23 +35,8 @@ const DocAttachmentCard = ({ ...file }: DocAttachmentCardProps) => {
               {humanizeWord(file.doc_name)}
             </h2>
             <FileStatus status={file.verification_status} />
-            {/* {fileDocStatus(file.verification_status)} */}
-            {/* <BadgePill color="green" label="Approved" /> */}
-            {/* {file.verification_status == '2' ? (
-              <UploadFile
-                url={updateNocDocumentFile + file.id}
-                getContent={file.getNocDocumentFiles}
-                uploadFor="File"
-                label={file.doc_name}
-              />
-            ) : (
-              <></>
-            )} */}
           </div>
-          {/* <p className="text-gray-500">
-            Uploaded on:{' '}
-            <span className="font-medium text-gray-700">12 Sep, 2022</span>
-          </p> */}
+
           <p className="mt-3 text-sm text-gray-700">{file.message}</p>
 
           <div className="flex items-center justify-end mt-2 space-x-3 text-sm">
@@ -62,15 +47,6 @@ const DocAttachmentCard = ({ ...file }: DocAttachmentCardProps) => {
                 uploadFor="File"
                 label={file.doc_name}
               />
-              // <div className="flex justify-center space-x-2">
-              //   <button
-              //     type="button"
-              //     className="inline-flex items-center justify-center px-4 py-2 space-x-1 text-xs font-medium leading-tight text-white transition duration-150 ease-in-out bg-gray-600 rounded-md hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-0 active:bg-gray-800"
-              //   >
-              //     <RiUploadCloud2Line className="w-3 h-3 text-white" />
-              //     <span>Upload again</span>
-              //   </button>
-              // </div>
             )}
             {file.verification_status == '3' && (
               <a

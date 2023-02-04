@@ -1,29 +1,31 @@
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  Controller,
+  SubmitHandler,
+  useForm,
+  useFormState,
+} from 'react-hook-form';
 import {
   RegisterFormTypes,
   RegistrationSchema,
 } from '@components/registration/Validation';
 import toast, { Toaster } from 'react-hot-toast';
 
-import { CreateUser } from '@utils/fetcher';
-import DatePicker from 'react-datepicker';
+import { BASE_URL } from 'content/api-urls';
 import Form from '@components/registration/Form';
 import { Gender } from '@content/drop-down-items';
 import Input from '@components/registration/Input';
 import Link from 'next/link';
 import PhoneInput from '@components/registration/PhoneInput';
 import Select from '@components/registration/Select';
-import authStore from '@store/adminAuthStore';
-import { createUser } from 'content/api-urls';
+import axios from 'axios';
 import { useRouter } from 'next/router';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-// import PhoneInput from "react-phone-input-2";
-// import "react-phone-input-2/lib/style.css";
 const Signup = () => {
   const {
     register,
     watch,
+    reset,
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
@@ -32,26 +34,34 @@ const Signup = () => {
     resolver: yupResolver(RegistrationSchema),
   });
 
-  // const { token } = authStore();
   const router = useRouter();
   const submitHandler: SubmitHandler<RegisterFormTypes> = async (data) => {
-    // console.log(data);
     // return new Promise((resolve) => {
     // setTimeout(async () => {
+    console.log(data);
     const newdata = {
       ...data,
-      contact_number: '+91' + data['contact_number'],
+      contact_number:
+        data['contact_number'] != '' ? '+91' + data['contact_number'] : '',
     };
-    // console.log(newdata);
-    const token = undefined;
-    const returnValue = await CreateUser(token, createUser, newdata);
-    if (returnValue == 1) {
-      // resolve(isSubmitting);
-      toast.success('Link has sent to your email to activate your account');
+
+    try {
+      const response = await axios.post(BASE_URL + 'createUser', newdata);
+      console.log(response);
+      toast.success(
+        'Activation link has been sent to your email. Please verify your email'
+      );
       router.push('/login');
-    } else toast.error('Could not create account');
-    // }, 3000);
-    // });
+    } catch (e: any) {
+      e.response.data.email
+        ? (console.log(e.response.data.email[0]),
+          errors.email?.message,
+          toast.error(e.response.data.email[0]))
+        : e.response.data.message
+        ? toast.error(e.response.data.message)
+        : toast.error('Something went wrong');
+      reset();
+    }
   };
 
   return (
@@ -119,6 +129,7 @@ const Signup = () => {
           <PhoneInput
             name="contact_number"
             type="tel"
+            required={false}
             label="Contact Number"
             wrapperClass="mt-3 col-span-4 md:col-span-2"
             placeholder="9986670093"

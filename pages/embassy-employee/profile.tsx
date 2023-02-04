@@ -10,6 +10,7 @@ import React, { Fragment, useEffect, useRef, useState } from 'react';
 import CreatePin from '@components/admin/emp-profile/CreatePin';
 import Image from 'next/image';
 import authStore from '@store/adminAuthStore';
+import { classNames } from '@utils/helpers';
 import { profile } from 'console';
 import { toast } from 'react-hot-toast';
 
@@ -19,9 +20,12 @@ export interface EmpProfileProps {
   email: string;
   signature: string;
   user?: string;
+  is_pin: Boolean;
+  designation: string;
 }
 
 const Profile = () => {
+  const [pinIsOpen, setPinIsOpen] = useState(false);
   const { token } = authStore();
   const [profile, setProfile] = useState<EmpProfileProps>();
   const getProfile = async () => {
@@ -73,6 +77,27 @@ const Profile = () => {
                     </div>
                     <div className="sm:col-span-1">
                       <dt className="text-sm font-medium text-gray-500">
+                        Designation
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900">
+                        {profile?.designation}
+                      </dd>
+                    </div>
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium text-gray-500">
+                        Security Pin
+                      </dt>
+
+                      {profile?.is_pin && (
+                        <dd className="mt-1  text-gray-900 tracking-widest text-lg">
+                          {[1, 2, 3, 4, 5, 6].map((t, i) => (
+                            <span key={'security' + i}>&#x2022;</span>
+                          ))}
+                        </dd>
+                      )}
+                    </div>
+                    <div className="sm:col-span-1">
+                      <dt className="text-sm font-medium text-gray-500">
                         Signature
                       </dt>
                       <div className="relative h-24 w-auto object-contain ">
@@ -111,7 +136,24 @@ const Profile = () => {
                   getProfile={getProfile}
                   profileId={profile?.id}
                 />
-                <CreatePin />
+
+                {pinIsOpen && (
+                  <CreatePin getProfile={getProfile} isPin={profile?.is_pin} />
+                )}
+                <div>
+                  <button
+                    onClick={() => setPinIsOpen(!pinIsOpen)}
+                    type="button"
+                    className={classNames(
+                      'flex justify-center w-full px-4 py-2 text-sm font-medium  border border-transparent rounded-md shadow-sm  focus:outline-none focus:ring-2 focus:ring-offset-2 transition duration-150',
+                      pinIsOpen
+                        ? 'bg-gray-300 text-gray-800 hover:bg-gray-200 focus:ring-gray-300'
+                        : 'bg-blue-600 text-white  hover:bg-blue-700 focus:ring-blue-500'
+                    )}
+                  >
+                    {pinIsOpen ? 'Cancel' : 'Generate security pin'}
+                  </button>
+                </div>
               </div>
             </div>
           </section>
